@@ -1,0 +1,294 @@
+@import "variables";
+@import "bootstrap";
+@import "bootstrap/theme";
+@import url(https://fonts.googleapis.com/css?family=Sansita+One);
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,300,600);
+
+
+
+/**
+ Mixins
+ ======
+ **/
+ @mixin no-outlines() {
+  outline-color: transparent;
+  outline-style: none;
+}
+
+/**
+ Font vars
+ =========
+ **/
+ $sansita: "Sansita One", cursive;
+ $opensans: "Open-Sans", Helvetica, sans-serif;
+
+/** 
+ Color vars
+ ==========
+ **/
+
+ $deepPurple: #742F4C;
+ $mintyGreen: #B1D6BD;
+ $bakedYellow: #EFF1DB;
+ $lightOrange: #F7A374;
+ $deepBlack: #0B0C0E;
+ $transBlack: rgba(11, 12, 14, 0.9);
+ $eggShell: #9C9886;
+
+
+/**
+ Base styles 
+ ============
+ **/
+ body {
+  font-family: $opensans;
+  background-color: $transBlack;
+  color:$eggShell;
+}
+h1,h2,h3,h4,h5,h6 {font-family: $sansita;}
+h1 {color: $lightOrange;}
+h3 {color: $deepPurple;}
+section,article,p {font-family: $opensans;}
+i {color: $mintyGreen;}
+
+/**
+ Backgrounds
+ ===========
+ **/
+ .night-bg {
+  background: url('../img/night.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  position: absolute;
+  background-color: $deepBlack;
+  top:-73px;
+  left: 0;
+  height: 500px;
+  z-index:0;
+  text-align: center;
+  padding-top: 200px;
+  width: 100%;
+  max-width:3000px;
+  border-bottom: 10px solid $mintyGreen;
+}
+
+/**
+ Navigation
+ ==========
+ **/
+ .navbar-default .navbar-nav > li > a {
+  font-family: $sansita;
+  color: $lightOrange;
+  // margin:0 20px;
+  vertical-align:middle;
+  text-shadow: none;
+}
+.navbar-default .navbar-nav > li > a:hover,
+.navbar-default .navbar-nav > li > a:focus {
+  color: $lightOrange;
+  background-color: $deepPurple;
+  @include no-outlines();
+}
+
+ul.navbar-nav {
+  float: none;
+  display: inline-block;
+  margin: 0 auto;
+}
+
+.navbar .navbar-brand {
+  color:$lightOrange!important;
+  text-shadow: none;
+  display: none;
+}
+.navbar-default {
+  background-image: none;
+  background-color: transparent;
+  border: 0;
+  box-shadow: none!important;
+  z-index: 1;
+}
+.navbar-default, .navbar-collapse {
+  text-align: center; 
+}
+
+.navbar-collapse {
+
+}
+
+.navbar-default .navbar-toggle {
+  margin: 10px auto;
+  display: inline-block;
+  float: none;
+  border-color: $deepPurple;
+}
+.navbar-default .navbar-toggle:hover {background-color: $deepPurple;}
+.navbar-default .navbar-toggle .icon-bar {background-color: $lightOrange;}
+
+.button-caption {
+  // font-size: .6em;
+}
+
+/**
+ Header styles
+ **/
+ .name, .title, .additional {
+  @include no-outlines();
+}
+.name {
+  font-family: $sansita;
+  font-size: 54px;
+  color: $mintyGreen;
+  
+}
+.title {
+  font-family: $opensans;
+  font-size: 24px;
+  color: $mintyGreen;
+}
+
+.additional {
+  i {
+    padding: 10px;
+    font-size: 1.5em;
+    color: $eggShell;
+  }
+}
+
+#employment {
+  padding-top: 420px; // blaaaaze it
+}
+
+/**
+ Generic styles
+ **/
+  
+ .hidden-all {
+  display: none!important;
+ }
+
+ address,
+ time {
+  color:$lightOrange;
+  margin: 0;
+}
+time {margin-bottom: 30px;}
+
+strong {
+  // color: white;
+}
+
+#self-learn-table {
+  margin-top: 10px;
+}
+th, tr {text-align: center;}
+th {
+  font-style: italic;
+  font-weight: bold;
+  background-color: $deepPurple;
+  border: 1px solid $deepPurple;
+  color: $lightOrange;
+}
+.table-header {border-bottom: 1px solid $deepPurple; padding-top: 10px;}
+.odd {
+  padding: 5px;
+  border: 1px solid $deepPurple;
+  }
+.even {
+  padding: 5px;
+  background-color: rgba(0,0,0,0.1);
+  border: 1px solid $deepPurple;
+}
+.last-row {border-bottom: 1px solid #555;}
+
+.touch {
+  text-align: center;
+  margin-top: 50px;
+  padding-top: 30px;
+  display: block;
+  border-top: 10px solid $mintyGreen;
+  h1 {
+    margin-bottom: 50px;
+  }
+}
+
+.thanks {
+  font-family: $sansita;
+color: $lightOrange;
+}
+
+#pre-form {
+  margin-bottom: 30px;
+  font-size: 1.3em;
+}
+
+#cta-message {
+  margin-bottom: 30px;
+}
+
+form.contact-form {
+  margin-bottom: 30px;
+  text-align: center;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+
+  input[type="text"],
+  input[type="email"] {
+    padding:10px!important;
+    margin-right: 10px;
+    margin-bottom: 30px;
+    background-color: $bakedYellow;
+    color: $deepBlack;
+    border-radius: 0;
+  }
+
+  .messagebox {
+    margin-bottom: 30px;
+    height: 200px;
+    background-color: $bakedYellow;
+    color: $deepBlack;
+    padding: 10px;
+    border-radius: 0;
+  }
+  .submit-form {
+    margin: 0 auto;
+    display: block;
+    clear: both;
+    border-radius: 0;
+    border-color: transparent;
+    box-shadow: 0;
+    background-color: $deepPurple;
+    color: $mintyGreen;
+    margin-bottom: 30px;
+    padding: 10px;
+    text-indent: 0;
+  }
+}
+
+
+#honeypot {
+  display: none;
+}
+
+/**
+ Media query overrides
+ =====================
+ **/
+ @media (max-width: 767px) {
+  .container-fluid > .navbar-collapse {
+    margin: 0;
+  }
+  .navbar-collapse {
+    border-color: $mintyGreen;
+    position: absolute;
+    left: 50%;
+    transform:translateX(-50%);
+    background-color: $deepBlack;
+    float: none;
+    width: 100%;
+  }
+  th, tr {
+    font-size: .9em;
+  }
+}
