@@ -6281,21 +6281,17 @@ button.close {
   box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.05), 0 1px 0 rgba(255, 255, 255, 0.1); }
 
 /**
- Mixins
- ======
- **/
+Mixins
+======
+**/
 /**
- Font vars
- =========
- **/
-/** 
- Color vars
- ==========
- **/
+Color vars
+==========
+**/
 /**
- Base styles 
- ============
- **/
+Base styles
+============
+**/
 body {
   font-family: "Open-Sans", Helvetica, sans-serif;
   background-color: rgba(11, 12, 14, 0.9);
@@ -6317,9 +6313,9 @@ i {
   color: #B1D6BD; }
 
 /**
- Backgrounds
- ===========
- **/
+Backgrounds
+===========
+**/
 .night-bg {
   background: url("../img/night.jpg");
   background-size: cover;
@@ -6337,9 +6333,9 @@ i {
   border-bottom: 10px solid #B1D6BD; }
 
 /**
- Navigation
- ==========
- **/
+Navigation
+==========
+**/
 .navbar-default .navbar-nav > li > a {
   font-family: "Sansita One", cursive;
   color: #F7A374;
@@ -6386,8 +6382,8 @@ ul.navbar-nav {
   background-color: #F7A374; }
 
 /**
- Header styles
- **/
+Header styles
+**/
 .name, .title, .additional {
   outline-color: transparent;
   outline-style: none; }
@@ -6411,18 +6407,21 @@ ul.navbar-nav {
   padding-top: 420px; }
 
 /**
- Generic styles
- **/
+Generic styles
+**/
 .hidden-all {
   display: none !important; }
 
 address,
 time {
-  color: #F7A374;
+  color: #F7A374; }
+
+address {
   margin: 0; }
 
 time {
-  margin-bottom: 30px; }
+  margin-bottom: 15px;
+  display: block; }
 
 #self-learn-table {
   margin-top: 10px; }
@@ -6511,9 +6510,9 @@ form.contact-form {
   display: none; }
 
 /**
- Media query overrides
- =====================
- **/
+Media query overrides
+=====================
+**/
 @media (max-width: 767px) {
   .container-fluid > .navbar-collapse {
     margin: 0; }
