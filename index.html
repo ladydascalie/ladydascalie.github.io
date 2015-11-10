@@ -8,8 +8,8 @@
   <link rel="stylesheet" type="text/css" href="css/app.css">
   <link rel="stylesheet" type="text/css" href="fonts/font-awesome/css/font-awesome.min.css">
 </head>
-<div class="">
-  <nav class="navbar navbar-default">
+<div>
+  <nav class="navbar navbar-default nav-exterior">
     <div class="container-fluid">
       <!-- Brand and toggle get grouped for better mobile display -->
       <div class="navbar-header">
@@ -25,15 +25,15 @@
 
       <!-- Collect the nav links, forms, and other content for toggling -->
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-        <ul class="nav navbar-nav">
-          <li><a href="#employment">Employment <span class="sr-only">(current)</span></a></li>
-          <li><a href="#skills">Skills</a></li>
-          <li><a href="#education">Education</a></li>
-          <li><a href="#init">Initiatives &amp; Hobbies</a></li>
-          <li><a href="#contact">Get in touch!</a></li>
+        <ul class="nav navbar-nav main-nav">
+          <li><a class="nav-link" href="#employment">Employment <span class="sr-only">(current)</span></a></li>
+          <li><a class="nav-link" href="#skills">Skills</a></li>
+          <li><a class="nav-link" href="#education">Education</a></li>
+          <li><a class="nav-link" href="#init">Initiatives &amp; Hobbies</a></li>
+          <li><a class="nav-link" href="#contact">Get in touch!</a></li>
         <!-- <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
-          
+
         </li> -->
       </ul>
     </div><!-- /.navbar-collapse -->
@@ -66,10 +66,10 @@
         As <strong>part of a team of 40 developers and 6 designers</strong>:<br>Tasked with <strong>creation of wireframes &amp; mockups</strong> as well as their <strong>integration</strong> as part of the product team.<br> Creation and integration of templates for the marketing team’s <strong>emailing campaigns</strong> using <strong>Mailchimp</strong>.<br>Involved in the decision making process for the visual identity of the company’s corporate website.<br>Development and creation of Wordpress templates for the company’s various websites using bootstrap as our framework.<br>Security and maintenance of said Wordpress sites. Creation of gulp builds to compile, concatenate and serve minified versions of previously separate CSS and JS files. Issue tracking and resolution using Jira.
         <h4>Sites worked on:</h4>
         <ul>
-          <li><a href="http://www.lengow.com/">Lengow's Corporate Website</a></li>
-          <li><a href="http://hub.lengow.com/">Lengow's Hub</a></li>
-          <li><a href="http://blog.lengow.com/">Lengow's Blog</a></li>
-          <li><a href="http://www.lengowecommerceday.com/fr/paris2015/">Lengow Ecommerce Day</a></li>
+          <li><a href="http://www.lengow.com/">Lengow's Corporate Website <i class="fa fa-sign-out"></i></a></li>
+          <li><a href="http://hub.lengow.com/">Lengow's Hub <i class="fa fa-sign-out"></i></a></li>
+          <li><a href="http://blog.lengow.com/">Lengow's Blog <i class="fa fa-sign-out"></i></a></li>
+          <li><a href="http://www.lengowecommerceday.com/fr/paris2015/">Lengow Ecommerce Day <i class="fa fa-sign-out"></i></a></li>
         </ul>
         </p>
       </article>
@@ -141,7 +141,7 @@
       </header>
       <br>
       <p>
-        <em>Web development:</em><br> 
+        <em>Web development:</em><br>
         Web languages (<strong>HTML5/CSS3, JavaScript, PHP, MySQL</strong>), dynamic websites creation and management. Network and server security classes. CMS usage, configuration and management (<strong>Wordpress</strong>, Joomla, <strong>Drupal</strong>), <strong>Wordpress plugin development</strong>.
       </p>
       <br>
@@ -157,7 +157,7 @@
     </article>
     <h1 class="col-xs-12">Self-teaching</h1>
     <article class="col-xs-12">
-      <table id="self-learn-table">
+      <table class="table-exterior" id="self-learn-table">
         <thead>
           <tr class="table-header">
             <th>Code Academy</th>
@@ -192,7 +192,7 @@
             <td class="odd">An Introduction To Programming In Go</td>
           </tr>
         </tbody>
-      </table>  
+      </table>
     </article>
   </section>
   <section class="row" id="init">
@@ -214,7 +214,7 @@
   </section>
   <section class="row touch" id="contact">
     <h1 class="col-xs-12">Get in touch!</h1>
-    <div class="additional" id="pre-form">
+    <div class="additional additional-second" id="pre-form">
       <a href="//github.com/LadyDascalie" target="_blank"><i class="fa fa-github"></a></i>
       <a href="mailto:cable.benjamin@gmail.com"><i class="fa fa-envelope"></i></a>
       <a href="skype:cable_benjamin_1988?add"><i class="fa fa-skype"></i></a>
@@ -224,7 +224,7 @@
       </a>
       <a class="hidden-sm hidden-md hidden-lg" download href="assets/benjamincable.vcf" target="_blank"><i class="fa fa-cloud-download"></i></a>
     </div>
-    <h3 id="cta-message">Or...<br>Send me a message!</h3>
+    <h3 class="cta-message">Or...<br>Send me a message!</h3>
     <div id="thanks">
       <p><span class="thanks">Thank you!</span><br>Your message has been sent!</p>
     </div>
