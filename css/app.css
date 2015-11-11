@@ -6308,6 +6308,8 @@ i {
   color: #b1d6bd; }
 
 a i {
+  outline-color: transparent;
+  outline-style: none;
   color: #337ab7; }
 
 .night-bg {
