@@ -6337,6 +6337,9 @@ a i {
 .navbar-collapse.collapse.in {
   padding: 0; }
 
+.override-collapse.navbar-collapse.collapsing {
+  min-height: 56px; }
+
 .navbar-default.nav-exterior,
 .navbar-default.nav-exterior.transparent-header {
   background-color: transparent;
@@ -6352,8 +6355,10 @@ a i {
     vertical-align: middle; }
   .navbar-default.nav-exterior .nav-link:hover,
   .navbar-default.nav-exterior .nav-link:focus,
+  .navbar-default.nav-exterior .nav-link:visited,
   .navbar-default.nav-exterior.transparent-header .nav-link:hover,
-  .navbar-default.nav-exterior.transparent-header .nav-link:focus {
+  .navbar-default.nav-exterior.transparent-header .nav-link:focus,
+  .navbar-default.nav-exterior.transparent-header .nav-link:visited {
     outline-color: transparent;
     outline-style: none;
     background-color: #742f4c;
@@ -6540,6 +6545,8 @@ th {
 @media (max-width: 767px) {
   .container-fluid > .navbar-collapse {
     margin: 0; }
+  .button-caption {
+    color: #f7a374; }
   .navbar-collapse {
     background-color: #0b0c0e;
     border-color: #b1d6bd;
