@@ -1,17 +1,15 @@
 var host = "ladydascalie.github.io";
-if ((host == window.location.host) && (window.location.protocol != "https:")) {
-    window.location.protocol = "https";
+if ((host === window.location.host) && (window.location.protocol !== "https:")) {
+  window.location.protocol = "https";
 }
 
 // Smooth scrolling
-$("a[href^='#']").on('click', function(e) {
-
+$("a[href^='#']").on('click', function (e) {
+  "use strict";
   // prevent default anchor click behavior
   e.preventDefault();
-
   // store hash
   var hash = this.hash;
-
   // animate
   $('html, body').animate({
     scrollTop: $(hash).offset().top
@@ -22,9 +20,8 @@ $("a[href^='#']").on('click', function(e) {
   });
 });
 
-
-// Thanks
-if(window.location.hash === "#thanks") {
+// Form submission "thank you" note
+if (window.location.hash === "#thanks") {
   $('#thanks').removeClass("hidden-all");
   $('#thanks').addClass("block");
 } else {
