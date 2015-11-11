@@ -6475,6 +6475,8 @@ th {
     margin-bottom: 30px;
     margin-right: 10px;
     padding: 10px; }
+  .contact-form .formelem {
+    border: 0; }
   .contact-form .messagebox {
     background-color: #eff1db;
     border-radius: 0;
