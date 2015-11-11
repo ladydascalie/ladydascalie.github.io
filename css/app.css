@@ -6332,19 +6332,46 @@ a i {
 .navbar-collapse {
   text-align: center; }
 
-.navbar-default.nav-exterior {
+.navbar-collapse.collapse,
+.navbar-collapse.collapsing,
+.navbar-collapse.collapse.in {
+  padding: 0; }
+
+.navbar-default.nav-exterior,
+.navbar-default.nav-exterior.transparent-header {
   background-color: transparent;
   background-image: none;
   border: 0;
   box-shadow: none;
   z-index: 1; }
-  .navbar-default.nav-exterior .main-nav .nav-link {
+  .navbar-default.nav-exterior .main-nav .nav-link,
+  .navbar-default.nav-exterior.transparent-header .main-nav .nav-link {
     font-family: "Sansita One",cursive;
     color: #f7a374;
     text-shadow: none;
     vertical-align: middle; }
   .navbar-default.nav-exterior .nav-link:hover,
-  .navbar-default.nav-exterior .nav-link:focus {
+  .navbar-default.nav-exterior .nav-link:focus,
+  .navbar-default.nav-exterior.transparent-header .nav-link:hover,
+  .navbar-default.nav-exterior.transparent-header .nav-link:focus {
+    outline-color: transparent;
+    outline-style: none;
+    background-color: #742f4c;
+    color: #f7a374; }
+
+.navbar-default.nav-exterior.full-header {
+  background-color: #742f4c;
+  background-image: none;
+  border: 0;
+  box-shadow: none;
+  z-index: 1; }
+  .navbar-default.nav-exterior.full-header .main-nav .nav-link {
+    font-family: "Sansita One",cursive;
+    color: #f7a374;
+    text-shadow: none;
+    vertical-align: middle; }
+  .navbar-default.nav-exterior.full-header .nav-link:hover,
+  .navbar-default.nav-exterior.full-header .nav-link:focus {
     outline-color: transparent;
     outline-style: none;
     background-color: #742f4c;
@@ -6359,16 +6386,28 @@ a i {
   display: none;
   text-shadow: none; }
 
+.button-caption {
+  font-family: "Sansita One",cursive;
+  color: #b1d6bd;
+  margin-bottom: 0; }
+
+.full-header .button-caption {
+  color: #f7a374; }
+
 .navbar-default .navbar-toggle {
-  border-color: #742f4c;
+  border-color: #f7a374;
   display: inline-block;
   float: none;
-  margin: 10px auto; }
+  margin: 10px auto 0; }
   .navbar-default .navbar-toggle .icon-bar {
     background-color: #f7a374; }
 
-.navbar-default .navbar-toggle:hover {
-  background-color: #742f4c; }
+.navbar-default .navbar-toggle:hover,
+.navbar-default .navbar-toggle:focus {
+  background-color: #f7a374; }
+  .navbar-default .navbar-toggle:hover .icon-bar,
+  .navbar-default .navbar-toggle:focus .icon-bar {
+    background-color: #742f4c; }
 
 .name,
 .title,
@@ -6511,4 +6550,6 @@ th {
     width: 100%; }
   th,
   tr {
-    font-size: .9em; } }
+    font-size: .9em; }
+  .main-nav {
+    width: 100%; } }

@@ -9,7 +9,7 @@
   <link rel="stylesheet" type="text/css" href="fonts/font-awesome/css/font-awesome.min.css">
 </head>
 <div>
-  <nav class="navbar navbar-default nav-exterior">
+  <nav class="navbar navbar-default nav-exterior navbar-fixed-top">
     <div class="container-fluid">
       <!-- Brand and toggle get grouped for better mobile display -->
       <div class="navbar-header">
@@ -26,11 +26,11 @@
       <!-- Collect the nav links, forms, and other content for toggling -->
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav main-nav">
-          <li><a class="nav-link" href="#employment">Employment <span class="sr-only">(current)</span></a></li>
-          <li><a class="nav-link" href="#skills">Skills</a></li>
-          <li><a class="nav-link" href="#education">Education</a></li>
-          <li><a class="nav-link" href="#init">Initiatives &amp; Hobbies</a></li>
-          <li><a class="nav-link" href="#contact">Get in touch!</a></li>
+          <li><a class="nav-link" onclick="toggleDropdown()" href="#employment">Employment <span class="sr-only">(current)</span></a></li>
+          <li><a class="nav-link" onclick="toggleDropdown()" href="#skills">Skills</a></li>
+          <li><a class="nav-link" onclick="toggleDropdown()" href="#education">Education</a></li>
+          <li><a class="nav-link" onclick="toggleDropdown()" href="#init">Initiatives &amp; Hobbies</a></li>
+          <li><a class="nav-link" onclick="toggleDropdown()" href="#contact">Get in touch!</a></li>
           <!-- <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
 
@@ -64,8 +64,8 @@
       '//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
     })(window,document,'script','dataLayer','GTM-58LFBL');</script>
     <!-- End Google Tag Manager -->
-    <section class="row employment" id="employment">
-      <h1 class="col-xs-12">Employment</h1>
+    <section class="row employment">
+      <h1 class="col-xs-12" id="employment">Employment</h1>
       <article class="col-xs-12">
         <header>
           <h3>Web Developper &amp; Designer</h3>

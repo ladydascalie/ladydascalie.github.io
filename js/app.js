@@ -12,12 +12,32 @@ $("a[href^='#']").on('click', function (e) {
   var hash = this.hash;
   // animate
   $('html, body').animate({
-    scrollTop: $(hash).offset().top
-  }, 300, function(){
-    // when done, add hash to url
-    // (default click behaviour)
-    window.location.hash = hash;
+    scrollTop: $(hash).offset().top - 70
   });
+});
+
+// ToggleDropdown
+function toggleDropdown() { // jshint ignore: line
+  "use strict";
+  $('button.navbar-toggle').click();
+}
+
+// Header styles
+$(function() {
+  "use strict";
+    //caches a jQuery object containing the header element
+    var header = $(".navbar");
+    $(window).scroll(function() {
+        var scroll = $(window).scrollTop();
+
+        if (scroll >= 300) {
+            header.removeClass('transparent-header').addClass("full-header");
+        } else if (scroll == 0) {
+            header.addClass('transparent-header');
+        } else {
+            header.removeClass("full-header").addClass('transparent-header');
+        }
+    });
 });
 
 // Form submission "thank you" note
