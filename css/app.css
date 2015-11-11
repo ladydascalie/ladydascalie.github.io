@@ -6332,23 +6332,19 @@ a i {
 .navbar-collapse {
   text-align: center; }
 
-.navbar-default,
-.nav-exterior {
+.navbar-default.nav-exterior {
   background-color: transparent;
   background-image: none;
   border: 0;
   box-shadow: none;
   z-index: 1; }
-  .navbar-default .main-nav .nav-link,
-  .nav-exterior .main-nav .nav-link {
+  .navbar-default.nav-exterior .main-nav .nav-link {
     font-family: "Sansita One",cursive;
     color: #f7a374;
     text-shadow: none;
     vertical-align: middle; }
-  .navbar-default .nav-link:hover,
-  .navbar-default .nav-link:focus,
-  .nav-exterior .nav-link:hover,
-  .nav-exterior .nav-link:focus {
+  .navbar-default.nav-exterior .nav-link:hover,
+  .navbar-default.nav-exterior .nav-link:focus {
     outline-color: transparent;
     outline-style: none;
     background-color: #742f4c;
