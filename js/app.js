@@ -16,13 +16,17 @@ $("a[href^='#']").on('click', function (e) {
   });
 });
 
-// ToggleDropdown
+/**
+ * [toggleDropdown toggles the menu once a click on a menu element is registered]
+ */
 function toggleDropdown() { // jshint ignore: line
   "use strict";
   $('button.navbar-toggle').click();
 }
 
-// Header styles
+/**
+ * [IEF, toggles the classes on the header on load]
+ */
 $(window).on('load', function() {
   "use strict";
   var header = $(".navbar");
@@ -34,10 +38,12 @@ $(window).on('load', function() {
   }
 });
 
+/**
+ * [IEF, toggles the classes on the header on scroll]
+ */
 $(function() {
   "use strict";
 
-  //caches a jQuery object containing the header element
   var header = $(".navbar");
   $(window).scroll(function() {
     var scroll = $(window).scrollTop();
@@ -50,7 +56,9 @@ $(function() {
   });
 });
 
-// Form submission "thank you" note
+/**
+ * [Conditional IEF, toggles the classes on the thank you note footer]
+ */
 if (window.location.hash === "#thanks") {
   $('#thanks').removeClass("hidden-all");
   $('#thanks').addClass("block");
