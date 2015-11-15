@@ -30,11 +30,14 @@ function toggleDropdown() { // jshint ignore: line
 $(window).on('load', function() {
   "use strict";
   var header = $(".navbar");
+  var nav = $("nav.navbar");
   var scroll = $(window).scrollTop();
   if (scroll >= 300) {
     header.removeClass('transparent-header').addClass("full-header");
+    nav.removeClass('navbar-fixed-top');
   } else {
     header.removeClass("full-header").addClass('transparent-header');
+    nav.addClass('navbar-fixed-top');
   }
 });
 
@@ -45,13 +48,17 @@ $(function() {
   "use strict";
 
   var header = $(".navbar");
+  var nav = $("nav.navbar");
   $(window).scroll(function() {
     var scroll = $(window).scrollTop();
 
     if (scroll >= 300) {
       header.removeClass('transparent-header').addClass("full-header");
+      nav.addClass('navbar-fixed-top');
+
     } else {
       header.removeClass("full-header").addClass('transparent-header');
+      nav.removeClass('navbar-fixed-top');
     }
   });
 });

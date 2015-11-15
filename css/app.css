@@ -6328,6 +6328,9 @@ a i {
   width: 100%;
   z-index: 0; }
 
+.nav-controller {
+  height: 500px; }
+
 .navbar-default,
 .navbar-collapse {
   text-align: center; }
@@ -6346,6 +6349,7 @@ a i {
   background-image: none;
   border: 0;
   box-shadow: none;
+  transition: all ease 500ms;
   z-index: 1; }
   .navbar-default.nav-exterior .main-nav .nav-link,
   .navbar-default.nav-exterior.transparent-header .main-nav .nav-link {
@@ -6434,9 +6438,6 @@ a i {
   color: #9c9886;
   font-size: 1.5em;
   padding: 10px; }
-
-.row.employment {
-  padding-top: 420px; }
 
 .hidden-all {
   display: none; }
