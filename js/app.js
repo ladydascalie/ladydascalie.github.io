@@ -1,3 +1,4 @@
+// Redirect to https by default
 var host = "ladydascalie.github.io";
 if ((host === window.location.host) && (window.location.protocol !== "https:")) {
   window.location.protocol = "https";
@@ -17,16 +18,16 @@ $("a[href^='#']").on('click', function (e) {
 });
 
 /**
- * [toggleDropdown toggles the menu once a click on a menu element is registered]
- */
+* [toggleDropdown toggles the menu once a click on a menu element is registered]
+*/
 function toggleDropdown() { // jshint ignore: line
   "use strict";
   $('button.navbar-toggle').click();
 }
 
 /**
- * [IEF, toggles the classes on the header on load]
- */
+* [IEF, toggles the classes on the header on load]
+*/
 $(window).on('load', function() {
   "use strict";
   var header = $(".navbar");
@@ -42,30 +43,25 @@ $(window).on('load', function() {
 });
 
 /**
- * [IEF, toggles the classes on the header on scroll]
- */
-$(function() {
+* [IEF, toggles the classes on the header on scroll]
+*/
+$(window).scroll(function() {
   "use strict";
-
   var header = $(".navbar");
   var nav = $("nav.navbar");
-  $(window).scroll(function() {
-    var scroll = $(window).scrollTop();
-
-    if (scroll >= 300) {
-      header.removeClass('transparent-header').addClass("full-header");
-      nav.addClass('navbar-fixed-top');
-
-    } else {
-      header.removeClass("full-header").addClass('transparent-header');
-      nav.removeClass('navbar-fixed-top');
-    }
-  });
+  var scroll = $(window).scrollTop();
+  if (scroll >= 300) {
+    header.removeClass('transparent-header').addClass("full-header");
+    nav.addClass('navbar-fixed-top');
+  } else {
+    header.removeClass("full-header").addClass('transparent-header');
+    nav.removeClass('navbar-fixed-top');
+  }
 });
 
 /**
- * [Conditional IEF, toggles the classes on the thank you note footer]
- */
+* [Conditional IEF, toggles the classes on the thank you note footer]
+*/
 if (window.location.hash === "#thanks") {
   $('#thanks').removeClass("hidden-all");
   $('#thanks').addClass("block");
