@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="/css/main.css">
+    <title>Benjamin Cable</title>
+</head>
+
+<body>
+<header>
+    <h1>Benjamin Cable</h1>
+    <h2>Principal Engineer @ Lush</h2>
+    <p><strong><a href="https://www.meetup.com/Golang-Dorset/">Golang Dorset</a> Meetup Organiser</strong></p>
+</header>
+<hr>
+<h5><a href="/">Go back</a></h5><h2>Self publishing with Julia</h2>
+<p>To inaugurate the writings section of this website, I will explain how I setup my own little CLI to help me create new posts, using Julia.</p>
+<p>First I think I need to clarify why:</p>
+<p>Every time I&#39;ve tried to use a static site generator, I find myself questioning my need for one.</p>
+<p>There are too many features I do not use, too many themes to consider, too many conventions. In the end, I like things to be dead simple, especially given my taste for rather spartan webpages. <a href="http://gohugo.io/">Hugo</a>, for example, is fantastic, but I feel like I would be using 10&#37; of its features, without really understanding them either.</p>
+<p>I decided, then, that I would implement only the features I actually want, and that I would do this using Julia, since it&#39;s a language I&#39;ve been interested in lately.</p>
+<p>With that being said: I am aware that the implementation I came up with it primitive, somewhat dumb, and most likely doesn&#39;t do Julia any justice. It is, however, enough for the time being. I needed <em>something</em> to get me started, and this served as a sufficiently inoffensive exercise to get a taste for the language.</p>
+<h3>Starting small</h3>
+<p>The first thing I wanted was to setup somewhat of a CLI, that would contain usage information, and respond to command line flags, much like I would do it in Go or other languages.</p>
+<p>First things first, I need an entry point, I setup <code>Main.jl</code> for this purpose:</p>
+<pre><code>#&#33;/usr/bin/env julia
+
+using Printf
+
+include&#40;&quot;Posts.jl&quot;&#41;
+
+const md &#61; &quot;--markdown&quot;
+const sitemap &#61; &quot;--sitemap&quot;
+
+const usage &#61; &quot;&quot;&quot;
+        &#91;cli&#93; - Publishing Helper.
+
+        commands:
+        &#91;&#36;md&#93;
+                - Create a new post, using a Markdown file as input.
+        
+        &#91;&#36;sitemap&#93;
+                - Create a sitemap, reading the posts directory.
+        &quot;&quot;&quot;
+
+&quot;die - compact helper function for early exits&quot;
+die&#40;&#41; &#61; &#40;println&#40;usage&#41;;exit&#40;2&#41;&#41;
+
+&quot;dispatch - checks for a cli flag match, then call the appropriate method, or die&quot;
+function dispatch&#40;s::String&#41;
+    if s &#61;&#61; sitemap
+        Posts.sitemap&#40;ARGS&#41;
+    elseif s &#61;&#61; md
+        Posts.create_from_markdown&#40;ARGS&#41;
+    else
+        die&#40;&#41;
+    end
+end
+
+# entry point
+if length&#40;ARGS&#41; &gt; 0
+    dispatch&#40;ARGS&#91;1&#93;&#41;
+else
+    die&#40;&#41;
+end</code></pre>
+<p>There are not many interesting things about this file, so I shall be brief.</p>
+<p>I define a usage notice in <code>const usage &#61; ...</code> which is what I want to see printed if the program is ran without arguments.</p>
+<p>One interesting thing to note about this however is that the preceding whitespace is ignored, and therefore not visible when printing.</p>
+<p>as for <code>die&#40;&#41; &#61; &#40;...&#41;</code>, it is simply an inlined, or compact function, it could have similarly been written using the long form syntax:</p>
+<pre><code>function die&#40;&#41;
+	# ...
+end</code></pre>
+<p>However, you will notice that it is defined twice, making use of Julia&#39;s capacity for multiple dispatch.</p>
+<p>Now, on to the more interesting part of this program: the <code>Posts.jl</code> module.</p>
+<h3>Creating new posts</h3>
+<p>First, I start by defining a Julia module:</p>
+<pre><code>module Posts
+
+export create_from_markdown, sitemap
+
+function create_from_markdown&#40;arguments&#41;
+end
+
+function sitemap&#40;arguments&#41;
+end
+
+end</code></pre>
+<p>This bare-bones definition is enough to setup the module and dispatch the functions. If you recall in the <code>Main.jl</code> file, I was sending <code>ARGS</code> as arguments to these two functions. <code>ARGS</code> is the special variable under which arguments are found when running the program. To avoid redefining/overriding it, I simply take it as <code>arguments</code> within those functions.</p>
+<h4>create_from_markdown</h4>
+<p>Here I want the following results:</p>
+<p>When a new post is made, I would like it to be created in a folder structure which corresponds to the year/month/day at which it was made, e.g.,:</p>
+<pre><code>posts
+└── 2018
+    └── 12
+        └── 16
+            └── self_publishing_with_julia.html</code></pre>
+<p>I would also like the original markdown filename to be reused, but sanitised if needed &#40;remove spaces, use underscores&#41;, and, finally, I would like this file to only be created once, no overwriting should happen. I want that action to be explicit, and not accidental.</p>
+<p>This is the implementation I came up with:</p>
+<pre><code>using Dates
+using Printf
+using Markdown
+
+export create_from_markdown, sitemap
+
+const base &#61; &quot;posts&quot;
+
+function create_from_markdown&#40;arguments&#41;
+	if length&#40;arguments&#41; &gt; 1
+		filename &#61; join&#40;arguments&#91;2&#93;&#41;
+	end
+	
+	doc &#61; Markdown.parse_file&#40;filename&#41;
+
+	filename &#61; replace&#40;filename, &quot;.md&quot; &#61;&gt; &quot;.html&quot;&#41;
+
+	# convert the y, m, d Int64 tuple to strings
+	y, m, d &#61; &#91;string&#40;i&#41; for i in yearmonthday&#40;now&#40;&#41;&#41;&#93;
+	# join the path
+	path &#61; joinpath&#40;base, y, m, d&#41;
+
+	# create it if necessary
+	mkpath&#40;path&#41;
+
+	# touch the new file inside it
+	
+	file &#61; joinpath&#40;path, filename&#41;
+	
+	if isfile&#40;file&#41;
+		@printf&#40;&quot;&#37;s: already exists\n&quot;, filename&#41;
+		exit&#40;1&#41;
+	end
+
+	header &#61; read&#40;&quot;cli/header.html&quot;, String&#41;
+	body &#61; html&#40;doc&#41;
+	footer &#61; read&#40;&quot;cli/footer.html&quot;, String&#41;
+
+	document &#61; header * body * footer
+
+	write&#40;file, document&#41;
+end</code></pre>
+<p>In total I&#39;ve needed three modules from the standard library: <code>Printf</code>, <code>Dates</code>, and <code>Markdown</code>.</p>
+<p>I&#39;ve also defined a constant <code>base</code> for the posts folder, since I always want my files to go in there.</p>
+<p>Perhaps one of the most interesting things in this file is the following list comprehension:</p>
+<pre><code>y, m, d &#61; &#91;string&#40;i&#41; for i in yearmonthday&#40;now&#40;&#41;&#41;&#93;</code></pre>
+<p>The <code>now&#40;&#41;</code> function exposed from the <code>Dates</code> module returns a <code>DateTime</code> object which prints like so: <code>2018-12-27T19:10:57.776</code>.</p>
+<p>Passing this object to <code>yearmonthday</code> results in a tuple of 3 <code>Int64</code> numbers, on which I can cast to a string, using the list comprehension syntax, and multiple variables.</p>
+<p>The rest of the implementation is very cookie-cutter, and writes my converted html file, along with added headers/footers for my specific use case in the right path.</p>
+<h4>sitemap</h4>
+<p>The last thing I wanted was a way to generate a sitemap. Creating new posts would be a hassle if I had to manually maintain a list of links.</p>
+<p>In order to achieve this goal, I&#39;ve come-up with this rather minimal implementation:</p>
+<pre><code>function sitemap&#40;arguments&#41;
+	# ensure passed parameters are as-expected
+	if length&#40;arguments&#41; &lt; 2 || length&#40;arguments&#41; &gt; 2
+		println&#40;stderr, &quot;expected only one argument &#40;directory to map&#41;&quot;&#41;
+		exit&#40;1&#41;
+	end
+	dir &#61; arguments&#91;2&#93;
+	if &#33;isdir&#40;dir&#41;
+	    println&#40;stderr, &quot;expected a directory&quot;&#41;
+	    exit&#40;1&#41;
+	end
+
+	# define the sitemap base
+	list &#61; &quot;&quot;&quot;&lt;link rel&#61;&quot;stylesheet&quot; href&#61;&quot;/css/main.css&quot;&gt;
+	&lt;base target&#61;&quot;_parent&quot;&gt;
+	&lt;ul&gt;&quot;&quot;&quot;
+	
+	close &#61; &quot;\n&lt;/ul&gt;&quot;
+
+	posts &#61; &#91;&#93;
+	for &#40;root, dirs, files&#41; in walkdir&#40;dir&#41;
+		for file in files
+
+		    # infer the file name
+		    fname &#61; begin
+			    f &#61; split&#40;file, &quot;_&quot;&#41;
+			    f &#61; &#91;uppercasefirst&#40;x&#41; for x in f&#93;
+			    f &#61; join&#40;f, &quot; &quot;&#41;
+			    f &#61; replace&#40;f, &quot;.html&quot; &#61;&gt; &quot;&quot;&#41;
+		    end
+
+		    # create the html formatted link
+		    list_item &#61; @sprintf&#40;&quot;\n\t&lt;li&gt;&lt;a href&#61;\&quot;&#37;s\&quot;&gt;&#37;s&lt;/a&gt;&lt;/li&gt;&quot;, joinpath&#40;root, file&#41;, fname&#41;
+
+		    # push the items onto the posts array
+		    push&#33;&#40;posts, list_item&#41;
+		end
+	end
+
+	# sort the items upside down
+	#  -&gt; latest post on top
+	reverse&#33;&#40;posts&#41;
+
+	# append all items to the list
+	for item in posts
+	    list &#61; list * item
+	end
+
+	# then close
+	list &#61; list * close
+
+	write&#40;&quot;map.html&quot;, list&#41;
+end</code></pre>
+<p>Nothing scary in here, I&#39;m building a <code>map.html</code> file for later use as an iframe embed.</p>
+<p>Note however the use of an interesting feature of Julia, compound expressions:</p>
+<pre><code>fname &#61; begin
+	f &#61; split&#40;file, &quot;_&quot;&#41;
+	f &#61; &#91;uppercasefirst&#40;x&#41; for x in f&#93;
+	f &#61; join&#40;f, &quot; &quot;&#41;
+	f &#61; replace&#40;f, &quot;.html&quot; &#61;&gt; &quot;&quot;&#41;
+end</code></pre>
+<p>In this case, the value of <code>fname</code> will be the last value of the subexpression. This allows to cut down on a lot of cruft, while maintaining readability. I am not one for deeply embedded &quot;clever&quot; one-liners.</p>
+<p>As a last thing, I sort my posts in reverse order, so the latest one appears on the top.</p>
+<p>Once my <code>map.html</code> file is created, I embed it in my <code>index.html</code> file using the following tidbits:</p>
+<ul>
+<li><p><code>map.html</code> contains a link to my stylesheet, so it styles itself properly.</p>
+</li>
+<li><p><code>&lt;base target&#61;&quot;_parent&quot;&gt;</code> is used so that links clicked from the iframe open in the parent window, instead of the iframe itself.</p>
+</li>
+</ul>
+<p>The last little thing I did is to mask some of the invocations behind a <code>Makefile</code>:</p>
+<pre><code>THIS_FILE :&#61; &#36;&#40;lastword &#36;&#40;MAKEFILE_LIST&#41;&#41;
+
+post:
+	./cli/Main.jl --markdown &#36;&#40;FILE&#41;
+	@&#36;&#40;MAKE&#41; -f &#36;&#40;THIS_FILE&#41; sitemap
+
+sitemap:
+	./cli/Main.jl --sitemap posts</code></pre>
+<p>The first line defining <code>THIS_FILE</code> is quite useful, and taken from a great response to a <a href="https://stackoverflow.com/a/27132934">Stack Overflow thread</a>.</p>
+<p>With this setup <code>FILE&#61; ~/my_file.md make post</code> is enough, and I am certain it is followed by <code>make sitemap</code>, saving me the trouble of doing that manually.</p>
+</body>
+</html>
