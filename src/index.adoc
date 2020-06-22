@@ -3,7 +3,7 @@ Technical Architect @ LUSH Digital
 
 == Greetings
 
-image::portrait.jpg[Benjamin Cable's Portrait,150,150,float=right]
+image::src/portrait.jpg[Benjamin Cable's Portrait,150,150,float=right]
 
 Hey! 👋
 
