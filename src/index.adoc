@@ -1,9 +1,10 @@
 = Benjamin Cable
 Technical Architect @ LUSH Digital
+:imagesdir: src
 
 == Greetings
 
-image::src/portrait.jpg[Benjamin Cable's Portrait,150,150,float=right]
+image::portrait.jpg[Benjamin Cable's Portrait,150,150,float=right]
 
 Hey! 👋
 
