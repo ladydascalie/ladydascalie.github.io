@@ -1,0 +1,56 @@
+==================================================================
+https://keybase.io/ben_cable
+--------------------------------------------------------------------
+
+I hereby claim:
+
+  * I am an admin of https://cable.fyi
+  * I am ben_cable (https://keybase.io/ben_cable) on keybase.
+  * I have a public key ASAzBZtKRKFUgLuRfmbdqNN1D5LqtlPiwzP0jTATYDugvQo
+
+To do so, I am signing this object:
+
+{
+  "body": {
+    "key": {
+      "eldest_kid": "0101878b75a607445dc4daa1815e0812e3629e5408cb8ad4818758afa4dc41aef3be0a",
+      "host": "keybase.io",
+      "kid": "012033059b4a44a15480bb917e66dda8d3750f92eab653e2c333f48d3013603ba0bd0a",
+      "uid": "8faf3b1f87bb7480daab6b3264f18119",
+      "username": "ben_cable"
+    },
+    "merkle_root": {
+      "ctime": 1595696389,
+      "hash": "3d420c569f1186a64c5b7e055b4c998d9324f7788b93c4570826e1670135dc0151a92a1ceced03edfe261f554d93d8ccee0937708aeb7d4c594680a5ebf4c3c7",
+      "hash_meta": "c8895583f3bb51be92f277b2ec44990312dfeafb7d6c9354ab0776edec54db2c",
+      "seqno": 17082693
+    },
+    "service": {
+      "entropy": "0QHwRa5jrsOgoQpCYQE51smK",
+      "hostname": "cable.fyi",
+      "protocol": "https:"
+    },
+    "type": "web_service_binding",
+    "version": 2
+  },
+  "client": {
+    "name": "keybase.io go client",
+    "version": "5.5.0"
+  },
+  "ctime": 1595696446,
+  "expire_in": 504576000,
+  "prev": "de9e20acf950ff8d1e43e1a4e010f2768aa5627131fb529ad45ccc9ac76fb846",
+  "seqno": 6,
+  "tag": "signature"
+}
+
+which yields the signature:
+
+hKRib2R5hqhkZXRhY2hlZMOpaGFzaF90eXBlCqNrZXnEIwEgMwWbSkShVIC7kX5m3ajTdQ+S6rZT4sMz9I0wE2A7oL0Kp3BheWxvYWTESpcCBsQg3p4grPlQ/40eQ+Gk4BDydoqlYnEx+1Ka1FzMmsdvuEbEIMG8qJEwoKtDjRva01UNIgrBVyMkPvZK2mjWKp6K3sADAgHCo3NpZ8RAU8xgktMaH9AyPMLWwCsJJGjRlQuhNdkHQirWxYEbcXZBValOUKNamG88Dk6rTnwtbhCQD+h2xcGLV/M2vj15CKhzaWdfdHlwZSCkaGFzaIKkdHlwZQildmFsdWXEIG/QMMqHYoucYJedcbXGoOGWfHuMWIzGEAzTKxJ6p0Ffo3RhZ80CAqd2ZXJzaW9uAQ==
+
+And finally, I am proving ownership of this host by posting or
+appending to this document.
+
+View my publicly-auditable identity here: https://keybase.io/ben_cable
+
+==================================================================
