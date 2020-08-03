@@ -1,5 +1,5 @@
 = Benjamin Cable
-Technical Architect @ LUSH Digital
+Senior Software Engineer @ Utility Warehouse
 :imagesdir: src
 
 == Greetings
