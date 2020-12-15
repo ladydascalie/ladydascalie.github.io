@@ -10,6 +10,8 @@ Hey! 👋
 
 I am an enthusiastic Go developer with skills ranging from large scale APIs to command line applications.
 
+I have led teams from 10 to 30 people in size as a developer lead as well as a principal engineer.
+
 Involved in free and open source software community, I create and maintain software, and I co-organise the Golang Dorset monthly meet-up alongside friends & colleagues.
 
 My main workhorse is Go, which I use daily to work on both micro-services, as well as numerous command-line tools. I have extensive experience with PHP, both in creating new applications and maintaining legacy software.
