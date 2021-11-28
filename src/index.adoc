@@ -1,5 +1,5 @@
 = Benjamin Cable
-Senior Software Engineer @ Utility Warehouse
+Senior Software Engineer @ Benefex
 :imagesdir: src
 
 == Greetings
@@ -35,7 +35,7 @@ C/C++,"Git / SVN"
 
 == Open Source Contributions
 
-* https://github.com/golang/go/[Go (documentation, but... still counts!)]
+* https://github.com/go-flexible[go-flexible]
 * https://github.com/LUSHDigital/core[LUSHDigital's Microservice Core]
 * https://github.com/LUSHDigital/modelgen[Modelgen]
 * https://github.com/ladydascalie/currency[Currency]
@@ -43,6 +43,7 @@ C/C++,"Git / SVN"
 * https://github.com/ladydascalie/sqlerr[Sqlerr]
 * https://github.com/ladydascalie/vex[Vex]
 * https://github.com/ladydascalie/gorgeous[Gorgeous]
+* https://github.com/golang/go/[Go (documentation, but... still counts!)]
 
 == Contact
 
