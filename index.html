@@ -12,30 +12,24 @@
 	<section>
 		<img class="portrait" src=" src/portrait.gif" alt="benjamin cable's portrait">
 		<h1>Benjamin Cable</h1>
-		<code>fmt.Println("Senior Backend Engineer @ <a href="https://lootlocker.com/">LootLocker</a>")</code>
+		<code>fmt.Println(`Senior Backend Engineer @ <a href="https://lootlocker.com/">LootLocker</a>`)</code>
 	</section>
 	<section>
 		<h1>Greetings</h1>
 		<p>
-			Hey! 👋
-			I am an enthusiastic Go developer with skills ranging from large scale APIs to command line
-			applications.
+			Hi there! 👋 I'm an enthusiastic Go developer with a wide range of skills, from building large-scale APIs to creating command line applications.
 		</p>
 		<p>
-			I have led teams from 10 to 30 people in size as a lead developer as well as a principal
-			engineer
+			Throughout my career, I've had the opportunity to lead teams of different sizes, ranging from 10 to 30 people, both as a lead developer and a principal engineer.
 		</p>
 		<p>
-
-			Involved in free and open source software community, I create and maintain software, and I
-			co-organise the Golang
-			Dorset monthly meet-up alongside friends & colleagues.
+			I'm actively involved in the free and open source software community. Apart from creating and maintaining software, I also co-organize the Golang Dorset monthly meet-up with my friends and colleagues.
 		</p>
 		<p>
-			My main workhorse is Go, which I use daily to work on both micro-services, as well as numerous
-			command-line tools. I have extensive experience with PHP, both in creating new applications and
-			maintaining legacy software. In my spare time, I like engaging with educational material,
-			writing small video games, mainly using C & SDL2, writing and recording music.
+			Go is my primary language for work. I rely on it daily to develop micro-services and various command-line tools. Additionally, I have extensive experience with PHP, including creating new applications and managing legacy software.
+		</p>
+		<p>
+			In my free time, I enjoy engaging with educational materials, writing small video games using C & SDL2, and indulging my passion for music by writing and recording my own tracks.
 		</p>
 	</section>
 	<section>
@@ -112,7 +106,19 @@
 	</section>
 </body>
 <style>
+	@import url('https://fonts.googleapis.com/css2?family=Comfortaa&display=swap');
+
 	:root {
+
+		--primary-color: #ff69b4;
+		--secondary-color: #f8c1e3;
+		--tertiary-color: #f0a7d1;
+		--text-color: #333;
+		--background-color: #d34eb6;
+		--accent-color: #00bfff;
+		--success-color: #00ff7f;
+		--warning-color: #ffd700;
+		--error-color: #ff4500;
 		--shadow-color: 210deg 13% 29%;
 		--shadow-elevation-low:
 			0.3px 0.5px 0.7px hsl(var(--shadow-color) / 0.34),
@@ -136,30 +142,27 @@
 
 	html {
 		cursor: url('data:image/x-icon;base64,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'), auto;
+		font-family: 'Comfortaa', cursive;
 	}
 
 	h1 {
-		color: black;
-		text-decoration: underline 5px purple;
+		color: var(--primary-color);
+		text-decoration: underline 5px var(--accent-color);
 	}
 
 	body {
-		background-color: purple;
-		font-size: 1.2em;
-		color: black;
+		background-color: var(--background-color);
+		color: var(--text-color);
 		max-width: 1280px;
 		margin: auto;
 		padding: 20px;
 	}
 
 	section {
-		background-color: slategray;
+		background-color: var(--secondary-color);
 		padding: 5px;
 		margin: 10px;
-		border-top: 2px solid wheat;
-		border-left: 2px solid wheat;
-		border-bottom: 2px solid wheat;
-		border-right: 3px solid darkblue;
+		border: 2px solid var(--tertiary-color);
 	}
 
 	kbd {
@@ -176,8 +179,7 @@
 		white-space: nowrap;
 	}
 
-	code,
-	pre {
+	code {
 		background-color: wheat;
 		border-radius: 3px;
 		font-family: monospace;
@@ -188,7 +190,7 @@
 
 	table,
 	td {
-		border: 1px solid #333;
+		border: 1px solid var(--background-color);
 		padding: 5px;
 	}
 
@@ -198,14 +200,15 @@
 
 	thead,
 	tfoot {
-		background-color: #333;
-		color: #fff;
+		background-color: var(--accent-color);
+		color: var(--text-color);
 	}
 
 	.portrait {
 		float: right;
-		max-width: 40%;
+		max-width: 30%;
 		box-shadow: var(--shadow-elevation-medium);
+		/* border-radius: 50% */
 	}
 </style>
 
