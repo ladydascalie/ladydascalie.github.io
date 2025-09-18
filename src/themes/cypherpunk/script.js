@@ -544,10 +544,21 @@ function showSystemMessage(message, type = "info") {
  */
 (function initKonamiCode() {
         let konamiCode = [];
-        const konamiSequence = [38, 38, 40, 40, 37, 39, 37, 39, 66, 65]; // ↑↑↓↓←→←→BA
+        const konamiSequence = [
+                "ArrowUp",
+                "ArrowUp",
+                "ArrowDown",
+                "ArrowDown",
+                "ArrowLeft",
+                "ArrowRight",
+                "ArrowLeft",
+                "ArrowRight",
+                "KeyB",
+                "KeyA",
+        ]; // ↑↑↓↓←→←→BA
 
         document.addEventListener("keydown", (e) => {
-                konamiCode.push(e.keyCode);
+                konamiCode.push(e.code);
 
                 if (konamiCode.length > konamiSequence.length) {
                         konamiCode.shift();

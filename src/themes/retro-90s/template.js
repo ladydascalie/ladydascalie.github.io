@@ -254,10 +254,10 @@ const Retro90sTheme = new ThemeTemplate("retro-90s", {
                 <div class="webring">
                     <h3>◄ CYBER WEB RING ►</h3>
                     <div class="webring-nav">
-                        <a href="#" class="webring-btn">&lt;&lt; PREV</a>
-                        <a href="#" class="webring-btn">RANDOM</a>
-                        <a href="#" class="webring-btn">NEXT &gt;&gt;</a>
-                        <a href="#" class="webring-btn">LIST ALL</a>
+                        <a href="{{webring.sites.0.url}}" target="_blank" class="webring-btn">{{webring.sites.0.url}}</a>
+                        <a href="{{webring.sites.1.url}}" target="_blank" class="webring-btn">{{webring.sites.1.url}}</a>
+                        <a href="{{webring.sites.2.url}}" target="_blank" class="webring-btn">{{webring.sites.2.url}}</a>
+                        <a href="{{webring.sites.3.url}}" target="_blank" class="webring-btn">{{webring.sites.3.url}}</a>
                     </div>
                 </div>
 

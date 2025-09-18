@@ -146,6 +146,23 @@ const PROFILE_DATA = {
                 neural_link: "ESTABLISHED - Bio-Synapse Interface active",
         },
 
+        webring: {
+                sites: [
+                        {
+                                url: "https://roolps.dev/",
+                        },
+                        {
+                                url: "https://mikkel.smoothlys.com",
+                        },
+                        {
+                                url: "https://icelynjennings.github.io/",
+                        },
+                        {
+                                url: "https://github.com/zeevallin/",
+                        },
+                ],
+        },
+
         meta: {
                 last_updated: "Y2K Compliant",
                 visitor_count: "133,337",

@@ -201,6 +201,38 @@ const CypherpunkTheme = new ThemeTemplate("cypherpunk", {
                 </div>
             </div>
 
+            <!-- Webring Terminal Window -->
+            <div class="terminal-window">
+                <div class="terminal-header">
+                    <span class="window-title">WEBRING NETWORK ACCESS</span>
+                </div>
+
+                <div class="terminal-content">
+                    <div><span class="prompt">netrunner@webring:~$</span> <span class="command">ls -la /net/connected_nodes/</span></div>
+                    <div class="output">
+                        <div class="network-connections">
+                            <div class="connection-header">Active Network Nodes:</div>
+                            <div class="connection-item">
+                                <a href="{{webring.sites.0.url}}" target="_blank" class="secure-link">[NODE_001] {{webring.sites.0.url}}</a>
+                            </div>
+                            <div class="connection-item">
+                                <a href="{{webring.sites.1.url}}" target="_blank" class="secure-link">[NODE_002] {{webring.sites.1.url}}</a>
+                            </div>
+                            <div class="connection-item">
+                                <a href="{{webring.sites.2.url}}" target="_blank" class="secure-link">[NODE_003] {{webring.sites.2.url}}</a>
+                            </div>
+                            <div class="connection-item">
+                                <a href="{{webring.sites.3.url}}" target="_blank" class="secure-link">[NODE_004] {{webring.sites.3.url}}</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="margin: 20px 0;">
+                        <span class="prompt">netrunner@webring:~$</span> <span class="command typing">_</span>
+                    </div>
+                </div>
+            </div>
+
             <!-- Footer -->
             <div class="footer">
                 <div class="footer-line">
