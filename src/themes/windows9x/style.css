@@ -1,0 +1,1362 @@
+/**
+ * Windows 9x Theme CSS
+ * Authentic Windows 95/98/ME desktop experience
+ */
+
+@import url("https://fonts.googleapis.com/css2?family=MS+Sans+Serif:wght@400;700&display=swap");
+
+:root {
+        --win-gray: #c0c0c0;
+        --win-dark-gray: #808080;
+        --win-light-gray: #dfdfdf;
+        --win-blue: #0000ff;
+        --win-dark-blue: #000080;
+        --win-green: #008000;
+        --win-red: #ff0000;
+        --win-yellow: #ffff00;
+        --desktop-teal: #008080;
+        --desktop-dark-teal: #004040;
+}
+
+* {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+}
+
+body {
+        font-family: "MS Sans Serif", "Tahoma", sans-serif;
+        font-size: 11px;
+        background: linear-gradient(
+                45deg,
+                var(--desktop-teal),
+                var(--desktop-dark-teal)
+        );
+        height: 100vh;
+        overflow: hidden;
+        position: relative;
+        cursor: default;
+}
+
+/* Desktop */
+.desktop {
+        height: calc(100vh - 30px);
+        padding: 10px;
+        position: relative;
+        background-image:
+                radial-gradient(
+                        circle at 20% 20%,
+                        rgba(255, 255, 255, 0.1) 0%,
+                        transparent 20%
+                ),
+                radial-gradient(
+                        circle at 80% 80%,
+                        rgba(255, 255, 255, 0.1) 0%,
+                        transparent 20%
+                );
+}
+
+/* Desktop Icons */
+.icon {
+        width: 64px;
+        height: 80px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        color: white;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+        cursor: pointer;
+        margin: 10px;
+        position: absolute;
+        user-select: none;
+        padding: 4px;
+        border-radius: 2px;
+}
+
+.icon:hover {
+        background-color: rgba(0, 0, 128, 0.3);
+        border: 1px dotted rgba(255, 255, 255, 0.6);
+}
+
+.icon-image {
+        width: 32px;
+        height: 32px;
+        background: var(--win-gray);
+        border: 1px solid var(--win-dark-gray);
+        margin-bottom: 4px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 16px;
+        border-radius: 1px;
+}
+
+/* Desktop Icon Positions */
+.recycle-bin {
+        top: 10px;
+        left: 10px;
+}
+
+.my-computer {
+        top: 100px;
+        left: 10px;
+}
+
+.network {
+        top: 190px;
+        left: 10px;
+}
+
+.my-documents {
+        top: 280px;
+        left: 10px;
+}
+
+.my-projects {
+        top: 370px;
+        left: 10px;
+}
+
+.properties {
+        top: 460px;
+        left: 10px;
+}
+
+/* Windows */
+/* Make windows auto-size to content where possible, allow user resizing (resize: both),
+   and constrain windows to viewport with sensible min/max sizes so layout stays usable. */
+.window {
+        position: absolute;
+        background: var(--win-gray);
+        border: 2px outset var(--win-gray);
+        box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+        min-width: 280px;
+        min-height: 120px;
+        max-width: calc(100vw - 20px);
+        max-height: calc(100vh - 80px);
+        width: auto;
+        height: auto;
+        z-index: 10;
+
+        /* Ensure padding is included in size calculations and reserve bottom space
+           so internal content cannot visually overflow and hide the corner grip/controls */
+        box-sizing: border-box;
+        padding-bottom: 40px;
+
+        /* Use internal scrolling for content; prevent the window container itself from
+           creating extra scroll that could clip the grip. Inner .window-content handles overflow. */
+        resize: both;
+        overflow: hidden;
+}
+
+/* Dialogs and specific windows start centered but will size to their content up to limits */
+.profile-window {
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: min(90vw, 800px);
+        height: auto;
+        max-height: calc(100vh - 80px);
+        z-index: 100;
+}
+
+.projects-window {
+        width: min(90vw, 640px);
+        height: auto;
+        max-height: calc(100vh - 80px);
+}
+
+.webring-window {
+        width: min(90vw, 520px);
+        height: auto;
+        max-height: calc(100vh - 80px);
+}
+
+/* Window Title Bar */
+.title-bar {
+        height: 18px;
+        background: linear-gradient(
+                to right,
+                var(--win-blue),
+                var(--win-dark-blue)
+        );
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 4px;
+        font-size: 11px;
+        font-weight: bold;
+        user-select: none;
+}
+
+.window-controls {
+        display: flex;
+        gap: 2px;
+}
+
+.control-btn {
+        width: 16px;
+        height: 14px;
+        background: var(--win-gray);
+        border: 1px outset var(--win-gray);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        font-size: 8px;
+        font-weight: bold;
+        color: black;
+}
+
+.control-btn:active {
+        border: 1px inset var(--win-gray);
+}
+
+.control-btn:hover {
+        background: var(--win-light-gray);
+}
+
+/* Menu Bar */
+.menu-bar {
+        background: var(--win-gray);
+        border-bottom: 1px solid var(--win-dark-gray);
+        padding: 2px;
+        font-size: 11px;
+        display: flex;
+        gap: 2px;
+}
+
+.menu-item {
+        padding: 3px 8px;
+        cursor: pointer;
+        user-select: none;
+}
+
+.menu-item:hover {
+        background: var(--win-blue);
+        color: white;
+}
+
+/* Window Content */
+.window-content {
+        padding: 12px;
+        /* Allow content to define height; constrain with max-height so windows never overflow viewport */
+        height: auto;
+        max-height: calc(100vh - 120px);
+        overflow: auto;
+        background: var(--win-gray);
+        line-height: 1.4;
+}
+
+/* Profile Section */
+.profile-header {
+        display: flex;
+        align-items: flex-start;
+        gap: 25px;
+        margin-bottom: 25px;
+        padding-bottom: 18px;
+        border-bottom: 1px solid var(--win-dark-gray);
+}
+
+.profile-icon {
+        width: 72px;
+        height: 72px;
+        border: 2px inset var(--win-gray);
+        border-radius: 2px;
+}
+
+.profile-info h2 {
+        margin: 0;
+        font-size: 16px;
+        color: var(--win-dark-blue);
+        font-weight: bold;
+}
+
+.job-title {
+        margin: 2px 0;
+        font-size: 11px;
+}
+
+.job-title a {
+        color: var(--win-dark-blue);
+        text-decoration: underline;
+}
+
+.status {
+        margin: 2px 0;
+        font-size: 11px;
+}
+
+.online {
+        color: var(--win-green);
+        font-weight: bold;
+}
+
+.bio-section {
+        margin: 18px 0 25px 0;
+        font-size: 12px;
+        line-height: 1.5;
+}
+
+.bio-section p {
+        margin: 10px 0;
+        text-align: justify;
+}
+
+/* Info Panels */
+.info-panel {
+        border: 1px inset var(--win-gray);
+        padding: 10px;
+        margin: 15px 0;
+        background: white;
+        border-radius: 2px;
+}
+
+.panel-header {
+        font-size: 11px;
+        font-weight: bold;
+        background: var(--win-gray);
+        padding: 5px 8px;
+        margin: -10px -10px 10px -10px;
+        border-bottom: 1px solid var(--win-dark-gray);
+}
+
+.panel-content {
+        font-size: 12px;
+        line-height: 1.5;
+        padding: 4px 0;
+}
+
+.panel-content a {
+        color: var(--win-dark-blue);
+        text-decoration: underline;
+}
+
+.panel-content a:hover {
+        color: var(--win-blue);
+}
+
+/* Buttons */
+.win-button,
+.button {
+        background: var(--win-gray);
+        border: 2px outset var(--win-gray);
+        padding: 3px 12px;
+        font-size: 11px;
+        cursor: pointer;
+        margin: 4px 2px;
+        color: black;
+        font-family: inherit;
+}
+
+.win-button:active,
+.button:active {
+        border: 2px inset var(--win-gray);
+}
+
+.win-button:hover,
+.button:hover {
+        background: var(--win-light-gray);
+}
+
+.button-panel {
+        text-align: center;
+        margin-top: 25px;
+        padding-top: 20px;
+        border-top: 1px solid var(--win-dark-gray);
+        display: flex;
+        justify-content: center;
+        gap: 12px;
+        flex-wrap: wrap;
+}
+
+/* File Explorer Styles */
+.explorer-toolbar {
+        background: var(--win-gray);
+        border-bottom: 1px solid var(--win-dark-gray);
+        padding: 4px;
+        display: flex;
+        align-items: center;
+        gap: 4px;
+}
+
+.toolbar-btn {
+        background: var(--win-gray);
+        border: 1px outset var(--win-gray);
+        padding: 2px 8px;
+        font-size: 11px;
+        cursor: pointer;
+        color: black;
+}
+
+.toolbar-btn:active {
+        border: 1px inset var(--win-gray);
+}
+
+.address-bar {
+        flex: 1;
+        background: white;
+        border: 1px inset var(--win-gray);
+        padding: 2px 4px;
+        font-size: 11px;
+        margin-left: 8px;
+}
+
+.file-list {
+        background: white;
+        border: 1px inset var(--win-gray);
+        height: calc(100% - 35px);
+        overflow-y: auto;
+        padding: 4px;
+}
+
+.file-headers {
+        background: var(--win-gray);
+        border-bottom: 1px solid var(--win-dark-gray);
+        display: grid;
+        grid-template-columns: 200px 80px 1fr;
+        padding: 2px 4px;
+        font-size: 11px;
+        font-weight: bold;
+}
+
+.file-item {
+        display: grid;
+        grid-template-columns: 20px 180px 80px 1fr;
+        padding: 4px;
+        font-size: 11px;
+        cursor: pointer;
+        border-bottom: 1px dotted #e0e0e0;
+        align-items: center;
+        min-height: 20px;
+}
+
+.file-item:hover {
+        background: var(--win-blue);
+        color: white;
+}
+
+.file-icon {
+        font-size: 14px;
+}
+
+/* Internet Explorer Style */
+.ie-toolbar {
+        background: var(--win-gray);
+        border-bottom: 1px solid var(--win-dark-gray);
+        padding: 4px;
+        display: flex;
+        gap: 4px;
+}
+
+.address-bar-container {
+        background: var(--win-gray);
+        border-bottom: 1px solid var(--win-dark-gray);
+        padding: 4px;
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        font-size: 11px;
+}
+
+.address-input {
+        flex: 1;
+        padding: 2px 4px;
+        border: 1px inset var(--win-gray);
+        font-size: 11px;
+        font-family: inherit;
+}
+
+.go-btn {
+        background: var(--win-gray);
+        border: 1px outset var(--win-gray);
+        padding: 2px 8px;
+        font-size: 11px;
+        cursor: pointer;
+}
+
+.webring-content {
+        padding: 15px;
+        background: white;
+        height: calc(100% - 70px);
+        overflow-y: auto;
+        line-height: 1.5;
+}
+
+.webring-content h3 {
+        color: var(--win-dark-blue);
+        margin-bottom: 10px;
+        font-size: 13px;
+}
+
+.webring-links {
+        margin: 15px 0;
+}
+
+.webring-link {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin: 10px 0;
+        padding: 8px;
+        border: 1px solid #e0e0e0;
+        border-radius: 2px;
+        transition: background-color 0.2s;
+}
+
+.webring-link:hover {
+        background: #f0f0f0;
+}
+
+.link-icon {
+        font-size: 14px;
+}
+
+.webring-nav {
+        text-align: center;
+        margin-top: 20px;
+        padding-top: 15px;
+        border-top: 1px solid var(--win-dark-gray);
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        flex-wrap: wrap;
+}
+
+/* Dialog Boxes */
+.dialog {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        /* Allow dialog to size to content and be constrained to viewport */
+        width: auto;
+        height: auto;
+        min-width: 300px;
+        min-height: 160px;
+        max-width: calc(100vw - 40px);
+        max-height: calc(100vh - 80px);
+        background: var(--win-gray);
+        border: 2px outset var(--win-gray);
+        box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+        z-index: 1000;
+        box-sizing: border-box;
+        /* Reserve space at the bottom for controls and the grip so inner grey content cannot overflow and hide them */
+        padding-bottom: 42px;
+        /* make dialog a vertical flex container so header/content/footer stack and content can grow */
+        display: flex;
+        flex-direction: column;
+        /* Make dialogs resizable as well; keep outer overflow hidden so inner content scrolling is controlled */
+        resize: both;
+        overflow: hidden;
+}
+
+.dialog-content {
+        padding: 20px 20px 20px 20px;
+        /* stack inner dialog elements vertically so content can flex in height */
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        /* allow this area to expand and to scroll internally when content is larger than available space */
+        flex: 1 1 auto;
+        min-height: 0; /* important so flex item can shrink properly in all browsers */
+        box-sizing: border-box;
+        overflow: auto;
+        position: relative;
+}
+
+.about-icon {
+        font-size: 36px;
+        flex-shrink: 0;
+}
+
+.about-text {
+        /* allow the about text area to grow vertically with the dialog and scroll when necessary */
+        flex: 1 1 auto;
+        font-size: 12px;
+        line-height: 1.5;
+        padding-right: 15px;
+        overflow: auto;
+        border: 1px inset var(--win-gray);
+        background: white;
+        padding: 8px;
+        margin-bottom: 0;
+        min-height: 40px;
+        box-sizing: border-box;
+}
+
+.about-text h3 {
+        color: var(--win-dark-blue);
+        margin-bottom: 12px;
+        font-size: 14px;
+}
+
+.about-text p {
+        margin: 6px 0;
+}
+
+.about-ok {
+        position: absolute;
+        bottom: 10px;
+        right: 15px;
+        min-width: 70px;
+        z-index: 10;
+}
+
+.dialog-ok {
+        position: absolute;
+        bottom: 15px;
+        right: 15px;
+        min-width: 70px;
+}
+
+/* Run Dialog Specific */
+.run-text {
+        flex: 1;
+        font-size: 11px;
+        line-height: 1.4;
+}
+
+.run-text h3 {
+        color: var(--win-dark-blue);
+        margin-bottom: 8px;
+        font-size: 13px;
+}
+
+.run-text p {
+        margin: 4px 0 12px 0;
+}
+
+.run-text label {
+        display: block;
+        margin-bottom: 4px;
+        font-weight: bold;
+}
+
+.run-input {
+        width: 100%;
+        padding: 2px 4px;
+        border: 1px inset var(--win-gray);
+        font-size: 11px;
+        font-family: inherit;
+        background: white;
+}
+
+.run-buttons,
+.shutdown-buttons {
+        position: absolute;
+        bottom: 10px;
+        right: 10px;
+        display: flex;
+        gap: 8px;
+}
+
+/* Shutdown Screen */
+.shutdown-screen {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: black;
+        color: white;
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: var(--terminal-font);
+}
+
+.shutdown-content {
+        text-align: center;
+}
+
+.shutdown-content h2 {
+        font-size: 18px;
+        margin-bottom: 20px;
+        color: white;
+}
+
+.shutdown-message {
+        font-size: 14px;
+        margin-top: 40px;
+        animation: blink 2s infinite;
+}
+
+@keyframes blink {
+        0%,
+        50% {
+                opacity: 1;
+        }
+        51%,
+        100% {
+                opacity: 0.3;
+        }
+}
+
+/* Taskbar */
+.taskbar {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 30px;
+        background: var(--win-gray);
+        border-top: 1px solid var(--win-light-gray);
+        display: flex;
+        align-items: center;
+        padding: 2px;
+        z-index: 1000;
+}
+
+.start-button {
+        background: var(--win-gray);
+        border: 2px outset var(--win-gray);
+        padding: 4px 8px;
+        font-size: 11px;
+        font-weight: bold;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        user-select: none;
+}
+
+.start-button:active {
+        border: 2px inset var(--win-gray);
+}
+
+.start-icon {
+        width: 16px;
+        height: 16px;
+        background: linear-gradient(
+                45deg,
+                var(--win-red),
+                var(--win-yellow),
+                var(--win-green),
+                var(--win-blue)
+        );
+        border-radius: 2px;
+}
+
+.taskbar-apps {
+        flex: 1;
+        margin-left: 4px;
+        display: flex;
+        gap: 2px;
+}
+
+.taskbar-button {
+        background: var(--win-gray);
+        border: 1px inset var(--win-gray);
+        padding: 4px 8px;
+        font-size: 11px;
+        cursor: pointer;
+        max-width: 150px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+}
+
+.taskbar-button.active {
+        border: 1px inset var(--win-gray);
+        background: var(--win-dark-gray);
+}
+
+.system-tray {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        border: 1px inset var(--win-gray);
+        padding: 2px 6px;
+        font-size: 11px;
+        background: var(--win-gray);
+}
+
+.tray-icon {
+        cursor: pointer;
+}
+
+.system-clock {
+        font-size: 11px;
+        min-width: 50px;
+        text-align: center;
+}
+
+/* Scrollbars */
+/* WebKit/Blink custom chunky scrollbars for 9x look */
+::-webkit-scrollbar {
+        width: 20px;
+        height: 20px;
+}
+
+::-webkit-scrollbar-track {
+        /* Keep a simple flat track that reads as chunky and retro */
+        background: var(--win-gray);
+        border: 2px solid #8a8a8a;
+}
+
+::-webkit-scrollbar-thumb {
+        /* Blocky solid thumb with a modest top-to-bottom tone to mimic 9x chrome */
+        background: linear-gradient(to bottom, #d0d0d0, #909090);
+        border: 2px inset #808080;
+        border-radius: 0;
+        /* flatter look */
+        box-shadow: none;
+}
+
+::-webkit-scrollbar-thumb:hover {
+        background: linear-gradient(to bottom, #f0f0f0, #606060);
+        border: 2px outset var(--win-light-gray);
+        box-shadow: inset 0 0 0 1px #000;
+}
+
+::-webkit-scrollbar-thumb:active {
+        background: var(--win-dark-gray);
+        border: 2px inset var(--win-gray);
+        box-shadow: inset 0 0 0 1px #000;
+}
+
+::-webkit-scrollbar-button {
+        background: var(--win-gray);
+        border: 2px outset var(--win-gray);
+        height: 18px;
+        box-shadow: inset 0 0 0 1px #000;
+}
+
+::-webkit-scrollbar-button:hover {
+        background: var(--win-light-gray);
+        border: 2px outset var(--win-light-gray);
+}
+
+::-webkit-scrollbar-button:active {
+        border: 2px inset var(--win-gray);
+        background: var(--win-dark-gray);
+}
+
+::-webkit-scrollbar-button:vertical:start:decrement {
+        background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14"><path d="M7 5l5 5H2z" fill="%23000" stroke="%23000" stroke-width="1"/></svg>');
+        background-repeat: no-repeat;
+        background-position: center;
+}
+
+::-webkit-scrollbar-button:vertical:end:increment {
+        background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14"><path d="M7 9L2 4h10z" fill="%23000" stroke="%23000" stroke-width="1"/></svg>');
+        background-repeat: no-repeat;
+        background-position: center;
+}
+
+/* Firefox: best-effort fallback styling */
+.window,
+.dialog,
+.about-text,
+.file-list,
+.webring-content {
+        /* 'auto' keeps width; use color tokens similar to thumb/track above */
+        scrollbar-width: auto;
+        scrollbar-color: #909090 #e0e0e0;
+}
+
+/* Firefox overlay scrollbar: a lightweight track + thumb positioned inside the scroll container.
+   This provides a chunky 9x-looking scrollbar in Firefox by adding an absolutely-positioned
+   track ('.fx-scroll-track') and a draggable thumb ('.fx-scroll-thumb') into the scrollable element. */
+.fx-scroll-track {
+        position: absolute;
+        /* place inside the container respecting dialog reserved footer area */
+        top: 6px;
+        right: 6px;
+        bottom: 52px; /* keep above reserved footer/OK button area */
+        width: 18px;
+        background: #e0e0e0;
+        border: 2px solid #8a8a8a;
+        box-sizing: border-box;
+        z-index: 50;
+        display: flex;
+        align-items: flex-start;
+        justify-content: center;
+        padding: 2px 0;
+        pointer-events: auto;
+        border-radius: 0;
+}
+
+/* Thumb styling matches the WebKit look: chunky, inset border, no rounded corners */
+.fx-scroll-thumb {
+        width: 100%;
+        background: linear-gradient(to bottom, #d0d0d0, #808080);
+        border: 2px inset #808080;
+        box-shadow: none;
+        border-radius: 0;
+        cursor: pointer;
+        transform: translateY(0);
+        will-change: transform;
+}
+
+/* Ensure the native Firefox scrollbars won't visually interfere and allow our overlay to be visible.
+   Also ensure the scrollable containers are positioned so the overlay can be absolutely placed. */
+.about-text,
+.file-list,
+.webring-content,
+.window-content {
+        scrollbar-width: thin;
+        /* make native track transparent where possible so overlay is what users see */
+        scrollbar-color: transparent transparent;
+        position: relative; /* required so .fx-scroll-track positions correctly inside container */
+}
+
+/* Visible resize grip: use a small dotted-triangle graphic to match classic Windows 95/98.
+   Using an inline SVG as the background produces a crisp dot-grid triangle that reads
+   correctly at small sizes and matches the chunky 9x aesthetic. The pseudo-element
+   is pointer-enabled so the cursor hints at resizing; the JS handler provides the actual resizing. */
+.window::after,
+.dialog::after {
+        /* Pseudo-element grip removed — hide it so the external/overlay grip is the only active handle */
+        content: none !important;
+        pointer-events: none !important;
+        opacity: 0 !important;
+}
+
+/* If JS injects a .resize-grip element inside windows, style it to match the pseudo-element above
+   Make it larger, higher z-index and visually prominent so Firefox-based browsers (like Zen) will show it. */
+.window .resize-grip,
+.dialog .resize-grip {
+        /* Internal per-window grips are hidden because an external/global grip is used.
+           This prevents duplicate grips and avoids pointer conflicts. */
+        display: none !important;
+        pointer-events: none !important;
+}
+
+/* Slight hover feedback for the grip to make interactive affordance clearer */
+.window:hover::after,
+.dialog:hover::after,
+.window .resize-grip:hover,
+.dialog .resize-grip:hover {
+        filter: brightness(0.98);
+        transform: translateY(-1px);
+}
+
+/* Make dialog scrollbars even more prominent */
+.about-text::-webkit-scrollbar {
+        width: 20px;
+}
+
+.about-text::-webkit-scrollbar-track {
+        background: #e0e0e0;
+        border: 2px inset var(--win-gray);
+}
+
+.about-text::-webkit-scrollbar-thumb {
+        background: linear-gradient(to bottom, #d0d0d0, #808080);
+        border: 2px outset var(--win-gray);
+        box-shadow: inset 0 0 0 2px #000;
+}
+
+.about-text::-webkit-scrollbar-thumb:hover {
+        background: linear-gradient(to bottom, #f0f0f0, #606060);
+        box-shadow: inset 0 0 0 2px #000;
+}
+
+.about-text::-webkit-scrollbar-button {
+        height: 20px;
+        background: var(--win-gray);
+        border: 2px outset var(--win-gray);
+        box-shadow: inset 0 0 0 1px #000;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+        .profile-window {
+                width: calc(100vw - 16px);
+                height: calc(100vh - 45px);
+                top: 8px;
+                left: 8px;
+                transform: none;
+        }
+
+        .projects-window,
+        .webring-window {
+                width: calc(100vw - 20px);
+                height: calc(100vh - 70px);
+                top: 10px;
+                left: 10px;
+        }
+
+        .desktop {
+                padding: 5px;
+                display: flex;
+                flex-wrap: wrap;
+                align-items: flex-start;
+        }
+
+        .icon {
+                position: relative;
+                display: inline-flex;
+                margin: 5px;
+                width: 60px;
+                height: 75px;
+        }
+
+        .icon-image {
+                width: 28px;
+                height: 28px;
+                font-size: 14px;
+        }
+
+        .start-menu {
+                width: 250px;
+                bottom: 34px;
+        }
+
+        .start-menu-item {
+                padding: 6px 10px;
+                min-height: 28px;
+                font-size: 12px;
+        }
+
+        .programs-submenu {
+                width: 180px;
+                left: 252px;
+        }
+
+        .file-headers,
+        .file-item {
+                grid-template-columns: 1fr;
+                text-align: left;
+        }
+
+        .file-item {
+                grid-template-columns: 20px 1fr;
+        }
+
+        .address-bar-container {
+                flex-wrap: wrap;
+        }
+
+        .address-input {
+                min-width: 200px;
+        }
+}
+
+@media (max-width: 480px) {
+        body {
+                font-size: 12px;
+        }
+
+        .desktop {
+                justify-content: center;
+        }
+
+        .icon {
+                width: 55px;
+                height: 70px;
+                margin: 3px;
+                font-size: 10px;
+        }
+
+        .icon-image {
+                width: 24px;
+                height: 24px;
+                font-size: 12px;
+        }
+
+        .profile-window {
+                width: calc(100vw - 8px);
+                height: calc(100vh - 35px);
+                top: 4px;
+                left: 4px;
+        }
+
+        .projects-window,
+        .webring-window {
+                width: calc(100vw - 12px);
+                height: calc(100vh - 55px);
+                top: 6px;
+                left: 6px;
+        }
+
+        .dialog {
+                width: calc(100vw - 40px);
+                max-width: 380px;
+                height: 280px;
+        }
+
+        .profile-header {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+                gap: 15px;
+        }
+
+        .window-content {
+                padding: 8px;
+        }
+
+        .button-panel {
+                gap: 4px;
+        }
+
+        .button-panel .win-button {
+                font-size: 10px;
+                padding: 3px 8px;
+        }
+
+        .explorer-toolbar {
+                flex-wrap: wrap;
+                gap: 2px;
+        }
+
+        .toolbar-btn {
+                font-size: 10px;
+                padding: 2px 6px;
+        }
+
+        .taskbar-button {
+                max-width: 80px;
+                font-size: 10px;
+                padding: 3px 6px;
+        }
+
+        .system-tray {
+                gap: 2px;
+                padding: 1px 4px;
+        }
+
+        .webring-nav .win-button {
+                padding: 2px 8px;
+                margin: 2px 1px;
+                font-size: 10px;
+        }
+
+        .start-button {
+                padding: 3px 6px;
+                font-size: 10px;
+        }
+
+        .start-menu {
+                width: calc(100vw - 20px);
+                max-width: 280px;
+                bottom: 32px;
+                left: 4px;
+        }
+
+        .start-menu-item {
+                padding: 8px 12px;
+                min-height: 32px;
+                font-size: 13px;
+        }
+
+        .start-menu-icon {
+                width: 18px;
+                font-size: 14px;
+        }
+
+        .programs-submenu {
+                width: calc(100vw - 40px);
+                max-width: 200px;
+                left: calc(100vw - 20px);
+                transform: translateX(-100%);
+        }
+
+        .start-menu-avatar {
+                width: 24px;
+                height: 24px;
+        }
+
+        .start-menu-user {
+                font-size: 12px;
+        }
+}
+
+/* Animation Effects */
+.window {
+        animation: windowOpen 0.2s ease-out;
+}
+
+@keyframes windowOpen {
+        from {
+                transform: translate(-50%, -50%) scale(0.8);
+                opacity: 0;
+        }
+        to {
+                transform: translate(-50%, -50%) scale(1);
+                opacity: 1;
+        }
+}
+
+.dialog {
+        animation: dialogOpen 0.15s ease-out;
+}
+
+@keyframes dialogOpen {
+        from {
+                transform: translate(-50%, -50%) scale(0.9);
+                opacity: 0;
+        }
+        to {
+                transform: translate(-50%, -50%) scale(1);
+                opacity: 1;
+        }
+}
+
+/* Focus and Selection States */
+.window.focused .title-bar {
+        background: linear-gradient(
+                to right,
+                var(--win-blue),
+                var(--win-dark-blue)
+        );
+}
+
+.window:not(.focused) .title-bar {
+        background: linear-gradient(to right, var(--win-dark-gray), #606060);
+        color: var(--win-light-gray);
+}
+
+/* Start Menu */
+.start-menu {
+        position: fixed;
+        bottom: 32px;
+        left: 2px;
+        width: 200px;
+        background: var(--win-gray);
+        border: 2px outset var(--win-gray);
+        box-shadow: 2px -2px 5px rgba(0, 0, 0, 0.3);
+        z-index: 10000;
+        transform-origin: bottom left;
+        animation: startMenuSlide 0.15s ease-out;
+}
+
+@keyframes startMenuSlide {
+        from {
+                transform: scaleY(0) scaleX(0.8);
+                opacity: 0;
+        }
+        to {
+                transform: scaleY(1) scaleX(1);
+                opacity: 1;
+        }
+}
+
+.start-menu-header {
+        background: linear-gradient(to right, #008080, #004040);
+        color: white;
+        padding: 8px 12px;
+        border-bottom: 1px solid var(--win-dark-gray);
+}
+
+.start-menu-user {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 11px;
+        font-weight: bold;
+}
+
+.start-menu-avatar {
+        width: 20px;
+        height: 20px;
+        border: 1px solid white;
+        border-radius: 2px;
+}
+
+.start-menu-separator {
+        height: 1px;
+        background: var(--win-dark-gray);
+        border-bottom: 1px solid var(--win-light-gray);
+        margin: 2px 0;
+}
+
+.start-menu-items {
+        padding: 2px;
+}
+
+.start-menu-item {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 4px 8px;
+        font-size: 11px;
+        cursor: pointer;
+        user-select: none;
+        position: relative;
+        min-height: 24px;
+}
+
+.start-menu-item:hover {
+        background: var(--win-blue);
+        color: white;
+}
+
+.start-menu-icon {
+        width: 16px;
+        text-align: center;
+        font-size: 12px;
+}
+
+.submenu-arrow {
+        margin-left: auto;
+        font-size: 8px;
+        color: var(--win-dark-gray);
+}
+
+.start-menu-item:hover .submenu-arrow {
+        color: white;
+}
+
+.start-menu-item.keyboard-selected {
+        background: var(--win-blue);
+        color: white;
+        outline: 1px dotted white;
+        outline-offset: -2px;
+}
+
+.start-menu-item.keyboard-selected .submenu-arrow {
+        color: white;
+}
+
+/* Start Menu Submenus */
+.start-submenu {
+        position: fixed;
+        width: 150px;
+        background: var(--win-gray);
+        border: 2px outset var(--win-gray);
+        box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+        z-index: 10001;
+        transform-origin: left center;
+        animation: submenuSlide 0.1s ease-out;
+}
+
+@keyframes submenuSlide {
+        from {
+                transform: scaleX(0);
+                opacity: 0;
+        }
+        to {
+                transform: scaleX(1);
+                opacity: 1;
+        }
+}
+
+.programs-submenu {
+        bottom: 32px;
+        left: 202px;
+}
+
+.start-submenu .start-menu-item {
+        padding: 3px 8px;
+        min-height: 20px;
+}
+
+.start-submenu .start-menu-separator {
+        margin: 1px 4px;
+}
+
+/* Utility Classes */
+.hidden {
+        display: none !important;
+}
+
+.disabled {
+        opacity: 0.5;
+        pointer-events: none;
+}

@@ -146,6 +146,13 @@ const PROFILE_DATA = {
                 neural_link: "ESTABLISHED - Bio-Synapse Interface active",
         },
 
+        windows: {
+                os: "Microsoft Windows 98 Second Edition 4.10.2222 A",
+                processor: "Intel Pentium II 400 MHz",
+                ram: "128 MB SDRAM",
+                version: "Windows 98 SE Build 2222",
+        },
+
         webring: {
                 sites: [
                         {
