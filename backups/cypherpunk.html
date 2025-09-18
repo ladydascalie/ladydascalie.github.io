@@ -1,0 +1,653 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>[ENCRYPTED] >> Benjamin Cable :: Cypherpunk Terminal <<</title>
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=Share+Tech+Mono:wght@400&display=swap");
+
+        :root {
+            --matrix-green: #00ff41;
+            --terminal-green: #00ff00;
+            --cyber-pink: #ff006e;
+            --hacker-purple: #8a2be2;
+            --neon-blue: #0080ff;
+            --warning-red: #ff073a;
+            --electric-yellow: #ffff00;
+            --deep-black: #000000;
+            --dark-gray: #111111;
+            --terminal-gray: #333333;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: "Share Tech Mono", "Courier New", monospace;
+            background: var(--deep-black);
+            color: var(--matrix-green);
+            overflow-x: hidden;
+            cursor: crosshair;
+        }
+
+        /* Matrix rain background */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image:
+                linear-gradient(0deg, transparent 24%, rgba(32, 194, 14, 0.05) 25%, rgba(32, 194, 14, 0.05) 26%, transparent 27%, transparent 74%, rgba(32, 194, 14, 0.05) 75%, rgba(32, 194, 14, 0.05) 76%, transparent 77%, transparent),
+                linear-gradient(90deg, transparent 24%, rgba(32, 194, 14, 0.05) 25%, rgba(32, 194, 14, 0.05) 26%, transparent 27%, transparent 74%, rgba(32, 194, 14, 0.05) 75%, rgba(32, 194, 14, 0.05) 76%, transparent 77%, transparent);
+            background-size: 50px 50px;
+            animation: matrix-scroll 20s linear infinite;
+            z-index: -1;
+            opacity: 0.3;
+        }
+
+        @keyframes matrix-scroll {
+            0% { transform: translateY(0px); }
+            100% { transform: translateY(50px); }
+        }
+
+        /* Terminal cursor blink */
+        @keyframes terminal-blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+        }
+
+        .terminal-cursor {
+            animation: terminal-blink 1s infinite;
+        }
+
+        /* Glitch effect */
+        @keyframes glitch {
+            0% { transform: translate(0); }
+            20% { transform: translate(-2px, 2px); }
+            40% { transform: translate(-2px, -2px); }
+            60% { transform: translate(2px, 2px); }
+            80% { transform: translate(2px, -2px); }
+            100% { transform: translate(0); }
+        }
+
+        .glitch {
+            animation: glitch 0.3s infinite;
+        }
+
+        /* Neon glow effects */
+        .neon-glow {
+            text-shadow: 0 0 5px currentColor, 0 0 10px currentColor, 0 0 15px currentColor, 0 0 20px currentColor;
+        }
+
+        /* Terminal window styling */
+        .terminal-window {
+            border: 2px solid var(--matrix-green);
+            margin: 10px;
+            background: rgba(0, 0, 0, 0.9);
+            box-shadow: 0 0 20px var(--matrix-green), inset 0 0 20px rgba(0, 255, 65, 0.1);
+        }
+
+        .terminal-header {
+            background: var(--terminal-gray);
+            padding: 5px 15px;
+            border-bottom: 1px solid var(--matrix-green);
+            font-size: 0.8em;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .terminal-buttons {
+            display: flex;
+            gap: 5px;
+        }
+
+        .terminal-button {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            border: 1px solid var(--matrix-green);
+        }
+
+        .terminal-button.close { background: var(--warning-red); }
+        .terminal-button.minimize { background: var(--electric-yellow); }
+        .terminal-button.maximize { background: var(--terminal-green); }
+
+        .terminal-content {
+            padding: 15px;
+            font-family: "Share Tech Mono", monospace;
+            line-height: 1.4;
+        }
+
+        /* ASCII art styling */
+        .ascii-art {
+            font-family: "Share Tech Mono", monospace;
+            font-size: 0.7em;
+            color: var(--cyber-pink);
+            text-align: center;
+            white-space: pre;
+            text-shadow: 0 0 10px var(--cyber-pink);
+            margin: 20px 0;
+        }
+
+        /* Prompt styling */
+        .prompt {
+            color: var(--cyber-pink);
+            font-weight: bold;
+        }
+
+        .command {
+            color: var(--terminal-green);
+        }
+
+        .output {
+            color: var(--neon-blue);
+            margin-left: 20px;
+        }
+
+        .warning {
+            color: var(--warning-red);
+            font-weight: bold;
+        }
+
+        .success {
+            color: var(--terminal-green);
+        }
+
+        /* Links as terminal commands */
+        a {
+            color: var(--neon-blue);
+            text-decoration: none;
+            border-bottom: 1px dotted var(--neon-blue);
+            text-shadow: 0 0 5px var(--neon-blue);
+        }
+
+        a:hover {
+            color: var(--cyber-pink);
+            text-shadow: 0 0 15px var(--cyber-pink);
+            border-bottom-color: var(--cyber-pink);
+            background: rgba(255, 0, 110, 0.1);
+        }
+
+        /* Code blocks */
+        .code-block {
+            background: rgba(0, 255, 65, 0.05);
+            border-left: 3px solid var(--matrix-green);
+            padding: 10px;
+            margin: 10px 0;
+            font-family: "Share Tech Mono", monospace;
+            overflow-x: auto;
+        }
+
+        /* Status indicators */
+        .status-online {
+            color: var(--terminal-green);
+        }
+
+        .status-secure {
+            color: var(--cyber-pink);
+        }
+
+        .status-encrypted {
+            color: var(--hacker-purple);
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Hacker table styling */
+        .hacker-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-family: "Share Tech Mono", monospace;
+        }
+
+        .hacker-table th,
+        .hacker-table td {
+            border: 1px solid var(--matrix-green);
+            padding: 8px 12px;
+            text-align: left;
+        }
+
+        .hacker-table th {
+            background: rgba(0, 255, 65, 0.2);
+            color: var(--matrix-green);
+            font-weight: bold;
+        }
+
+        .hacker-table td {
+            background: rgba(0, 0, 0, 0.8);
+        }
+
+        /* Portrait styling */
+        .portrait {
+            float: right;
+            max-width: 200px;
+            border: 2px solid var(--matrix-green);
+            box-shadow: 0 0 20px var(--cyber-pink);
+            margin: 0 0 20px 20px;
+            filter: sepia(1) hue-rotate(120deg) saturate(1.5);
+        }
+
+        /* System info bars */
+        .system-bar {
+            background: var(--terminal-gray);
+            border: 1px solid var(--matrix-green);
+            padding: 5px 15px;
+            margin: 10px 0;
+            font-size: 0.9em;
+        }
+
+        /* Encrypted message styling */
+        .encrypted {
+            font-family: "Share Tech Mono", monospace;
+            color: var(--hacker-purple);
+            background: rgba(138, 43, 226, 0.1);
+            border: 1px dashed var(--hacker-purple);
+            padding: 10px;
+            margin: 10px 0;
+            letter-spacing: 1px;
+        }
+
+        /* Responsiveness */
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+
+            .terminal-window {
+                margin: 5px;
+            }
+
+            .ascii-art {
+                font-size: 0.5em;
+            }
+
+            .portrait {
+                float: none;
+                display: block;
+                margin: 20px auto;
+                max-width: 150px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- System Boot Message -->
+        <div class="terminal-window">
+            <div class="terminal-header">
+                <span>root@cypherpunk:~$</span>
+                <div class="terminal-buttons">
+                    <div class="terminal-button minimize"></div>
+                    <div class="terminal-button maximize"></div>
+                    <div class="terminal-button close"></div>
+                </div>
+            </div>
+            <div class="terminal-content">
+                <div class="ascii-art neon-glow">
+ ██████╗██╗   ██╗██████╗ ███████╗██████╗ ██████╗ ██╗   ██╗███╗   ██╗██╗  ██╗
+██╔════╝╚██╗ ██╔╝██╔══██╗██╔════╝██╔══██╗██╔══██╗██║   ██║████╗  ██║██║ ██╔╝
+██║      ╚████╔╝ ██████╔╝█████╗  ██████╔╝██████╔╝██║   ██║██╔██╗ ██║█████╔╝
+██║       ╚██╔╝  ██╔══██╗██╔══╝  ██╔══██╗██╔═══╝ ██║   ██║██║╚██╗██║██╔═██╗
+╚██████╗   ██║   ██████╔╝███████╗██║  ██║██║     ╚██████╔╝██║ ╚████║██║  ██╗
+ ╚═════╝   ╚═╝   ╚═════╝ ╚══════╝╚═╝  ╚═╝╚═╝      ╚═════╝ ╚═╝  ╚═══╝╚═╝  ╚═╝
+                </div>
+
+                <div style="text-align: center; margin: 20px 0;">
+                    <span class="warning glitch">[CLASSIFIED SYSTEM ACCESSED]</span>
+                </div>
+
+                <div class="system-bar">
+                    <span class="status-online">● SECURE CONNECTION ESTABLISHED</span> |
+                    <span class="status-encrypted">● PGP ENCRYPTION: ACTIVE</span> |
+                    <span class="status-secure">● VPN: TUNNELED</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Profile Terminal -->
+        <div class="terminal-window">
+            <div class="terminal-header">
+                <span>benjamin@matrix:~/profile$</span>
+                <div class="terminal-buttons">
+                    <div class="terminal-button minimize"></div>
+                    <div class="terminal-button maximize"></div>
+                    <div class="terminal-button close"></div>
+                </div>
+            </div>
+            <div class="terminal-content">
+                <img class="portrait" src="src/portrait.gif" alt="[ENCRYPTED_PORTRAIT.gif]">
+
+                <div><span class="prompt">hacker@matrix:~$</span> <span class="command">whoami</span></div>
+                <div class="output">
+                    <strong>BENJAMIN CABLE</strong><br>
+                    Status: <span class="status-online">[ONLINE]</span><br>
+                    Clearance Level: <span class="status-secure">[CLASSIFIED]</span><br>
+                    Location: <span class="status-encrypted">[ENCRYPTED]</span>
+                </div>
+
+                <div style="margin: 20px 0;">
+                    <span class="prompt">hacker@matrix:~$</span>
+                    <span class="command">cat /etc/passwd | grep benjamin</span>
+                </div>
+                <div class="code-block">
+benjamin:x:1337:1337:Senior Backend Engineer @ LootLocker:/home/cypherpunk:/bin/zsh
+                </div>
+
+                <div>
+                    <span class="prompt">hacker@matrix:~$</span>
+                    <span class="command">echo $OCCUPATION</span>
+                </div>
+                <div class="output">
+                    Senior Backend Engineer @ <a href="https://lootlocker.com/">LootLocker</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Transmission Log -->
+        <div class="terminal-window">
+            <div class="terminal-header">
+                <span>transmission.log</span>
+                <div class="terminal-buttons">
+                    <div class="terminal-button minimize"></div>
+                    <div class="terminal-button maximize"></div>
+                    <div class="terminal-button close"></div>
+                </div>
+            </div>
+            <div class="terminal-content">
+                <div>
+                    <span class="prompt">[INTERCEPTED TRANSMISSION]</span>
+                </div>
+
+                <p><span class="success">●</span> Greetings, fellow data traveler. I am a digital architect in the realm of distributed systems, crafting resilient APIs and command-line utilities that operate in the shadows of the network.</p>
+
+                <p><span class="success">●</span> My experience spans the coordination of cyber-cells ranging from 10-30 operatives, leading both as a principal systems architect and development cell commander.</p>
+
+                <p><span class="success">●</span> I contribute to the resistance through free and open source intelligence. Beyond code compilation, I co-coordinate the
+                <a href="https://www.meetup.com/golang-dorset/" class="neon-glow" style="color: var(--terminal-green); font-weight: bold;">🐹 GOLANG DORSET UNDERGROUND MEETUP 🐹</a> - a monthly gathering of digital freedom fighters.</p>
+
+                <p><span class="success">●</span> Go is my primary weapon of choice for cyber-warfare. Daily deployment includes microservice architectures and terminal-based infiltration tools. Additional expertise in PHP for legacy system penetration.</p>
+
+                <p><span class="success">●</span> Off the grid activities include consuming encrypted educational materials, developing retro gaming exploits in C & SDL2, and composing audio transmissions for underground distribution networks.</p>
+            </div>
+        </div>
+
+        <!-- System Specifications -->
+        <div class="terminal-window">
+            <div class="terminal-header">
+                <span>system_specs.db</span>
+                <div class="terminal-buttons">
+                    <div class="terminal-button minimize"></div>
+                    <div class="terminal-button maximize"></div>
+                    <div class="terminal-button close"></div>
+                </div>
+            </div>
+            <div class="terminal-content">
+                <div>
+                    <span class="prompt">root@matrix:~$</span>
+                    <span class="command">cat /proc/skills</span>
+                </div>
+
+                <table class="hacker-table">
+                    <thead>
+                        <tr>
+                            <th>[PROGRAMMING_LANGUAGES]</th>
+                            <th>[SYSTEM_TOOLS]</th>
+                            <th>[THREAT_LEVEL]</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Go</td>
+                            <td>*nix Systems</td>
+                            <td><span class="warning">CRITICAL</span></td>
+                        </tr>
+                        <tr>
+                            <td>PHP</td>
+                            <td>AWS / GCP</td>
+                            <td><span class="status-secure">HIGH</span></td>
+                        </tr>
+                        <tr>
+                            <td>Rust</td>
+                            <td>Ctrl+C, Ctrl+V</td>
+                            <td><span class="status-encrypted">MODERATE</span></td>
+                        </tr>
+                        <tr>
+                            <td>JavaScript</td>
+                            <td>Coffee Protocol ☕</td>
+                            <td><span class="status-online">ACTIVE</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Golang Dorset Underground -->
+        <div class="terminal-window" style="border-color: var(--terminal-green); box-shadow: 0 0 25px var(--terminal-green);">
+            <div class="terminal-header" style="background: rgba(0, 255, 0, 0.2);">
+                <span style="color: var(--terminal-green);">gopher@underground:~/meetup$</span>
+                <div class="terminal-buttons">
+                    <div class="terminal-button minimize"></div>
+                    <div class="terminal-button maximize"></div>
+                    <div class="terminal-button close"></div>
+                </div>
+            </div>
+            <div class="terminal-content">
+                <div class="ascii-art" style="color: var(--terminal-green);">
+░██████╗░░█████╗░██╗░░░░░░█████╗░███╗░░██╗░██████╗░
+██╔════╝░██╔══██╗██║░░░░░██╔══██╗████╗░██║██╔════╝░
+██║░░██╗░██║░░██║██║░░░░░███████║██╔██╗██║██║░░██╗░
+██║░░╚██╗██║░░██║██║░░░░░██╔══██║██║╚████║██║░░╚██╗
+╚██████╔╝╚█████╔╝███████╗██║░░██║██║░╚███║╚██████╔╝
+░╚═════╝░░╚════╝░╚══════╝╚═╝░░╚═╝╚═╝░░╚══╝░╚═════╝░
+░░░░░░░░░░░░░░DORSET UNDERGROUND░░░░░░░░░░░░░░░░░░░░░
+                </div>
+
+                <div class="encrypted">
+                    [ENCRYPTED_MEETUP_DATA]
+                    4D6F6E74686C79204761746865726C6E67206F66204379626572204772733A7A6572732
+                </div>
+
+                <div>
+                    <span class="prompt">gopher@matrix:~$</span>
+                    <span class="command">decrypt meetup.asc</span>
+                </div>
+                <div class="output">
+                    <strong style="color: var(--terminal-green);">DECRYPTION SUCCESSFUL</strong><br><br>
+                    Join the monthly gathering of digital gophers for:<br>
+                    • Advanced Go programming techniques<br>
+                    • Distributed systems architecture<br>
+                    • Cryptographic implementations<br>
+                    • Network security protocols<br>
+                    • Underground knowledge sharing
+                </div>
+
+                <div style="text-align: center; margin: 20px 0;">
+                    <a href="https://www.meetup.com/golang-dorset/"
+                       style="color: var(--terminal-green);
+                              font-size: 1.2em;
+                              border: 2px solid var(--terminal-green);
+                              padding: 10px 20px;
+                              display: inline-block;
+                              text-decoration: none;
+                              background: rgba(0, 255, 0, 0.1);"
+                       class="neon-glow">
+                            [ACCESS_MEETUP_TERMINAL]
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Open Source Intelligence -->
+        <div class="terminal-window">
+            <div class="terminal-header">
+                <span>open_source_intel.log</span>
+                <div class="terminal-buttons">
+                    <div class="terminal-button minimize"></div>
+                    <div class="terminal-button maximize"></div>
+                    <div class="terminal-button close"></div>
+                </div>
+            </div>
+            <div class="terminal-content">
+                <div>
+                    <span class="prompt">intelligence@matrix:~$</span>
+                    <span class="command">ls -la ~/repositories/</span>
+                </div>
+
+                <div class="output">
+                    <div style="margin: 10px 0;">
+                        <span class="success">rwxr-xr-x</span> <a href="https://github.com/go-flexible">go-flexible</a> - [Classified: Flexible Framework]
+                    </div>
+                    <div style="margin: 10px 0;">
+                        <span class="success">rwxr-xr-x</span> <a href="https://github.com/LUSHDigital/core">LUSHDigital/core</a> - [Microservice Core Architecture]
+                    </div>
+                    <div style="margin: 10px 0;">
+                        <span class="success">rwxr-xr-x</span> <a href="https://github.com/LUSHDigital/modelgen">Modelgen</a> - [Code Generation Tool]
+                    </div>
+                    <div style="margin: 10px 0;">
+                        <span class="success">rwxr-xr-x</span> <a href="https://github.com/ladydascalie/currency">Currency</a> - [Financial Data Handler]
+                    </div>
+                    <div style="margin: 10px 0;">
+                        <span class="success">rwxr-xr-x</span> <a href="https://github.com/ladydascalie/iso3166-1-alpha-2">iso3166-1-alpha-2</a> - [Geographic Intelligence]
+                    </div>
+                    <div style="margin: 10px 0;">
+                        <span class="success">rwxr-xr-x</span> <a href="https://github.com/ladydascalie/sqlerr">Sqlerr</a> - [Database Security Tool]
+                    </div>
+                    <div style="margin: 10px 0;">
+                        <span class="success">rwxr-xr-x</span> <a href="https://github.com/ladydascalie/vex">Vex</a> - [Validation Exploit Framework]
+                    </div>
+                    <div style="margin: 10px 0;">
+                        <span class="success">rwxr-xr-x</span> <a href="https://github.com/ladydascalie/gorgeous">Gorgeous</a> - [Steganography Utilities]
+                    </div>
+                    <div style="margin: 10px 0;">
+                        <span class="warning">rwxr-xr-x</span> <a href="https://github.com/golang/go/">Go Core</a> - [CLASSIFIED DOCUMENTATION ACCESS]
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Secure Communications -->
+        <div class="terminal-window">
+            <div class="terminal-header">
+                <span>secure_comms.enc</span>
+                <div class="terminal-buttons">
+                    <div class="terminal-button minimize"></div>
+                    <div class="terminal-button maximize"></div>
+                    <div class="terminal-button close"></div>
+                </div>
+            </div>
+            <div class="terminal-content">
+                <div>
+                    <span class="prompt">secure@matrix:~$</span>
+                    <span class="command">gpg --decrypt contact_protocols.asc</span>
+                </div>
+
+                <div class="output">
+                    <strong>SECURE COMMUNICATION CHANNELS AVAILABLE:</strong>
+                </div>
+
+                <div style="margin: 20px 0; text-align: center;">
+                    <div style="margin: 10px;">
+                        <a href="https://signal.me/#eu/V-9dTllhTgyXXHeIPglmmW4ScT7DVteYjNgkcf3L409OnH0uaVtF1JzIYvy9CS4z"
+                           style="color: var(--cyber-pink);">
+                                [SIGNAL_ENCRYPTED]
+                        </a>
+                    </div>
+                    <div style="margin: 10px;">
+                        <a href="https://www.linkedin.com/in/benjamin-cable-9aa05b90/"
+                           style="color: var(--neon-blue);">
+                                [LINKEDIN_PROFESSIONAL]
+                        </a>
+                    </div>
+                    <div style="margin: 10px;">
+                        <a href="mailto:ben@cable.fyi"
+                           style="color: var(--terminal-green);">
+                                [EMAIL_SECURE]
+                        </a>
+                    </div>
+                    <div style="margin: 10px;">
+                        <a href="https://github.com/ladydascalie"
+                           style="color: var(--hacker-purple);">
+                                [GITHUB_REPOSITORIES]
+                        </a>
+                    </div>
+                </div>
+
+                <div class="encrypted">
+                    <div style="margin: 10px 0">
+                        <strong>PGP PUBLIC KEYS AVAILABLE:</strong><br />
+                        <a href="https://github.com/ladydascalie.gpg"
+                           style="color: var(--terminal-green); text-decoration: none;"
+                           class="neon-glow">
+                                → https://github.com/ladydascalie.gpg
+                        </a>
+                    </div>
+                    <div style="font-size: 0.9em; margin-top: 15px; color: var(--hacker-purple);">
+                        [VERIFIED_KEYS] • [GPG_AUTHENTICATED] • [CRYPTOGRAPHICALLY_SIGNED]
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Hacker WebRing Terminal -->
+        <div class="terminal-window">
+            <div class="terminal-header">
+                <span>darkweb_ring.net</span>
+                <div class="terminal-buttons">
+                    <div class="terminal-button minimize"></div>
+                    <div class="terminal-button maximize"></div>
+                    <div class="terminal-button close"></div>
+                </div>
+            </div>
+            <div class="terminal-content">
+                <div>
+                    <span class="prompt">webring@underground:~$</span>
+                    <span class="command">cat .darkweb_ring</span>
+                </div>
+
+                <div class="encrypted" style="margin: 15px 0">
+                    [ENCRYPTED_RING_PROTOCOL]
+                    52696E67204E6F64653A204163746976650A4E657874204E6F64653A20[REDACTED]
+                </div>
+
+                <div class="output" style="text-align: center; margin: 20px 0;">
+                    <strong style="color: var(--cyber-pink);">◄ UNDERGROUND WEB RING ►</strong><br><br>
+                    Navigate the digital underground network<br>
+                    of fellow cypherpunks and digital freedom fighters
+                </div>
+
+                <div style="text-align: center; margin: 20px 0;">
+                    <div>
+                        <span class="prompt">webring@matrix:~$</span>
+                        <span class="command">./navigate_ring.sh</span>
+                    </div>
+
+                    <div style="margin: 15px 0">
+                        <a href="#" style="color: var(--warning-red); border: 1px solid var(--warning-red); padding: 8px 15px; margin: 0 5px; display: inline-block; text-decoration: none; background: rgba(255, 7, 58, 0.1);" class="neon-glow">
+                            &lt;&lt; PREV_NODE
+                        </a>
+                        <a href="#" style="color: var(--electric-yellow); border: 1px solid var(--electric-yellow); padding: 8px 15px; margin: 0 5px; display: inline-block; text-decoration: none; background: rgba(255, 255, 0, 0.1);" class="neon-glow">
+                            [RANDOM_ACCESS]
+                        </a>
+                        <a href="#" style="color: var(--terminal-green); border: 1px solid var(--terminal-green); padding: 8px 15px; margin: 0 5px; display: inline-block; text-decoration: none; background: rgba(0, 255, 0, 0.1);" class="neon-glow">
+                            NEXT_NODE &gt;&gt;
+                        </a>
+                    </div>
+
+                    <div style="font-size: 0.8em; color: var(--hacker-purple); margin-top: 15px;">
+                        <span class="terminal-cursor">●</span> Ring Status: <span class="status-online">ACTIVE</span><br>
+                        Node ID: <span class="status-encrypted">[0x1337

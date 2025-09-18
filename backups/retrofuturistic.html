@@ -1,0 +1,1389 @@
+<!doctype html>
+<html lang="en">
+        <head>
+                <meta charset="UTF-8" />
+                <meta
+                        name="viewport"
+                        content="width=device-width, initial-scale=1.0"
+                />
+                <title>RETROFUTURE.SYS</title>
+                <style>
+                        @import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;500;700&display=swap");
+
+                        * {
+                                margin: 0;
+                                padding: 0;
+                                box-sizing: border-box;
+                        }
+
+                        body {
+                                font-family: "Rajdhani", monospace;
+                                background: #0a0a0f;
+                                color: #00ffff;
+                                min-height: 100vh;
+                                overflow-x: hidden;
+                                position: relative;
+                        }
+
+                        /* Animated background grid */
+                        .grid-bg {
+                                position: fixed;
+                                top: 0;
+                                left: 0;
+                                width: 100%;
+                                height: 100%;
+                                background-image:
+                                        linear-gradient(
+                                                rgba(0, 255, 255, 0.1) 1px,
+                                                transparent 1px
+                                        ),
+                                        linear-gradient(
+                                                90deg,
+                                                rgba(0, 255, 255, 0.1) 1px,
+                                                transparent 1px
+                                        );
+                                background-size: 50px 50px;
+                                animation: gridMove 20s linear infinite;
+                                pointer-events: none;
+                                z-index: -1;
+                        }
+
+                        @keyframes gridMove {
+                                0% {
+                                        transform: translate(0, 0);
+                                }
+                                100% {
+                                        transform: translate(50px, 50px);
+                                }
+                        }
+
+                        /* Scanlines effect */
+                        .scanlines {
+                                position: fixed;
+                                top: 0;
+                                left: 0;
+                                width: 100%;
+                                height: 100%;
+                                background: repeating-linear-gradient(
+                                        0deg,
+                                        transparent 0px,
+                                        transparent 2px,
+                                        rgba(255, 0, 255, 0.03) 2px,
+                                        rgba(255, 0, 255, 0.03) 4px
+                                );
+                                pointer-events: none;
+                                z-index: 100;
+                                animation: flicker 0.15s infinite linear
+                                        alternate;
+                        }
+
+                        @keyframes flicker {
+                                0% {
+                                        opacity: 1;
+                                }
+                                100% {
+                                        opacity: 0.98;
+                                }
+                        }
+
+                        /* Main container */
+                        .container {
+                                position: relative;
+                                z-index: 10;
+                                min-height: 100vh;
+                                display: flex;
+                                flex-direction: column;
+                                justify-content: center;
+                                align-items: center;
+                                padding: 2rem;
+                        }
+
+                        /* Header */
+                        .header {
+                                text-align: center;
+                                margin-bottom: 3rem;
+                        }
+
+                        .title {
+                                font-family: "Orbitron", monospace;
+                                font-size: 4rem;
+                                font-weight: 900;
+                                background: linear-gradient(
+                                        45deg,
+                                        #ff0080,
+                                        #00ffff,
+                                        #8000ff
+                                );
+                                background-size: 400% 400%;
+                                -webkit-background-clip: text;
+                                background-clip: text;
+                                -webkit-text-fill-color: transparent;
+                                animation: gradientShift 3s ease-in-out infinite
+                                        alternate;
+                                text-shadow: 0 0 30px rgba(0, 255, 255, 0.5);
+                                margin-bottom: 1rem;
+                                text-transform: uppercase;
+                                letter-spacing: 0.2em;
+                        }
+
+                        @keyframes gradientShift {
+                                0% {
+                                        background-position: 0% 50%;
+                                }
+                                100% {
+                                        background-position: 100% 50%;
+                                }
+                        }
+
+                        .subtitle {
+                                font-size: 1.5rem;
+                                color: #ff0080;
+                                text-shadow: 0 0 10px rgba(255, 0, 128, 0.8);
+                                font-weight: 300;
+                                letter-spacing: 0.1em;
+                        }
+
+                        /* Terminal-style interface */
+                        .terminal {
+                                background: rgba(0, 0, 0, 0.8);
+                                border: 2px solid #00ffff;
+                                border-radius: 10px;
+                                padding: 2rem;
+                                max-width: 800px;
+                                width: 100%;
+                                box-shadow:
+                                        0 0 20px rgba(0, 255, 255, 0.3),
+                                        inset 0 0 20px rgba(0, 255, 255, 0.1);
+                                backdrop-filter: blur(10px);
+                        }
+
+                        .terminal-header {
+                                display: flex;
+                                align-items: center;
+                                justify-content: space-between;
+                                margin-bottom: 2rem;
+                                padding-bottom: 1rem;
+                                border-bottom: 1px solid #333;
+                        }
+
+                        .terminal-title {
+                                font-family: "Orbitron", monospace;
+                                color: #00ffff;
+                                font-size: 1.2rem;
+                        }
+
+                        .terminal-controls {
+                                display: flex;
+                                gap: 0.5rem;
+                        }
+
+                        .control {
+                                width: 12px;
+                                height: 12px;
+                                border-radius: 50%;
+                                cursor: pointer;
+                        }
+
+                        .control.close {
+                                background: #ff0080;
+                                box-shadow: 0 0 5px #ff0080;
+                        }
+                        .control.minimize {
+                                background: #ffff00;
+                                box-shadow: 0 0 5px #ffff00;
+                        }
+                        .control.maximize {
+                                background: #00ff00;
+                                box-shadow: 0 0 5px #00ff00;
+                        }
+
+                        .content {
+                                line-height: 1.6;
+                                font-size: 1.1rem;
+                        }
+
+                        .prompt {
+                                color: #ff0080;
+                                font-weight: 700;
+                        }
+
+                        .command {
+                                color: #00ffff;
+                                font-family: "Orbitron", monospace;
+                        }
+
+                        .output {
+                                color: #ffffff;
+                                margin: 1rem 0;
+                        }
+
+                        .status-bar {
+                                display: flex;
+                                justify-content: space-between;
+                                margin-top: 2rem;
+                                padding-top: 1rem;
+                                border-top: 1px solid #333;
+                                font-size: 0.9rem;
+                        }
+
+                        .status-item {
+                                display: flex;
+                                align-items: center;
+                                gap: 0.5rem;
+                        }
+
+                        .indicator {
+                                width: 8px;
+                                height: 8px;
+                                border-radius: 50%;
+                                background: #00ff00;
+                                animation: pulse 2s infinite;
+                        }
+
+                        @keyframes pulse {
+                                0%,
+                                100% {
+                                        opacity: 1;
+                                }
+                                50% {
+                                        opacity: 0.3;
+                                }
+                        }
+
+                        /* Hologram effect for buttons */
+                        .holo-btn {
+                                background: transparent;
+                                border: 2px solid #00ffff;
+                                color: #00ffff;
+                                padding: 0.8rem 2rem;
+                                font-family: "Orbitron", monospace;
+                                font-size: 1rem;
+                                cursor: pointer;
+                                position: relative;
+                                overflow: hidden;
+                                text-transform: uppercase;
+                                letter-spacing: 0.1em;
+                                margin: 0.5rem;
+                                transition: all 0.3s ease;
+                        }
+
+                        .holo-btn:before {
+                                content: "";
+                                position: absolute;
+                                top: 0;
+                                left: -100%;
+                                width: 100%;
+                                height: 100%;
+                                background: linear-gradient(
+                                        90deg,
+                                        transparent,
+                                        rgba(0, 255, 255, 0.2),
+                                        transparent
+                                );
+                                transition: left 0.5s;
+                        }
+
+                        .holo-btn:hover {
+                                color: #000;
+                                background: #00ffff;
+                                box-shadow: 0 0 20px #00ffff;
+                                text-shadow: none;
+                        }
+
+                        .holo-btn:hover:before {
+                                left: 100%;
+                        }
+
+                        /* Glitch effect */
+                        .glitch {
+                                position: relative;
+                                color: #00ffff;
+                                font-size: 2rem;
+                                font-weight: bold;
+                                text-transform: uppercase;
+                                letter-spacing: 0.1em;
+                                animation: glitch 2s infinite;
+                        }
+
+                        @keyframes glitch {
+                                0%,
+                                100% {
+                                        transform: translate(0);
+                                }
+                                20% {
+                                        transform: translate(-2px, 2px);
+                                }
+                                40% {
+                                        transform: translate(-2px, -2px);
+                                }
+                                60% {
+                                        transform: translate(2px, 2px);
+                                }
+                                80% {
+                                        transform: translate(2px, -2px);
+                                }
+                        }
+
+                        /* Floating elements */
+                        .floating-elements {
+                                position: fixed;
+                                width: 100%;
+                                height: 100%;
+                                pointer-events: none;
+                                z-index: -1;
+                        }
+
+                        .floating-element {
+                                position: absolute;
+                                width: 4px;
+                                height: 4px;
+                                background: #ff0080;
+                                border-radius: 50%;
+                                animation: float 10s infinite linear;
+                        }
+
+                        @keyframes float {
+                                from {
+                                        transform: translateY(100vh)
+                                                rotate(0deg);
+                                }
+                                to {
+                                        transform: translateY(-100vh)
+                                                rotate(360deg);
+                                }
+                        }
+
+                        /* Spaceships */
+                        .spaceship {
+                                position: absolute;
+                                width: 0;
+                                height: 0;
+                                pointer-events: none;
+                        }
+
+                        .spaceship-1 {
+                                border-left: 8px solid transparent;
+                                border-right: 8px solid transparent;
+                                border-bottom: 25px solid #00ffff;
+                                filter: drop-shadow(0 0 5px #00ffff);
+                                animation: flyAcross1 15s infinite linear;
+                        }
+
+                        .spaceship-2 {
+                                border-left: 6px solid transparent;
+                                border-right: 6px solid transparent;
+                                border-bottom: 20px solid #ff0080;
+                                filter: drop-shadow(0 0 5px #ff0080);
+                                animation: flyAcross2 20s infinite linear;
+                        }
+
+                        .spaceship-3 {
+                                border-left: 10px solid transparent;
+                                border-right: 10px solid transparent;
+                                border-bottom: 30px solid #8000ff;
+                                filter: drop-shadow(0 0 8px #8000ff);
+                                animation: flyAcross3 12s infinite linear;
+                        }
+
+                        @keyframes flyAcross1 {
+                                0% {
+                                        transform: translateX(-100px)
+                                                translateY(20vh) rotate(-45deg);
+                                        opacity: 0;
+                                }
+                                10% {
+                                        opacity: 1;
+                                }
+                                25% {
+                                        transform: translateX(25vw)
+                                                translateY(35vh) rotate(-20deg);
+                                }
+                                50% {
+                                        transform: translateX(50vw)
+                                                translateY(50vh) rotate(-60deg);
+                                }
+                                75% {
+                                        transform: translateX(75vw)
+                                                translateY(65vh) rotate(-30deg);
+                                }
+                                90% {
+                                        opacity: 1;
+                                }
+                                100% {
+                                        transform: translateX(
+                                                        calc(100vw + 100px)
+                                                )
+                                                translateY(80vh) rotate(-45deg);
+                                        opacity: 0;
+                                }
+                        }
+
+                        @keyframes flyAcross2 {
+                                0% {
+                                        transform: translateX(
+                                                        calc(100vw + 100px)
+                                                )
+                                                translateY(60vh) rotate(135deg);
+                                        opacity: 0;
+                                }
+                                10% {
+                                        opacity: 1;
+                                }
+                                30% {
+                                        transform: translateX(70vw)
+                                                translateY(45vh) rotate(160deg);
+                                }
+                                60% {
+                                        transform: translateX(40vw)
+                                                translateY(30vh) rotate(110deg);
+                                }
+                                80% {
+                                        transform: translateX(20vw)
+                                                translateY(20vh) rotate(145deg);
+                                }
+                                90% {
+                                        opacity: 1;
+                                }
+                                100% {
+                                        transform: translateX(-100px)
+                                                translateY(10vh) rotate(135deg);
+                                        opacity: 0;
+                                }
+                        }
+
+                        @keyframes flyAcross3 {
+                                0% {
+                                        transform: translateX(-100px)
+                                                translateY(40vh) rotate(-30deg);
+                                        opacity: 0;
+                                }
+                                15% {
+                                        opacity: 1;
+                                }
+                                35% {
+                                        transform: translateX(30vw)
+                                                translateY(48vh) rotate(-10deg);
+                                }
+                                55% {
+                                        transform: translateX(55vw)
+                                                translateY(58vh) rotate(-50deg);
+                                }
+                                75% {
+                                        transform: translateX(80vw)
+                                                translateY(65vh) rotate(-15deg);
+                                }
+                                85% {
+                                        opacity: 1;
+                                }
+                                100% {
+                                        transform: translateX(
+                                                        calc(100vw + 100px)
+                                                )
+                                                translateY(70vh) rotate(-30deg);
+                                        opacity: 0;
+                                }
+                        }
+
+                        /* Asteroids */
+                        .asteroid {
+                                position: absolute;
+                                background: #666;
+                                border-radius: 50%;
+                                pointer-events: none;
+                                opacity: 0.7;
+                        }
+
+                        .asteroid-1 {
+                                width: 36px;
+                                height: 36px;
+                                background: linear-gradient(45deg, #555, #777);
+                                box-shadow: inset -9px -9px 0px #333;
+                                animation: driftAsteroid1 25s infinite linear;
+                        }
+
+                        .asteroid-2 {
+                                width: 24px;
+                                height: 24px;
+                                background: linear-gradient(45deg, #444, #666);
+                                box-shadow: inset -6px -6px 0px #222;
+                                animation: driftAsteroid2 18s infinite linear;
+                        }
+
+                        .asteroid-3 {
+                                width: 48px;
+                                height: 48px;
+                                background: linear-gradient(45deg, #666, #888);
+                                box-shadow: inset -12px -12px 0px #444;
+                                animation: driftAsteroid3 30s infinite linear;
+                        }
+
+                        .asteroid-4 {
+                                width: 18px;
+                                height: 18px;
+                                background: linear-gradient(45deg, #333, #555);
+                                box-shadow: inset -3px -3px 0px #111;
+                                animation: driftAsteroid4 22s infinite linear;
+                        }
+
+                        @keyframes driftAsteroid1 {
+                                0% {
+                                        transform: translateX(-50px)
+                                                translateY(-50px) rotate(0deg);
+                                }
+                                100% {
+                                        transform: translateX(
+                                                        calc(100vw + 50px)
+                                                )
+                                                translateY(calc(100vh + 50px))
+                                                rotate(720deg);
+                                }
+                        }
+
+                        @keyframes driftAsteroid2 {
+                                0% {
+                                        transform: translateX(
+                                                        calc(100vw + 50px)
+                                                )
+                                                translateY(-50px) rotate(0deg);
+                                }
+                                100% {
+                                        transform: translateX(-50px)
+                                                translateY(calc(100vh + 50px))
+                                                rotate(-540deg);
+                                }
+                        }
+
+                        @keyframes driftAsteroid3 {
+                                0% {
+                                        transform: translateX(-80px)
+                                                translateY(50vh) rotate(0deg);
+                                }
+                                100% {
+                                        transform: translateX(
+                                                        calc(100vw + 80px)
+                                                )
+                                                translateY(50vh) rotate(360deg);
+                                }
+                        }
+
+                        @keyframes driftAsteroid4 {
+                                0% {
+                                        transform: translateX(50vw)
+                                                translateY(-30px) rotate(0deg);
+                                }
+                                100% {
+                                        transform: translateX(50vw)
+                                                translateY(calc(100vh + 30px))
+                                                rotate(-720deg);
+                                }
+                        }
+
+                        /* Laser beams */
+                        .laser {
+                                position: absolute;
+                                width: 2px;
+                                height: 20px;
+                                background: linear-gradient(
+                                        to bottom,
+                                        #00ffff,
+                                        transparent
+                                );
+                                box-shadow:
+                                        0 0 5px #00ffff,
+                                        0 0 10px #00ffff;
+                                pointer-events: none;
+                                opacity: 0;
+                        }
+
+                        .laser-pink {
+                                background: linear-gradient(
+                                        to bottom,
+                                        #ff0080,
+                                        transparent
+                                );
+                                box-shadow:
+                                        0 0 5px #ff0080,
+                                        0 0 10px #ff0080;
+                        }
+
+                        .laser-purple {
+                                background: linear-gradient(
+                                        to bottom,
+                                        #8000ff,
+                                        transparent
+                                );
+                                box-shadow:
+                                        0 0 5px #8000ff,
+                                        0 0 10px #8000ff;
+                        }
+
+                        @keyframes shootLaser {
+                                0% {
+                                        opacity: 1;
+                                        transform: translateY(0);
+                                }
+                                100% {
+                                        opacity: 0;
+                                        transform: translateY(-200px);
+                                }
+                        }
+
+                        /* Explosion effect */
+                        .explosion {
+                                position: absolute;
+                                width: 20px;
+                                height: 20px;
+                                border-radius: 50%;
+                                background: radial-gradient(
+                                        circle,
+                                        #ffff00,
+                                        #ff8000,
+                                        transparent
+                                );
+                                box-shadow: 0 0 15px #ffff00;
+                                pointer-events: none;
+                                opacity: 0;
+                        }
+
+                        @keyframes explode {
+                                0% {
+                                        opacity: 1;
+                                        transform: scale(0.1);
+                                }
+                                50% {
+                                        opacity: 1;
+                                        transform: scale(1.5);
+                                }
+                                100% {
+                                        opacity: 0;
+                                        transform: scale(0.1);
+                                }
+                        }
+
+                        /* Responsive design */
+                        @media (max-width: 768px) {
+                                .title {
+                                        font-size: 2.5rem;
+                                }
+                                .terminal {
+                                        margin: 1rem;
+                                        padding: 1rem;
+                                }
+                        }
+                </style>
+        </head>
+        <body>
+                <div class="grid-bg"></div>
+                <div class="scanlines"></div>
+
+                <div class="floating-elements">
+                        <div
+                                class="floating-element"
+                                style="left: 10%; animation-delay: 0s"
+                        ></div>
+                        <div
+                                class="floating-element"
+                                style="left: 20%; animation-delay: 2s"
+                        ></div>
+                        <div
+                                class="floating-element"
+                                style="left: 30%; animation-delay: 4s"
+                        ></div>
+                        <div
+                                class="floating-element"
+                                style="left: 40%; animation-delay: 6s"
+                        ></div>
+                        <div
+                                class="floating-element"
+                                style="left: 50%; animation-delay: 8s"
+                        ></div>
+                        <div
+                                class="floating-element"
+                                style="left: 60%; animation-delay: 10s"
+                        ></div>
+                        <div
+                                class="floating-element"
+                                style="left: 70%; animation-delay: 12s"
+                        ></div>
+                        <div
+                                class="floating-element"
+                                style="left: 80%; animation-delay: 14s"
+                        ></div>
+                        <div
+                                class="floating-element"
+                                style="left: 90%; animation-delay: 24s"
+                        ></div>
+                </div>
+
+                <!-- Spaceships -->
+                <div class="spaceship spaceship-1"></div>
+                <div class="spaceship spaceship-2"></div>
+                <div class="spaceship spaceship-3"></div>
+
+                <!-- Asteroids -->
+                <div class="asteroid asteroid-1"></div>
+                <div class="asteroid asteroid-2"></div>
+                <div class="asteroid asteroid-3"></div>
+                <div class="asteroid asteroid-4"></div>
+
+                <div class="container">
+                        <div class="header">
+                                <h1 class="title">RetroFuture</h1>
+                                <p class="subtitle">
+                                        // SYSTEM INTERFACE v2.085 //
+                                </p>
+                        </div>
+
+                        <div class="terminal">
+                                <div class="terminal-header">
+                                        <div class="terminal-title">
+                                                NEURAL_INTERFACE.EXE
+                                        </div>
+                                        <div class="terminal-controls">
+                                                <div
+                                                        class="control close"
+                                                ></div>
+                                                <div
+                                                        class="control minimize"
+                                                ></div>
+                                                <div
+                                                        class="control maximize"
+                                                ></div>
+                                        </div>
+                                </div>
+
+                                <div class="content">
+                                        <div>
+                                                <span class="prompt"
+                                                        >benjamin@cybernet:~$</span
+                                                >
+                                                <span class="command"
+                                                        >whoami</span
+                                                >
+                                        </div>
+                                        <div class="output">
+                                                >>> IDENTITY: BENJAMIN CABLE<br />
+                                                >>> STATUS: SENIOR BACKEND
+                                                ENGINEER @
+                                                <a
+                                                        href="https://lootlocker.com/"
+                                                        style="color: #00ffff"
+                                                        >LOOTLOCKER</a
+                                                ><br />
+                                                >>> CLEARANCE: CLASSIFIED<br />
+                                                >>> NEURAL LINK: ESTABLISHED
+                                        </div>
+
+                                        <div class="glitch">
+                                                GO • DEVELOPER • ARCHITECT
+                                        </div>
+
+                                        <div class="output">
+                                                Hi there! 👋 I'm an enthusiastic
+                                                Go developer with experience
+                                                building large-scale APIs and
+                                                command line applications. I've
+                                                led teams of 10-30 people as
+                                                both lead developer and
+                                                principal engineer, navigating
+                                                the digital frontier of
+                                                distributed systems.
+                                        </div>
+
+                                        <div>
+                                                <span class="prompt"
+                                                        >benjamin@matrix:~$</span
+                                                >
+                                                <span class="command"
+                                                        >cat /proc/skills</span
+                                                >
+                                        </div>
+                                        <div class="output">
+                                                • Programming Languages: GO,
+                                                PHP, RUST, JAVASCRIPT<br />
+                                                • System Architecture:
+                                                MICROSERVICES, APIs<br />
+                                                • Platform Experience: *NIX,
+                                                AWS/GCP<br />
+                                                • Team Leadership: 10-30
+                                                OPERATIVES<br />
+                                                • FOSS Contributor: ACTIVE
+                                        </div>
+
+                                        <div>
+                                                <span class="prompt"
+                                                        >gopher@matrix:~$</span
+                                                >
+                                                <span class="command"
+                                                        >ls ~/meetups/</span
+                                                >
+                                        </div>
+                                        <div class="output">
+                                                Co-organizing the
+                                                <a
+                                                        href="https://www.meetup.com/golang-dorset/"
+                                                        style="
+                                                                color: #00ff00;
+                                                                font-weight: bold;
+                                                        "
+                                                        >🐹 GOLANG DORSET MEETUP
+                                                        🐹</a
+                                                ><br />
+                                                Monthly gatherings of digital
+                                                gophers for advanced Go
+                                                programming,<br />
+                                                distributed systems
+                                                architecture, and underground
+                                                knowledge sharing.
+                                        </div>
+
+                                        <div
+                                                style="
+                                                        text-align: center;
+                                                        margin: 2rem 0;
+                                                "
+                                        >
+                                                <button class="holo-btn">
+                                                        ACCESS GITHUB
+                                                </button>
+                                                <button class="holo-btn">
+                                                        NEURAL SYNC
+                                                </button>
+                                                <button class="holo-btn">
+                                                        CONTACT MATRIX
+                                                </button>
+                                        </div>
+                                </div>
+
+                                <div class="status-bar">
+                                        <div class="status-item">
+                                                <div class="indicator"></div>
+                                                <span>SYSTEM ACTIVE</span>
+                                        </div>
+                                        <div class="status-item">
+                                                <span id="current-time"
+                                                        >00:00:00</span
+                                                >
+                                        </div>
+                                        <div class="status-item">
+                                                <span>GO VERSION 1.23+</span>
+                                        </div>
+                                </div>
+                        </div>
+                </div>
+
+                <script>
+                        // Update digital clock
+                        function updateClock() {
+                                const now = new Date();
+                                const time = now.toLocaleTimeString("en-US", {
+                                        hour12: false,
+                                });
+                                document.getElementById(
+                                        "current-time",
+                                ).textContent = time;
+                        }
+
+                        setInterval(updateClock, 1000);
+                        updateClock();
+
+                        // Spaceship shooting mechanics
+                        function createLaser(x, y, shipClass) {
+                                const laser = document.createElement("div");
+                                laser.className = "laser";
+
+                                // Different laser colors for different ships
+                                if (shipClass === "spaceship-2") {
+                                        laser.classList.add("laser-pink");
+                                } else if (shipClass === "spaceship-3") {
+                                        laser.classList.add("laser-purple");
+                                }
+
+                                laser.style.left = x + "px";
+                                laser.style.top = y + "px";
+                                laser.style.animation =
+                                        "shootLaser 0.8s linear forwards";
+
+                                document.body.appendChild(laser);
+
+                                // Remove laser after animation
+                                setTimeout(() => {
+                                        if (laser.parentNode) {
+                                                laser.parentNode.removeChild(
+                                                        laser,
+                                                );
+                                        }
+                                }, 800);
+
+                                return laser;
+                        }
+
+                        function createExplosion(x, y) {
+                                const explosion = document.createElement("div");
+                                explosion.className = "explosion";
+                                explosion.style.left = x - 10 + "px";
+                                explosion.style.top = y - 10 + "px";
+                                explosion.style.animation =
+                                        "explode 0.5s ease-out forwards";
+
+                                document.body.appendChild(explosion);
+
+                                // Remove explosion after animation
+                                setTimeout(() => {
+                                        if (explosion.parentNode) {
+                                                explosion.parentNode.removeChild(
+                                                        explosion,
+                                                );
+                                        }
+                                }, 500);
+                        }
+
+                        function getElementPosition(element) {
+                                const rect = element.getBoundingClientRect();
+                                return {
+                                        x: rect.left + rect.width / 2,
+                                        y: rect.top + rect.height / 2,
+                                };
+                        }
+
+                        function findNearestAsteroid(shipX, shipY) {
+                                const asteroids =
+                                        document.querySelectorAll(".asteroid");
+                                let nearest = null;
+                                let minDistance = Infinity;
+
+                                asteroids.forEach((asteroid) => {
+                                        const pos =
+                                                getElementPosition(asteroid);
+                                        const distance = Math.sqrt(
+                                                Math.pow(pos.x - shipX, 2) +
+                                                        Math.pow(
+                                                                pos.y - shipY,
+                                                                2,
+                                                        ),
+                                        );
+
+                                        // Only target asteroids within reasonable range and in front of ship
+                                        if (
+                                                distance < 300 &&
+                                                distance < minDistance
+                                        ) {
+                                                nearest = asteroid;
+                                                minDistance = distance;
+                                        }
+                                });
+
+                                return nearest;
+                        }
+
+                        function makeShipShoot() {
+                                const ships =
+                                        document.querySelectorAll(".spaceship");
+
+                                ships.forEach((ship) => {
+                                        // Random chance to shoot (about 30% chance each time this runs)
+                                        if (Math.random() > 0.7) {
+                                                const shipPos =
+                                                        getElementPosition(
+                                                                ship,
+                                                        );
+                                                const target =
+                                                        findNearestAsteroid(
+                                                                shipPos.x,
+                                                                shipPos.y,
+                                                        );
+
+                                                if (target) {
+                                                        createLaser(
+                                                                shipPos.x - 1,
+                                                                shipPos.y,
+                                                                ship.className,
+                                                        );
+
+                                                        // Check for hit after laser travel time
+                                                        setTimeout(() => {
+                                                                const targetPos =
+                                                                        getElementPosition(
+                                                                                target,
+                                                                        );
+                                                                const laserX =
+                                                                        shipPos.x;
+                                                                const laserY =
+                                                                        shipPos.y -
+                                                                        100; // Approximate laser position after travel
+
+                                                                // Simple collision detection
+                                                                if (
+                                                                        Math.abs(
+                                                                                laserX -
+                                                                                        targetPos.x,
+                                                                        ) <
+                                                                                30 &&
+                                                                        Math.abs(
+                                                                                laserY -
+                                                                                        targetPos.y,
+                                                                        ) < 30
+                                                                ) {
+                                                                        createExplosion(
+                                                                                targetPos.x,
+                                                                                targetPos.y,
+                                                                        );
+
+                                                                        // Briefly hide the asteroid to simulate destruction
+                                                                        target.style.opacity =
+                                                                                "0";
+                                                                        setTimeout(
+                                                                                () => {
+                                                                                        target.style.opacity =
+                                                                                                "0.7";
+                                                                                },
+                                                                                1000,
+                                                                        );
+                                                                }
+                                                        }, 400);
+                                                }
+                                        }
+                                });
+                        }
+
+                        // Randomize starting positions of all moving objects
+                        function randomizeStartingPositions() {
+                                const viewportWidth = window.innerWidth;
+                                const viewportHeight = window.innerHeight;
+
+                                // Randomize spaceships along their paths
+                                document.querySelectorAll(".spaceship").forEach(
+                                        (ship, index) => {
+                                                const progress = Math.random(); // 0-1
+                                                let x, y, rotation;
+
+                                                if (
+                                                        ship.classList.contains(
+                                                                "spaceship-1",
+                                                        )
+                                                ) {
+                                                        // Diagonal path from top-left to bottom-right
+                                                        x =
+                                                                -100 +
+                                                                progress *
+                                                                        (viewportWidth +
+                                                                                200);
+                                                        y =
+                                                                0.2 *
+                                                                        viewportHeight +
+                                                                progress *
+                                                                        (0.6 *
+                                                                                viewportHeight);
+                                                        rotation = -45;
+                                                } else if (
+                                                        ship.classList.contains(
+                                                                "spaceship-2",
+                                                        )
+                                                ) {
+                                                        // Diagonal path from top-right to bottom-left
+                                                        x =
+                                                                viewportWidth +
+                                                                100 -
+                                                                progress *
+                                                                        (viewportWidth +
+                                                                                200);
+                                                        y =
+                                                                0.6 *
+                                                                        viewportHeight -
+                                                                progress *
+                                                                        (0.5 *
+                                                                                viewportHeight);
+                                                        rotation = 135;
+                                                } else if (
+                                                        ship.classList.contains(
+                                                                "spaceship-3",
+                                                        )
+                                                ) {
+                                                        // Diagonal path from left to right
+                                                        x =
+                                                                -100 +
+                                                                progress *
+                                                                        (viewportWidth +
+                                                                                200);
+                                                        y =
+                                                                0.4 *
+                                                                        viewportHeight +
+                                                                progress *
+                                                                        (0.3 *
+                                                                                viewportHeight);
+                                                        rotation = -30;
+                                                }
+
+                                                ship.style.transform = `translateX(${x}px) translateY(${y}px) rotate(${rotation}deg)`;
+                                        },
+                                );
+
+                                // Randomize asteroids along their paths
+                                document.querySelectorAll(".asteroid").forEach(
+                                        (asteroid) => {
+                                                const progress = Math.random(); // 0-1
+                                                const rotationProgress =
+                                                        Math.random() * 720; // Random rotation
+                                                let x, y;
+
+                                                if (
+                                                        asteroid.classList.contains(
+                                                                "asteroid-1",
+                                                        )
+                                                ) {
+                                                        // Diagonal corner-to-corner
+                                                        x =
+                                                                -50 +
+                                                                progress *
+                                                                        (viewportWidth +
+                                                                                100);
+                                                        y =
+                                                                -50 +
+                                                                progress *
+                                                                        (viewportHeight +
+                                                                                100);
+                                                } else if (
+                                                        asteroid.classList.contains(
+                                                                "asteroid-2",
+                                                        )
+                                                ) {
+                                                        // Reverse diagonal
+                                                        x =
+                                                                viewportWidth +
+                                                                50 -
+                                                                progress *
+                                                                        (viewportWidth +
+                                                                                100);
+                                                        y =
+                                                                -50 +
+                                                                progress *
+                                                                        (viewportHeight +
+                                                                                100);
+                                                } else if (
+                                                        asteroid.classList.contains(
+                                                                "asteroid-3",
+                                                        )
+                                                ) {
+                                                        // Horizontal across middle
+                                                        x =
+                                                                -80 +
+                                                                progress *
+                                                                        (viewportWidth +
+                                                                                160);
+                                                        y =
+                                                                0.5 *
+                                                                viewportHeight;
+                                                } else if (
+                                                        asteroid.classList.contains(
+                                                                "asteroid-4",
+                                                        )
+                                                ) {
+                                                        // Vertical through center
+                                                        x = 0.5 * viewportWidth;
+                                                        y =
+                                                                -30 +
+                                                                progress *
+                                                                        (viewportHeight +
+                                                                                60);
+                                                }
+
+                                                asteroid.style.transform = `translateX(${x}px) translateY(${y}px) rotate(${rotationProgress}deg)`;
+                                        },
+                                );
+
+                                // Randomize floating particles
+                                document.querySelectorAll(
+                                        ".floating-element",
+                                ).forEach((particle) => {
+                                        const progress = Math.random(); // 0-1
+                                        const y =
+                                                viewportHeight +
+                                                progress *
+                                                        (-2 * viewportHeight); // Random along vertical path
+                                        const rotation = Math.random() * 360;
+
+                                        particle.style.transform = `translateY(${y}px) rotate(${rotation}deg)`;
+                                });
+                        }
+
+                        // Initialize random positions on page load
+                        randomizeStartingPositions();
+
+                        // Start shooting mechanics
+                        setInterval(makeShipShoot, 2000); // Check for shooting every 2 seconds
+
+                        // Add button interactions
+                        document.querySelectorAll(".holo-btn").forEach(
+                                (btn) => {
+                                        btn.addEventListener(
+                                                "click",
+                                                function () {
+                                                        if (
+                                                                btn.textContent ===
+                                                                "ACCESS GITHUB"
+                                                        ) {
+                                                                window.open(
+                                                                        "https://github.com/ladydascalie",
+                                                                        "_blank",
+                                                                );
+                                                                const statusDiv =
+                                                                        document.createElement(
+                                                                                "div",
+                                                                        );
+                                                                statusDiv.textContent =
+                                                                        ">>> ACCESSING GITHUB REPOSITORIES...";
+                                                                statusDiv.style.color =
+                                                                        "#00ff00";
+                                                                statusDiv.style.marginTop =
+                                                                        "1rem";
+                                                                statusDiv.style.animation =
+                                                                        "pulse 1s infinite";
+                                                                const content =
+                                                                        document.querySelector(
+                                                                                ".content",
+                                                                        );
+                                                                content.appendChild(
+                                                                        statusDiv,
+                                                                );
+                                                                setTimeout(
+                                                                        () =>
+                                                                                statusDiv.remove(),
+                                                                        2000,
+                                                                );
+                                                        } else if (
+                                                                btn.textContent ===
+                                                                "CONTACT MATRIX"
+                                                        ) {
+                                                                const contactDiv =
+                                                                        document.createElement(
+                                                                                "div",
+                                                                        );
+                                                                contactDiv.innerHTML = `
+							>>> SECURE COMMUNICATION CHANNELS:<br>
+							• <a href="https://signal.me/#eu/V-9dTllhTgyXXHeIPglmmW4ScT7DVteYjNgkcf3L409OnH0uaVtF1JzIYvy9CS4z" style="color: #ff0080;">SIGNAL_ENCRYPTED</a><br>
+							• <a href="https://www.linkedin.com/in/benjamin-cable-9aa05b90/" style="color: #00ffff;">LINKEDIN_PROFESSIONAL</a><br>
+							• <a href="mailto:ben@cable.fyi" style="color: #00ff00;">EMAIL_SECURE</a><br>
+							• <a href="https://github.com/ladydascalie.gpg" style="color: #8000ff;">PGP_KEYS_AVAILABLE</a>
+						`;
+                                                                contactDiv.style.color =
+                                                                        "#00ffff";
+                                                                contactDiv.style.marginTop =
+                                                                        "1rem";
+                                                                contactDiv.style.padding =
+                                                                        "1rem";
+                                                                contactDiv.style.border =
+                                                                        "1px solid #00ffff";
+                                                                contactDiv.style.background =
+                                                                        "rgba(0, 255, 255, 0.1)";
+                                                                const content =
+                                                                        document.querySelector(
+                                                                                ".content",
+                                                                        );
+                                                                content.appendChild(
+                                                                        contactDiv,
+                                                                );
+                                                                setTimeout(
+                                                                        () =>
+                                                                                contactDiv.remove(),
+                                                                        8000,
+                                                                );
+                                                        } else {
+                                                                const messages =
+                                                                        [
+                                                                                "NEURAL SYNC COMPLETE - GO ROUTINES OPTIMIZED",
+                                                                                "DISTRIBUTED SYSTEMS SYNCHRONIZED",
+                                                                                "MICROSERVICES ARCHITECTURE LOADED",
+                                                                        ];
+                                                                const randomMessage =
+                                                                        messages[
+                                                                                Math.floor(
+                                                                                        Math.random() *
+                                                                                                messages.length,
+                                                                                )
+                                                                        ];
+                                                                const statusDiv =
+                                                                        document.createElement(
+                                                                                "div",
+                                                                        );
+                                                                statusDiv.textContent =
+                                                                        ">>> " +
+                                                                        randomMessage;
+                                                                statusDiv.style.color =
+                                                                        "#00ff00";
+                                                                statusDiv.style.marginTop =
+                                                                        "1rem";
+                                                                statusDiv.style.animation =
+                                                                        "pulse 1s infinite";
+                                                                const content =
+                                                                        document.querySelector(
+                                                                                ".content",
+                                                                        );
+                                                                content.appendChild(
+                                                                        statusDiv,
+                                                                );
+                                                                setTimeout(
+                                                                        () =>
+                                                                                statusDiv.remove(),
+                                                                        3000,
+                                                                );
+                                                        }
+                                                },
+                                        );
+                                },
+                        );
+
+                        // Add terminal window controls
+                        document.querySelectorAll(".control").forEach(
+                                (ctrl) => {
+                                        ctrl.addEventListener(
+                                                "click",
+                                                function () {
+                                                        if (
+                                                                this.classList.contains(
+                                                                        "close",
+                                                                )
+                                                        ) {
+                                                                alert(
+                                                                        "SYSTEM ERROR: Cannot terminate neural interface",
+                                                                );
+                                                        } else if (
+                                                                this.classList.contains(
+                                                                        "minimize",
+                                                                )
+                                                        ) {
+                                                                document.querySelector(
+                                                                        ".terminal",
+                                                                ).style.transform =
+                                                                        "scale(0.8)";
+                                                                setTimeout(
+                                                                        () => {
+                                                                                document.querySelector(
+                                                                                        ".terminal",
+                                                                                ).style.transform =
+                                                                                        "scale(1)";
+                                                                        },
+                                                                        1000,
+                                                                );
+                                                        }
+                                                },
+                                        );
+                                },
+                        );
+
+                        // Random glitch effects
+                        setInterval(() => {
+                                const glitchElement =
+                                        document.querySelector(".glitch");
+                                glitchElement.style.textShadow = `
+					${Math.random() * 10 - 5}px ${Math.random() * 10 - 5}px 0 #ff0080,
+					${Math.random() * 10 - 5}px ${Math.random() * 10 - 5}px 0 #00ffff
+				`;
+
+                                setTimeout(() => {
+                                        glitchElement.style.textShadow =
+                                                "0 0 10px rgba(0, 255, 255, 0.8)";
+                                }, 100);
+                        }, 5000);
+                </script>
+        </body>
+</html>

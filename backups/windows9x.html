@@ -1,0 +1,532 @@
+<!doctype html>
+<html lang="en">
+        <head>
+                <meta charset="UTF-8" />
+                <meta
+                        name="viewport"
+                        content="width=device-width, initial-scale=1.0"
+                />
+                <title>Windows 9x Desktop</title>
+                <style>
+                        @import url("https://fonts.googleapis.com/css2?family=MS+Sans+Serif:wght@400;700&display=swap");
+
+                        * {
+                                margin: 0;
+                                padding: 0;
+                                box-sizing: border-box;
+                        }
+
+                        body {
+                                font-family:
+                                        "MS Sans Serif", "Tahoma", sans-serif;
+                                font-size: 11px;
+                                background: linear-gradient(
+                                        45deg,
+                                        #008080,
+                                        #004040
+                                );
+                                height: 100vh;
+                                overflow: hidden;
+                                position: relative;
+                        }
+
+                        /* Desktop Icons */
+                        .desktop {
+                                height: calc(100vh - 30px);
+                                padding: 10px;
+                                position: relative;
+                        }
+
+                        .icon {
+                                width: 64px;
+                                height: 80px;
+                                display: flex;
+                                flex-direction: column;
+                                align-items: center;
+                                color: white;
+                                text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+                                cursor: pointer;
+                                margin: 10px;
+                                position: absolute;
+                        }
+
+                        .icon:hover {
+                                background-color: rgba(0, 0, 128, 0.3);
+                        }
+
+                        .icon-image {
+                                width: 32px;
+                                height: 32px;
+                                background: #c0c0c0;
+                                border: 1px solid #808080;
+                                margin-bottom: 4px;
+                                display: flex;
+                                align-items: center;
+                                justify-content: center;
+                                font-size: 16px;
+                        }
+
+                        .recycle-bin {
+                                top: 10px;
+                                left: 10px;
+                        }
+                        .my-computer {
+                                top: 100px;
+                                left: 10px;
+                        }
+                        .network {
+                                top: 190px;
+                                left: 10px;
+                        }
+                        .my-documents {
+                                top: 280px;
+                                left: 10px;
+                        }
+
+                        /* Window */
+                        .window {
+                                position: absolute;
+                                top: 50%;
+                                left: 50%;
+                                transform: translate(-50%, -50%);
+                                width: 450px;
+                                height: 450px;
+                                background: #c0c0c0;
+                                border: 2px outset #c0c0c0;
+                                box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+                        }
+
+                        .title-bar {
+                                height: 18px;
+                                background: linear-gradient(
+                                        to right,
+                                        #0000ff,
+                                        #000080
+                                );
+                                color: white;
+                                display: flex;
+                                align-items: center;
+                                justify-content: space-between;
+                                padding: 0 4px;
+                                font-size: 11px;
+                                font-weight: bold;
+                        }
+
+                        .window-controls {
+                                display: flex;
+                                gap: 2px;
+                        }
+
+                        .control-btn {
+                                width: 16px;
+                                height: 14px;
+                                background: #c0c0c0;
+                                border: 1px outset #c0c0c0;
+                                display: flex;
+                                align-items: center;
+                                justify-content: center;
+                                cursor: pointer;
+                                font-size: 8px;
+                                font-weight: bold;
+                        }
+
+                        .control-btn:active {
+                                border: 1px inset #c0c0c0;
+                        }
+
+                        .window-content {
+                                padding: 8px;
+                                height: calc(100% - 18px);
+                                overflow-y: auto;
+                        }
+
+                        .window-content h2 {
+                                font-size: 14px;
+                                margin-bottom: 10px;
+                                color: #000080;
+                        }
+
+                        .window-content p {
+                                margin-bottom: 8px;
+                                line-height: 1.3;
+                        }
+
+                        .button {
+                                background: #c0c0c0;
+                                border: 2px outset #c0c0c0;
+                                padding: 3px 12px;
+                                font-size: 11px;
+                                cursor: pointer;
+                                margin: 4px;
+                        }
+
+                        .button:active {
+                                border: 2px inset #c0c0c0;
+                        }
+
+                        /* Taskbar */
+                        .taskbar {
+                                position: fixed;
+                                bottom: 0;
+                                left: 0;
+                                right: 0;
+                                height: 30px;
+                                background: #c0c0c0;
+                                border-top: 1px solid #dfdfdf;
+                                display: flex;
+                                align-items: center;
+                                padding: 2px;
+                        }
+
+                        .start-button {
+                                background: #c0c0c0;
+                                border: 2px outset #c0c0c0;
+                                padding: 4px 8px;
+                                font-size: 11px;
+                                font-weight: bold;
+                                cursor: pointer;
+                                display: flex;
+                                align-items: center;
+                                gap: 4px;
+                        }
+
+                        .start-button:active {
+                                border: 2px inset #c0c0c0;
+                        }
+
+                        .start-icon {
+                                width: 16px;
+                                height: 16px;
+                                background: linear-gradient(
+                                        45deg,
+                                        #ff0000,
+                                        #ffff00,
+                                        #00ff00,
+                                        #0000ff
+                                );
+                                border-radius: 2px;
+                        }
+
+                        .taskbar-apps {
+                                flex: 1;
+                                margin-left: 4px;
+                        }
+
+                        .system-tray {
+                                display: flex;
+                                align-items: center;
+                                gap: 4px;
+                                border: 1px inset #c0c0c0;
+                                padding: 2px 6px;
+                                font-size: 11px;
+                        }
+
+                        /* Scrollbar styling */
+                        ::-webkit-scrollbar {
+                                width: 16px;
+                        }
+
+                        ::-webkit-scrollbar-track {
+                                background: #c0c0c0;
+                        }
+
+                        ::-webkit-scrollbar-thumb {
+                                background: #808080;
+                                border: 1px outset #808080;
+                        }
+
+                        ::-webkit-scrollbar-button {
+                                background: #c0c0c0;
+                                border: 1px outset #c0c0c0;
+                                height: 16px;
+                        }
+
+                        /* Additional Windows 9x elements */
+                        .menu-bar {
+                                background: #c0c0c0;
+                                border-bottom: 1px solid #808080;
+                                padding: 2px;
+                                font-size: 11px;
+                        }
+
+                        .menu-item {
+                                display: inline-block;
+                                padding: 3px 8px;
+                                cursor: pointer;
+                        }
+
+                        .menu-item:hover {
+                                background: #0000ff;
+                                color: white;
+                        }
+                </style>
+        </head>
+        <body>
+                <div class="desktop">
+                        <!-- Desktop Icons -->
+                        <div class="icon recycle-bin">
+                                <div class="icon-image">🗑️</div>
+                                <div>Recycle Bin</div>
+                        </div>
+                        <div class="icon my-computer">
+                                <div class="icon-image">💻</div>
+                                <div>My Computer</div>
+                        </div>
+                        <div class="icon network">
+                                <div class="icon-image">🌐</div>
+                                <div>Network Neighborhood</div>
+                        </div>
+                        <div class="icon my-documents">
+                                <div class="icon-image">📁</div>
+                                <div>My Documents</div>
+                        </div>
+
+                        <!-- Main Window -->
+                        <div class="window">
+                                <div class="title-bar">
+                                        <span
+                                                >👤 Benjamin Cable -
+                                                Properties</span
+                                        >
+                                        <div class="window-controls">
+                                                <div class="control-btn">_</div>
+                                                <div class="control-btn">□</div>
+                                                <div class="control-btn">✕</div>
+                                        </div>
+                                </div>
+                                <div class="menu-bar">
+                                        <span class="menu-item">File</span>
+                                        <span class="menu-item">Edit</span>
+                                        <span class="menu-item">View</span>
+                                        <span class="menu-item">Help</span>
+                                </div>
+                                <div class="window-content">
+                                        <div
+                                                style="
+                                                        display: flex;
+                                                        align-items: flex-start;
+                                                        gap: 15px;
+                                                        margin-bottom: 15px;
+                                                "
+                                        >
+                                                <img
+                                                        src="src/portrait.gif"
+                                                        alt="Benjamin Cable"
+                                                        style="
+                                                                width: 64px;
+                                                                height: 64px;
+                                                                border: 2px
+                                                                        inset
+                                                                        #c0c0c0;
+                                                        "
+                                                />
+                                                <div>
+                                                        <h2
+                                                                style="
+                                                                        margin: 0;
+                                                                        font-size: 16px;
+                                                                        color: #000080;
+                                                                "
+                                                        >
+                                                                Benjamin Cable
+                                                        </h2>
+                                                        <p
+                                                                style="
+                                                                        margin: 2px
+                                                                                0;
+                                                                        font-size: 11px;
+                                                                "
+                                                        >
+                                                                Senior Backend
+                                                                Engineer @
+                                                                <a
+                                                                        href="https://lootlocker.com/"
+                                                                        style="
+                                                                                color: #000080;
+                                                                        "
+                                                                        >LootLocker</a
+                                                                >
+                                                        </p>
+                                                        <p
+                                                                style="
+                                                                        margin: 2px
+                                                                                0;
+                                                                        font-size: 11px;
+                                                                        color: #008000;
+                                                                "
+                                                        >
+                                                                Status: Online
+                                                        </p>
+                                                </div>
+                                        </div>
+
+                                        <p
+                                                style="
+                                                        font-size: 11px;
+                                                        margin: 8px 0;
+                                                "
+                                        >
+                                                Hi there! 👋 I'm an enthusiastic
+                                                Go developer with experience in
+                                                building large-scale APIs and
+                                                command line applications. I've
+                                                led teams of 10-30 people as
+                                                both lead developer and
+                                                principal engineer.
+                                        </p>
+
+                                        <p
+                                                style="
+                                                        font-size: 11px;
+                                                        margin: 8px 0;
+                                                "
+                                        >
+                                                I'm actively involved in FOSS
+                                                and co-organize the
+                                                <a
+                                                        href="https://www.meetup.com/golang-dorset/"
+                                                        style="
+                                                                color: #000080;
+                                                                font-weight: bold;
+                                                        "
+                                                        >🐹 Golang Dorset Meetup
+                                                        🐹</a
+                                                >
+                                                monthly gatherings.
+                                        </p>
+
+                                        <div
+                                                style="
+                                                        border: 1px inset
+                                                                #c0c0c0;
+                                                        padding: 4px;
+                                                        margin: 10px 0;
+                                                        background: white;
+                                                "
+                                        >
+                                                <div
+                                                        style="
+                                                                font-size: 10px;
+                                                                font-weight: bold;
+                                                                background: #c0c0c0;
+                                                                padding: 2px;
+                                                                margin-bottom: 4px;
+                                                        "
+                                                >
+                                                        Skills:
+                                                </div>
+                                                <div style="font-size: 10px">
+                                                        Languages: Go, PHP,
+                                                        Rust, JavaScript<br />
+                                                        Systems: *nix, AWS/GCP,
+                                                        Coffee ☕
+                                                </div>
+                                        </div>
+
+                                        <div
+                                                style="
+                                                        border: 1px inset
+                                                                #c0c0c0;
+                                                        padding: 4px;
+                                                        margin: 10px 0;
+                                                        background: white;
+                                                "
+                                        >
+                                                <div
+                                                        style="
+                                                                font-size: 10px;
+                                                                font-weight: bold;
+                                                                background: #c0c0c0;
+                                                                padding: 2px;
+                                                                margin-bottom: 4px;
+                                                        "
+                                                >
+                                                        Contact:
+                                                </div>
+                                                <div style="font-size: 10px">
+                                                        <a
+                                                                href="https://signal.me/#eu/V-9dTllhTgyXXHeIPglmmW4ScT7DVteYjNgkcf3L409OnH0uaVtF1JzIYvy9CS4z"
+                                                                >Signal</a
+                                                        >
+                                                        |
+                                                        <a
+                                                                href="https://www.linkedin.com/in/benjamin-cable-9aa05b90/"
+                                                                >LinkedIn</a
+                                                        >
+                                                        |
+                                                        <a
+                                                                href="mailto:ben@cable.fyi"
+                                                                >Email</a
+                                                        >
+                                                        |
+                                                        <a
+                                                                href="https://github.com/ladydascalie"
+                                                                >GitHub</a
+                                                        >
+                                                </div>
+                                        </div>
+
+                                        <div
+                                                style="
+                                                        text-align: center;
+                                                        margin-top: 15px;
+                                                "
+                                        >
+                                                <button class="button">
+                                                        Properties
+                                                </button>
+                                                <button class="button">
+                                                        Open Source
+                                                </button>
+                                                <button class="button">
+                                                        Close
+                                                </button>
+                                        </div>
+                                </div>
+                        </div>
+                </div>
+
+                <!-- Taskbar -->
+                <div class="taskbar">
+                        <div class="start-button">
+                                <div class="start-icon"></div>
+                                Start
+                        </div>
+                        <div class="taskbar-apps">
+                                <!-- Taskbar applications would go here -->
+                        </div>
+                        <div class="system-tray">
+                                <span>🔊</span>
+                                <span id="clock">12:34 PM</span>
+                        </div>
+                </div>
+
+                <script>
+                        // Update clock
+                        function updateClock() {
+                                const now = new Date();
+                                const time = now.toLocaleTimeString([], {
+                                        hour: "2-digit",
+                                        minute: "2-digit",
+                                });
+                                document.getElementById("clock").textContent =
+                                        time;
+                        }
+
+                        setInterval(updateClock, 1000);
+                        updateClock();
+
+                        // Add button functionality
+                        document.querySelectorAll(".button").forEach((btn) => {
+                                btn.addEventListener("click", () => {
+                                        if (btn.textContent === "Open Source") {
+                                                window.open(
+                                                        "https://github.com/ladydascalie",
+                                                        "_blank",
+                                                );
+                                        }
+                                });
+                        });
+                </script>
+        </body>
+</html>

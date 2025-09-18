@@ -1,217 +1,206 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+        <head>
+                <meta charset="UTF-8" />
+                <meta
+                        name="viewport"
+                        content="width=device-width, initial-scale=1.0"
+                />
+                <title>Benjamin Cable</title>
+                <style>
+                        body {
+                                font-family:
+                                        "Courier New", "Lucida Console", Monaco,
+                                        monospace;
+                                margin: 0;
+                                padding: 20px;
+                                background: #000;
+                                color: #00ff00;
+                                line-height: 1.4;
+                                font-size: 14px;
+                        }
+                        .container {
+                                max-width: 80ch;
+                                margin: 0 auto;
+                        }
+                        .terminal-box {
+                                border: 2px dashed #00ff00;
+                                margin: 20px 0;
+                                padding: 20px;
+                                background: rgba(0, 255, 0, 0.02);
+                        }
+                        .header-box {
+                                text-align: center;
+                                padding: 15px;
+                        }
+                        .box-title {
+                                color: #00ffff;
+                                font-weight: bold;
+                                margin-bottom: 15px;
+                                text-transform: uppercase;
+                        }
+                        .box-title::before,
+                        .box-title::after {
+                                content: "─ ";
+                        }
+                        .box-title::after {
+                                content: " ─";
+                        }
+                        h1 {
+                                margin: 0;
+                                font-size: 18px;
+                                font-weight: bold;
+                                color: #00ff00;
+                        }
+                        .subtitle {
+                                color: #00ff00;
+                                margin: 5px 0 0 0;
+                                font-size: 14px;
+                        }
+                        a {
+                                color: #00ffff;
+                                text-decoration: none;
+                        }
+                        a:visited {
+                                color: #ffff00;
+                        }
+                        a:hover {
+                                color: #ffffff;
+                                text-decoration: underline;
+                        }
+                        .theme-link {
+                                display: block;
+                                margin: 8px 0;
+                                padding: 2px 0;
+                        }
+                        .theme-link::before {
+                                content: "> ";
+                                color: #00ff00;
+                        }
+                        .random-btn {
+                                background: #000;
+                                color: #00ff00;
+                                border: 1px dashed #00ff00;
+                                padding: 8px 16px;
+                                cursor: pointer;
+                                font-family:
+                                        "Courier New", "Lucida Console", Monaco,
+                                        monospace;
+                                font-size: 14px;
+                                margin: 15px 0;
+                                display: block;
+                        }
+                        .random-btn:hover {
+                                background: #00ff00;
+                                color: #000;
+                        }
+                        .contact-info {
+                                margin: 15px 0;
+                        }
+                        .contact-line {
+                                margin: 5px 0;
+                        }
+                        .footer {
+                                text-align: center;
+                                margin-top: 30px;
+                                font-size: 12px;
+                                color: #666;
+                                border-top: 1px dotted #333;
+                                padding-top: 15px;
+                        }
+                        .spacer {
+                                margin: 10px 0;
+                        }
+                </style>
+        </head>
+        <body>
+                <div class="container">
+                        <div class="terminal-box header-box">
+                                <h1>BENJAMIN CABLE</h1>
+                                <div class="subtitle">
+                                        Senior Backend Engineer
+                                </div>
+                        </div>
 
-<head>
-	<meta charset="UTF-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Benjamin Cable</title>
-</head>
+                        <div class="terminal-box">
+                                <div class="box-title">System Information</div>
+                                <div class="spacer"></div>
+                                <div>
+                                        This is a plain terminal interface. For
+                                        enhanced experience,
+                                </div>
+                                <div>
+                                        select one of the available theme
+                                        modules:
+                                </div>
+                                <div class="spacer"></div>
+                                <a
+                                        href="theme.html?theme=cypherpunk"
+                                        class="theme-link"
+                                        >Cypherpunk Terminal Theme</a
+                                >
+                                <a
+                                        href="theme.html?theme=retro-90s"
+                                        class="theme-link"
+                                        >Retro 90s Website</a
+                                >
+                                <div class="spacer"></div>
+                                <button
+                                        class="random-btn"
+                                        onclick="randomRedirect()"
+                                >
+                                        [RANDOM THEME]
+                                </button>
+                        </div>
 
-<body>
-	<section>
-		<img class="portrait" src=" src/portrait.gif" alt="benjamin cable's portrait">
-		<h1>Benjamin Cable</h1>
-		<code>fmt.Println(`Senior Backend Engineer @ <a href="https://lootlocker.com/">LootLocker</a>`)</code>
-	</section>
-	<section>
-		<h1>Greetings</h1>
-		<p>
-			Hi there! 👋 I'm an enthusiastic Go developer with a wide range of skills, from building large-scale APIs to creating command line applications.
-		</p>
-		<p>
-			Throughout my career, I've had the opportunity to lead teams of different sizes, ranging from 10 to 30 people, both as a lead developer and a principal engineer.
-		</p>
-		<p>
-			I'm actively involved in the free and open source software community. Apart from creating and maintaining software, I also co-organize the Golang Dorset monthly meet-up with my friends and colleagues.
-		</p>
-		<p>
-			Go is my primary language for work. I rely on it daily to develop micro-services and various command-line tools. Additionally, I have extensive experience with PHP, including creating new applications and managing legacy software.
-		</p>
-		<p>
-			In my free time, I enjoy engaging with educational materials, writing small video games using C & SDL2, and indulging my passion for music by writing and recording my own tracks.
-		</p>
-	</section>
-	<section>
-		<h1>Skills</h1>
-		<table>
-			<thead>
-				<tr>
-					<td>Languages</td>
-					<td>Tools</td>
-				</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<td>Go</td>
-					<td>*nix</td>
-				</tr>
-				<tr>
-					<td>PHP</td>
-					<td>AWS / GCP</td>
-				</tr>
-				<tr>
-					<td>Rust</td>
-					<td><kbd>ctrl</kbd>+<kbd>c</kbd>, <kbd>ctrl</kbd>+<kbd>v</kbd></td>
-				</tr>
-				<tr>
-					<td>JavaScript</td>
-				</tr>
-			</tbody>
-		</table>
-	</section>
-	<section>
-		<h1>Open Source Contributions</h1>
-		<ul>
-			<li>
-				<a href="https://github.com/go-flexible">go-flexible</a>
-			</li>
-			<li>
-				<a href="https://github.com/LUSHDigital/core">LUSHDigital’s Microservice Core</a>
-			</li>
-			<li>
-				<a href="https://github.com/LUSHDigital/modelgen">Modelgen</a>
-			</li>
-			<li>
-				<a href="https://github.com/ladydascalie/currency">Currency</a>
-			</li>
-			<li>
-				<a href="https://github.com/ladydascalie/iso3166-1-alpha-2">iso3166-1-alpha-2</a>
-			</li>
-			<li>
-				<a href="https://github.com/ladydascalie/sqlerr">Sqlerr</a>
-			</li>
-			<li>
-				<a href="https://github.com/ladydascalie/vex">Vex</a>
-			</li>
-			<li>
-				<a href="https://github.com/ladydascalie/gorgeous">Gorgeous</a>
-			</li>
-			<li>
-				<a href="https://github.com/golang/go/">Go (documentation, but…​ still counts!)</a>
-			</li>
-		</ul>
-	</section>
-	<section>
-		<h1>Contact</h1>
-		<p>
-			Should you wish to contact me, please use any of the following:
-		</p>
-		<p>
-			<a href="https://signal.me/#eu/V-9dTllhTgyXXHeIPglmmW4ScT7DVteYjNgkcf3L409OnH0uaVtF1JzIYvy9CS4z">Signal</a> | <a
-				href="https://www.linkedin.com/in/benjamin-cable-9aa05b90/">LinkedIn</a> | <a
-				href="mailto:ben@cable.fyi">Email</a> | <a
-				href="https://github.com/ladydascalie">GitHub</a>
-		</p>
-	</section>
-</body>
-<style>
-	@import url('https://fonts.googleapis.com/css2?family=Comfortaa&display=swap');
+                        <div class="terminal-box">
+                                <div class="box-title">Basic Profile Data</div>
+                                <div class="spacer"></div>
+                                <div>
+                                        If you prefer this minimal terminal
+                                        interface, here's the basic info:
+                                </div>
+                                <div class="spacer"></div>
+                                <div>
+                                        I'm a Go developer and backend engineer
+                                        currently working at
+                                </div>
+                                <div>
+                                        LootLocker. I lead teams, build APIs,
+                                        and contribute to FOSS.
+                                </div>
+                                <div class="spacer"></div>
+                                <div class="contact-info">
+                                        <div class="contact-line">
+                                                GitHub:
+                                                <a
+                                                        href="https://github.com/ladydascalie"
+                                                        >github.com/ladydascalie</a
+                                                >
+                                        </div>
+                                        <div class="contact-line">
+                                                Email:
+                                                <a href="mailto:ben@cable.fyi"
+                                                        >ben@cable.fyi</a
+                                                >
+                                        </div>
+                                </div>
+                                <div class="spacer"></div>
+                        </div>
 
-	:root {
+                        <div class="footer">
+                                [Terminal v1.0 - Press any key to continue...]
+                        </div>
+                </div>
 
-		--primary-color: #ff69b4;
-		--secondary-color: #f8c1e3;
-		--tertiary-color: #f0a7d1;
-		--text-color: #333;
-		--background-color: #d34eb6;
-		--accent-color: #00bfff;
-		--success-color: #00ff7f;
-		--warning-color: #ffd700;
-		--error-color: #ff4500;
-		--shadow-color: 210deg 13% 29%;
-		--shadow-elevation-low:
-			0.3px 0.5px 0.7px hsl(var(--shadow-color) / 0.34),
-			0.4px 0.8px 1px -1.2px hsl(var(--shadow-color) / 0.34),
-			1px 2px 2.5px -2.5px hsl(var(--shadow-color) / 0.34);
-		--shadow-elevation-medium:
-			0.3px 0.5px 0.7px hsl(var(--shadow-color) / 0.36),
-			0.8px 1.6px 2px -0.8px hsl(var(--shadow-color) / 0.36),
-			2.1px 4.1px 5.2px -1.7px hsl(var(--shadow-color) / 0.36),
-			5px 10px 12.6px -2.5px hsl(var(--shadow-color) / 0.36);
-		--shadow-elevation-high:
-			0.3px 0.5px 0.7px hsl(var(--shadow-color) / 0.34),
-			1.5px 2.9px 3.7px -0.4px hsl(var(--shadow-color) / 0.34),
-			2.7px 5.4px 6.8px -0.7px hsl(var(--shadow-color) / 0.34),
-			4.5px 8.9px 11.2px -1.1px hsl(var(--shadow-color) / 0.34),
-			7.1px 14.3px 18px -1.4px hsl(var(--shadow-color) / 0.34),
-			11.2px 22.3px 28.1px -1.8px hsl(var(--shadow-color) / 0.34),
-			17px 33.9px 42.7px -2.1px hsl(var(--shadow-color) / 0.34),
-			25px 50px 62.9px -2.5px hsl(var(--shadow-color) / 0.34);
-	}
-
-	html {
-		cursor: url('data:image/x-icon;base64,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'), auto;
-		font-family: 'Comfortaa', cursive;
-	}
-
-	h1 {
-		color: var(--primary-color);
-		text-decoration: underline 5px var(--accent-color);
-	}
-
-	body {
-		background-color: var(--background-color);
-		color: var(--text-color);
-		max-width: 1280px;
-		margin: auto;
-		padding: 20px;
-	}
-
-	section {
-		background-color: var(--secondary-color);
-		padding: 5px;
-		margin: 10px;
-		border: 2px solid var(--tertiary-color);
-	}
-
-	kbd {
-		background-color: #eee;
-		border-radius: 3px;
-		border: 1px solid #b4b4b4;
-		box-shadow: 0 1px 1px rgba(0, 0, 0, .2), 0 2px 0 0 rgba(255, 255, 255, .7) inset;
-		color: #333;
-		display: inline-block;
-		font-size: 1.2em;
-		font-weight: 700;
-		line-height: 1;
-		padding: 2px 4px;
-		white-space: nowrap;
-	}
-
-	code {
-		background-color: wheat;
-		border-radius: 3px;
-		font-family: monospace;
-		padding: 2px;
-		font-size: 1.2em;
-		tab-size: 8;
-	}
-
-	table,
-	td {
-		border: 1px solid var(--background-color);
-		padding: 5px;
-	}
-
-	tbody td {
-		background-color: wheat;
-	}
-
-	thead,
-	tfoot {
-		background-color: var(--accent-color);
-		color: var(--text-color);
-	}
-
-	.portrait {
-		float: right;
-		max-width: 30%;
-		box-shadow: var(--shadow-elevation-medium);
-		/* border-radius: 50% */
-	}
-</style>
-
-<script src="fairydust.js"></script>
-
+                <script>
+                        function randomRedirect() {
+                                const themes = ["cypherpunk", "retro-90s"];
+                                const randomIndex = Math.floor(
+                                        Math.random() * themes.length,
+                                );
+                                window.location.href = `theme.html?theme=${themes[randomIndex]}`;
+                        }
+                </script>
+        </body>
 </html>

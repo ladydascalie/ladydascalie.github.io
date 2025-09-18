@@ -1,0 +1,563 @@
+/**
+ * Cypherpunk Theme CSS
+ * Cyberpunk tabletop-inspired terminal interface with neon glow
+ */
+
+@import url("https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;700&family=Share+Tech+Mono&display=swap");
+
+:root {
+        --neon-cyan: #00ffff;
+        --electric-blue: #0080ff;
+        --terminal-bg: #0a0a0a;
+        --terminal-green: #00ff88;
+        --neon-glow: #00ddff;
+        --warning-orange: #ff7700;
+        --critical-red: #ff0055;
+        --data-purple: #aa00ff;
+        --secure-cyan: #00ffaa;
+
+        --threat-critical: #ff0055;
+        --threat-high: #ff7700;
+        --threat-moderate: #ffdd00;
+        --threat-active: #00ff88;
+
+        --terminal-font:
+                "Fira Code", "Share Tech Mono", "Courier New", monospace;
+}
+
+* {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+}
+
+body {
+        background: var(--terminal-bg);
+        color: var(--neon-cyan);
+        font-family: var(--terminal-font);
+        font-size: 14px;
+        line-height: 1.4;
+        overflow-x: hidden;
+        cursor: text;
+}
+
+/* Terminal Background */
+.terminal-bg {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background:
+                radial-gradient(
+                        ellipse at center,
+                        rgba(0, 255, 255, 0.03) 0%,
+                        transparent 70%
+                ),
+                linear-gradient(
+                        0deg,
+                        rgba(10, 10, 10, 0.9) 0%,
+                        rgba(10, 10, 10, 0.95) 100%
+                );
+        z-index: -3;
+}
+
+.container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+        position: relative;
+        z-index: 1;
+        min-height: 100vh;
+}
+
+/* ASCII Art Header */
+.ascii-art {
+        font-family: monospace;
+        font-size: 8px;
+        color: var(--neon-cyan);
+        text-align: center;
+        margin: 20px 0 40px 0;
+        text-shadow: 0 0 10px var(--neon-glow);
+        animation: flicker 3s infinite alternate;
+        white-space: pre;
+        overflow-x: auto;
+}
+
+@keyframes flicker {
+        0%,
+        100% {
+                text-shadow: 0 0 10px var(--neon-glow);
+        }
+        50% {
+                text-shadow:
+                        0 0 5px var(--neon-glow),
+                        0 0 15px var(--neon-cyan);
+        }
+}
+
+/* Terminal Window */
+.terminal-window {
+        background: rgba(10, 10, 10, 0.95);
+        border: 2px solid var(--neon-cyan);
+        border-radius: 5px;
+        box-shadow:
+                0 0 20px rgba(0, 255, 255, 0.3),
+                inset 0 0 20px rgba(0, 255, 255, 0.05);
+        margin: 20px 0;
+}
+
+.terminal-header {
+        background: linear-gradient(
+                180deg,
+                rgba(0, 255, 255, 0.2) 0%,
+                rgba(0, 255, 255, 0.1) 100%
+        );
+        border-bottom: 1px solid var(--neon-cyan);
+        padding: 8px 15px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+}
+
+.window-title {
+        font-weight: bold;
+        text-shadow: 0 0 5px var(--neon-glow);
+}
+
+/* Terminal Content */
+.terminal-content {
+        padding: 20px;
+        font-family: var(--terminal-font);
+        font-size: 14px;
+}
+
+.prompt {
+        color: var(--neon-cyan);
+        font-weight: bold;
+        text-shadow: 0 0 5px var(--neon-glow);
+}
+
+.command {
+        color: var(--secure-cyan);
+        margin-left: 5px;
+        text-shadow: 0 0 3px var(--secure-cyan);
+}
+
+.typing::after {
+        content: "";
+        display: inline-block;
+        width: 8px;
+        height: 14px;
+        background: var(--neon-cyan);
+        animation: blink 1s infinite;
+        margin-left: 2px;
+}
+
+@keyframes blink {
+        0%,
+        50% {
+                opacity: 1;
+        }
+        51%,
+        100% {
+                opacity: 0;
+        }
+}
+
+.output {
+        margin: 10px 0 20px 0;
+        color: var(--terminal-green);
+        padding-left: 0;
+}
+
+/* Status Indicators */
+.status-online {
+        color: var(--terminal-green);
+        text-shadow: 0 0 5px var(--neon-glow);
+        font-weight: bold;
+}
+
+.status-secure {
+        color: var(--secure-cyan);
+        text-shadow: 0 0 5px var(--secure-cyan);
+        font-weight: bold;
+}
+
+.status-encrypted {
+        color: var(--encrypted-blue);
+        text-shadow: 0 0 5px var(--encrypted-blue);
+        font-weight: bold;
+}
+
+/* Profile Data */
+.profile-data {
+        display: flex;
+        gap: 20px;
+        align-items: flex-start;
+        margin: 15px 0;
+}
+
+.terminal-avatar {
+        width: 80px;
+        height: 80px;
+        border: 2px solid var(--neon-cyan);
+        border-radius: 4px;
+        box-shadow: 0 0 15px rgba(0, 255, 255, 0.5);
+}
+
+.profile-info h2 {
+        color: var(--neon-cyan);
+        text-shadow: 0 0 10px var(--neon-glow);
+        margin: 0 0 10px 0;
+        font-size: 18px;
+}
+
+.role {
+        color: var(--secure-cyan);
+        margin: 5px 0;
+}
+
+.bio-text p {
+        margin: 8px 0;
+        color: rgba(0, 255, 255, 0.9);
+        line-height: 1.5;
+}
+
+/* Secure Links */
+.secure-link {
+        color: var(--secure-cyan);
+        text-decoration: none;
+        transition: all 0.3s;
+}
+
+.secure-link:hover {
+        color: var(--neon-cyan);
+        text-shadow: 0 0 8px var(--neon-glow);
+        text-decoration: underline;
+}
+
+/* File Listings */
+.file-listing {
+        margin: 10px 0;
+}
+
+.file-header {
+        color: var(--neon-cyan);
+        font-weight: bold;
+        margin-bottom: 10px;
+}
+
+.file-category {
+        margin: 15px 0;
+}
+
+.category-header {
+        color: var(--secure-cyan);
+        font-weight: bold;
+        margin-bottom: 5px;
+}
+
+.file-item {
+        margin: 3px 0;
+        padding-left: 10px;
+        color: rgba(0, 255, 255, 0.8);
+}
+
+.threat-critical {
+        color: var(--threat-critical);
+        text-shadow: 0 0 5px var(--threat-critical);
+        font-weight: bold;
+}
+
+.threat-high {
+        color: var(--threat-high);
+        text-shadow: 0 0 5px var(--threat-high);
+        font-weight: bold;
+}
+
+.threat-moderate {
+        color: var(--threat-moderate);
+        text-shadow: 0 0 5px var(--threat-moderate);
+        font-weight: bold;
+}
+
+.threat-active {
+        color: var(--threat-active);
+        text-shadow: 0 0 5px var(--threat-active);
+        font-weight: bold;
+}
+
+/* Project List */
+.project-list {
+        margin: 10px 0;
+}
+
+.project-item {
+        margin: 8px 0;
+        padding: 5px 0;
+        border-bottom: 1px dotted rgba(0, 255, 65, 0.3);
+}
+
+.project-item:last-child {
+        border-bottom: none;
+}
+
+.project-desc {
+        display: block;
+        color: rgba(0, 255, 65, 0.7);
+        font-size: 12px;
+        margin: 3px 0;
+        padding-left: 20px;
+}
+
+.classification {
+        color: var(--critical-red);
+        font-weight: bold;
+        text-shadow: 0 0 5px var(--critical-red);
+        font-size: 11px;
+        float: right;
+}
+
+.project-note {
+        display: block;
+        color: var(--warning-orange);
+        font-size: 11px;
+        font-style: italic;
+        padding-left: 20px;
+}
+
+/* Network Connections */
+.network-connections {
+        margin: 10px 0;
+}
+
+.connection-header {
+        color: var(--secure-cyan);
+        font-weight: bold;
+        margin-bottom: 10px;
+        text-shadow: 0 0 5px var(--secure-cyan);
+}
+
+.connection-item {
+        margin: 5px 0;
+        padding: 3px 0;
+        font-family: monospace;
+}
+
+/* Meetup Info */
+.meetup-info {
+        margin: 10px 0;
+}
+
+.process-line {
+        color: var(--matrix-green);
+        font-weight: bold;
+        margin-bottom: 5px;
+}
+
+.process-details {
+        color: rgba(0, 255, 65, 0.8);
+        margin: 3px 0;
+        font-size: 13px;
+}
+
+.encrypted-data {
+        color: var(--encrypted-blue);
+        font-family: monospace;
+        font-size: 11px;
+        text-shadow: 0 0 3px var(--encrypted-blue);
+}
+
+/* System Info */
+.system-info {
+        color: var(--neon-cyan);
+        font-family: monospace;
+        line-height: 1.4;
+}
+
+/* Footer */
+.footer {
+        margin-top: 40px;
+        padding: 20px 0;
+        border-top: 1px solid rgba(0, 255, 65, 0.3);
+        text-align: center;
+        font-size: 12px;
+}
+
+.footer-line {
+        margin: 5px 0;
+        color: rgba(0, 255, 255, 0.7);
+}
+
+.footer-label {
+        color: var(--secure-cyan);
+        font-weight: bold;
+}
+
+.footer-separator {
+        margin: 0 10px;
+        color: rgba(0, 255, 255, 0.5);
+}
+
+/* Cyberpunk Data Stream */
+.data-stream {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: -2;
+        opacity: 0.05;
+}
+
+#data-canvas {
+        width: 100%;
+        height: 100%;
+}
+
+/* Neural Interface Overlay */
+.neural-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: -1;
+        opacity: 0;
+        background: repeating-linear-gradient(
+                0deg,
+                transparent,
+                transparent 2px,
+                rgba(0, 255, 255, 0.03) 2px,
+                rgba(0, 255, 255, 0.03) 4px
+        );
+        animation: scanlines 0.1s infinite alternate;
+}
+
+@keyframes scanlines {
+        0% {
+                transform: translateY(0);
+                opacity: 0.05;
+        }
+        100% {
+                transform: translateY(1px);
+                opacity: 0.1;
+        }
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+        width: 10px;
+}
+
+::-webkit-scrollbar-track {
+        background: var(--terminal-bg);
+        border: 1px solid rgba(0, 255, 255, 0.2);
+}
+
+::-webkit-scrollbar-thumb {
+        background: rgba(0, 255, 255, 0.3);
+        border-radius: 2px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+        background: rgba(0, 255, 255, 0.5);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+        .container {
+                padding: 10px;
+        }
+
+        .ascii-art {
+                font-size: 6px;
+        }
+
+        .terminal-content {
+                padding: 15px;
+                font-size: 13px;
+        }
+
+        .profile-data {
+                flex-direction: column;
+                text-align: center;
+        }
+
+        .terminal-avatar {
+                align-self: center;
+        }
+
+        .classification {
+                float: none;
+                display: block;
+                margin-top: 5px;
+        }
+}
+
+@media (max-width: 480px) {
+        .ascii-art {
+                font-size: 4px;
+                overflow-x: scroll;
+        }
+
+        .terminal-content {
+                font-size: 12px;
+        }
+
+        .window-title {
+                font-size: 12px;
+        }
+}
+
+/* Special Effects */
+.terminal-content::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background:
+                linear-gradient(
+                        rgba(18, 16, 16, 0) 50%,
+                        rgba(0, 0, 0, 0.25) 50%
+                ),
+                linear-gradient(
+                        90deg,
+                        rgba(255, 0, 0, 0.06),
+                        rgba(0, 255, 0, 0.02),
+                        rgba(0, 0, 255, 0.06)
+                );
+        background-size:
+                100% 2px,
+                3px 100%;
+        pointer-events: none;
+        z-index: -1;
+}
+
+/* Glow effects for interactive elements */
+.secure-link,
+.prompt,
+.status-online,
+.status-secure,
+.status-encrypted {
+        position: relative;
+}
+
+.secure-link::after,
+.prompt::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: inherit;
+        filter: blur(4px);
+        opacity: 0.3;
+        z-index: -1;
+}
