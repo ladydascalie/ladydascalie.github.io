@@ -132,7 +132,7 @@ const PROFILE_DATA = {
                         "Underground knowledge sharing",
                 ],
                 encrypted_data:
-                        "4D6F6E74686C79204761746865726C6E67206F66204379626572204772733A7A6572732",
+                        "4D6F6E746C7920476174686572696E67206F662043796265722D476F70686572730A",
         },
 
         system: {
@@ -150,7 +150,7 @@ const PROFILE_DATA = {
                 last_updated: "Y2K Compliant",
                 visitor_count: "133,337",
                 best_viewed: "1024x768 resolution",
-                made_with: "❤️ and HTML",
+                made_with: "Existential Angst & HTML",
                 cyber_year: "2085",
                 real_year: new Date().getFullYear().toString(),
                 go_version: "1.23+",
