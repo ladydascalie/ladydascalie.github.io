@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Benjamin Cable - CV</title>
+    <meta name="description" content="Senior Backend Engineer - CV">
+    <meta property="og:title" content="Benjamin Cable - Senior Backend Engineer">
+    <meta property="og:description" content="Senior Backend Engineer - CV">
+    <meta property="og:type" content="profile">
+    <meta property="og:url" content="https://ladydascalie.github.io/cv.html">
+    <link rel="canonical" href="https://ladydascalie.github.io/cv.html">
+    <link rel="alternate" type="application/json" href="cv.json" title="CV as JSON (machine-readable)">
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":"Benjamin Cable","jobTitle":"Senior Backend Engineer","worksFor":{"@type":"Organization","name":"LootLocker","url":"https://lootlocker.com/"},"url":"https://ladydascalie.github.io/","sameAs":["https://github.com/ladydascalie","https://www.linkedin.com/in/benjamin-cable-9aa05b90/"],"description":"Hi there! 👋 I'm an enthusiastic Go developer with a wide range of skills, from building large-scale APIs to creating command line applications.","knowsAbout":["Identity & Account Linking","Payments & Entitlements","Database Performance & Locking","Microservices Architecture","Distributed Systems","GDPR & Data Compliance","API Design","Team Leadership","Command Line Tools"]}</script>
+    <style>
+        /* Plain resume: readable on screen, clean when printed to PDF. */
+
+:root {
+	--ink: #1a1a1a;
+	--muted: #555;
+	--accent: #0a5d8f;
+	--line: #ddd;
+}
+
+* {
+	box-sizing: border-box;
+}
+
+body {
+	font-family: "Inter", "Helvetica Neue", Arial, system-ui, sans-serif;
+	color: var(--ink);
+	line-height: 1.5;
+	font-size: 15px;
+	max-width: 80ch;
+	margin: 0 auto;
+	padding: 2rem 1.5rem;
+}
+
+a {
+	color: var(--accent);
+}
+
+h1 {
+	font-size: 1.8rem;
+	margin: 0 0 0.25rem;
+}
+
+h2 {
+	font-size: 1.05rem;
+	text-transform: uppercase;
+	letter-spacing: 0.08em;
+	color: var(--accent);
+	border-bottom: 1px solid var(--line);
+	padding-bottom: 0.25rem;
+	margin: 2rem 0 0.75rem;
+}
+
+h3 {
+	font-size: 1rem;
+	margin: 1.1rem 0 0.1rem;
+}
+
+h4 {
+	font-size: 0.95rem;
+	margin: 0.8rem 0 0;
+}
+
+.cv-subrole {
+	break-inside: avoid;
+}
+
+.cv-summary {
+	color: var(--muted);
+	margin: 0.15rem 0;
+}
+
+.cv-role {
+	font-size: 1.05rem;
+	color: var(--muted);
+	margin: 0 0 0.25rem;
+}
+
+.cv-contact {
+	margin: 0;
+	color: var(--muted);
+}
+
+.cv-section {
+	margin-bottom: 1rem;
+}
+
+.cv-job {
+	break-inside: avoid;
+}
+
+.cv-job p,
+.cv-job ul {
+	margin: 0.2rem 0;
+}
+
+.cv-job h3 {
+	margin-top: 1rem;
+}
+
+.cv-points {
+	padding-left: 1.2rem;
+}
+
+.cv-points:empty {
+	display: none;
+}
+
+.cv-points li {
+	margin: 0.15rem 0;
+}
+
+@media print {
+	@page {
+		margin: 1.6cm;
+	}
+
+	body {
+		font-size: 11.5pt;
+		max-width: none;
+		padding: 0;
+	}
+
+	h2 {
+		break-after: avoid;
+	}
+
+	a {
+		color: inherit;
+		text-decoration: none;
+	}
+}
+
+    </style>
+</head>
+<body>
+    
+        <header class="cv-header">
+            <h1>Benjamin Cable</h1>
+            <p class="cv-role">Senior Backend Engineer · LootLocker</p>
+            <p class="cv-contact">
+                <a href="mailto:ben@cable.fyi">ben@cable.fyi</a> ·
+                <a href="https://github.com/ladydascalie">github.com/ladydascalie</a> ·
+                <a href="https://www.linkedin.com/in/benjamin-cable-9aa05b90/">LinkedIn</a> ·
+                <a href="cv.json">cv.json</a>
+            </p>
+        </header>
+
+        <section class="cv-section">
+            <h2>About</h2>
+            <p>Hi there! 👋 I'm an enthusiastic Go developer with a wide range of skills, from building large-scale APIs to creating command line applications.</p>
+            <p>My recent work focuses on the hard parts of backend infrastructure: migrating production MySQL onto self-hosted bare metal, designing cross-platform identity and account-merge systems, keeping real-money commerce correct across five storefronts, and shipping GDPR Art. 28 DPA flows and player data erasure tooling. Away from work, I run my own Matrix homeserver and generally enjoy self-hosting.</p>
+            <p>Throughout my career, I've had the opportunity to lead teams of different sizes, ranging from 10 to 30 people, both as a lead developer and a principal engineer.</p>
+            <p>I'm actively involved in the free and open source software community. Apart from creating and maintaining software, I also co-organize the Golang Dorset meetup with my friends and colleagues.</p>
+            <p>Go is my primary language for work. I rely on it daily to develop micro-services and various command-line tools. Additionally, I have extensive experience with PHP, including creating new applications and managing legacy software.</p>
+            <p>In my free time, I enjoy engaging with educational materials, writing small video games using C & SDL2 and Godot, and indulging my passion for music by writing and recording my own tracks.</p>
+        </section>
+
+        <section class="cv-section">
+            <h2>Experience</h2>
+            <article class="cv-job">
+                <h3>LootLocker</h3>
+                <div class="cv-subrole">
+                    <h4>Senior Software Engineer</h4>
+                    <p class="cv-meta">Oct 2022 – Present · Remote</p>
+                    <p class="cv-summary">Backend engineer on the core Go service, the developer console, and the platform's self-hosted infrastructure.</p>
+                    <ul class="cv-points"><li>Moved the production data store off managed infrastructure onto self-hosted bare-metal MySQL on Hetzner (deliberately outside the cluster) and built the k3s platform around it: deploys, failover, backups and monitoring.</li><li>Designed the cross-platform identity system: platform account linking, conflict authorisation and merge flows with a declarative scenario test harness, later reused as the foundation for publisher-scoped cross-game progressions.</li><li>Platform commerce: catalogues, currencies, wallets, entitlements and real-money IAP across Apple, Google, PlayStation, Steam and Epic, with defensive entitlement recording, refund processing and vendor failure surfacing for self-service debugging.</li><li>Database engineering end-to-end: a code-based, feature-flagged schema migration engine, the GORM→sqlx migration, and InnoDB-level fixes such as eliminating a gap-lock deadlock by inserting before locking.</li><li>Shipped GDPR compliance as engineering: Art. 28 DPA acceptance flows, PII classification on onboarding data, admin audit logging, and bulk player right-to-erasure.</li><li>Migrated auth.game from Next.js to Go server-side rendering, consolidating the auth surface onto the core stack.</li><li>Plus the rest of the platform: game/server/admin APIs, leaderboards, Redis-backed presence, email campaigns, the Next.js developer console, a Go + templ + HTMX publisher analytics platform, and internal libraries like go-filestorage and mysql-retry.</li></ul>
+                </div>
+            </article>
+            <article class="cv-job">
+                <h3>Benefex</h3>
+                <div class="cv-subrole">
+                    <h4>Staff Software Engineer</h4>
+                    <p class="cv-meta">Nov 2021 – Oct 2022 · Southampton, UK</p>
+                    <p class="cv-summary">Focused on improving the tech stack and service efficiency.</p>
+                    <ul class="cv-points"><li>Created internal libraries to assist moving the company's systems to Go.</li><li>Defined and refined the process for re-architecting services in Go.</li><li>Introduced Prometheus metrics to the Go services.</li><li>Built an asset optimisation pipeline to make file uploads faster and more efficient.</li></ul>
+                </div>
+            </article>
+            <article class="cv-job">
+                <h3>Utility Warehouse</h3>
+                <div class="cv-subrole">
+                    <h4>Engineering Team Lead</h4>
+                    <p class="cv-meta">Jan 2021 – Oct 2021 · London, UK</p>
+                    <p class="cv-summary">Built the Digital Experience team from the ground up.</p>
+                    <ul class="cv-points"><li>Defined process, audited the team's entire codebase, produced architecture diagrams and targeted strategic improvements.</li><li>Drove the replacement of the customer portal PHP monolith with a micro-frontend application powered by React and GraphQL.</li><li>Quality push on customer-facing services reduced call volume and support tickets; the UW app went from 2.1 to 4.5 stars on the App Store.</li><li>1:1s, mentoring and the usual management aspects of the role.</li></ul>
+                </div>
+                <div class="cv-subrole">
+                    <h4>Senior Software Engineer</h4>
+                    <p class="cv-meta">Aug 2020 – Jan 2021 · London, UK</p>
+                    <p class="cv-summary">Part of the digital experience team.</p>
+                    <ul class="cv-points"><li>Improved usability and security of the login system via trusted third-party identity providers and 2FA support.</li><li>Helped define and establish better documentation practices.</li></ul>
+                </div>
+            </article>
+            <article class="cv-job">
+                <h3>LUSH Digital</h3>
+                <div class="cv-subrole">
+                    <h4>Technical Architect</h4>
+                    <p class="cv-meta">Oct 2019 – Jul 2020 · Poole, UK</p>
+                    <p class="cv-summary">Principal Engineer duties minus the people management, stepping back to focus on the tech as an individual contributor.</p>
+                    <ul class="cv-points"></ul>
+                </div>
+                <div class="cv-subrole">
+                    <h4>Principal Engineer</h4>
+                    <p class="cv-meta">Nov 2018 – Oct 2019 · Poole, UK</p>
+                    <p class="cv-summary">Shared leadership of a 30-strong team alongside another Principal Engineer.</p>
+                    <ul class="cv-points"><li>Spearheaded the technical design of the Lush Pay tills back-end and oversaw its deployment across the UK, Italy and Japan.</li><li>Designed and architected technical projects; introduced standardised methods of handling data across the business.</li><li>Kept the usual 1:1s, reviews, holiday & pay management and mentorship, plus hands-on backend engineering.</li></ul>
+                </div>
+                <div class="cv-subrole">
+                    <h4>Senior Software Engineer</h4>
+                    <p class="cv-meta">Jul 2017 – Nov 2018 · Bournemouth, UK</p>
+                    <p class="cv-summary">Go & PHP microservices as part of the SOA team and commerce squad.</p>
+                    <ul class="cv-points"><li>Mentoring and support for new Gophers.</li><li>Development and maintenance of open-source software including LUSHDigital/core, LUSHDigital/modelgen and ladydascalie/v.</li></ul>
+                </div>
+            </article>
+            <article class="cv-job">
+                <h3>3SidedCube</h3>
+                <div class="cv-subrole">
+                    <h4>PHP Developer</h4>
+                    <p class="cv-meta">Apr 2016 – Jul 2017 · Bournemouth, UK</p>
+                    <p class="cv-summary">API & backend work as part of the server team.</p>
+                    <ul class="cv-points"><li>Worked on the Emergencies app suite, chained-crowdsourcing and the ATLAS preparedness backend.</li><li>AWS services ranging from RDS to DynamoDB, SQS, SES and SNS.</li></ul>
+                </div>
+            </article>
+        </section>
+
+        <section class="cv-section">
+            <h2>Skills</h2>
+            <p><strong>Languages:</strong> Go, PHP, TypeScript, Rust, JavaScript</p>
+            <p><strong>Systems:</strong> *nix, MySQL, Redis/Valkey, k3s/Kubernetes, AWS/GCP, Hetzner, Coffee ☕</p>
+            <p><strong>Expertise:</strong> Identity & Account Linking, Payments & Entitlements, Database Performance & Locking, Microservices Architecture, Distributed Systems, GDPR & Data Compliance, API Design, Team Leadership, Command Line Tools</p>
+        </section>
+
+        <section class="cv-section">
+            <h2>Open Source &amp; Projects</h2>
+            <ul>
+                <li><a href="https://github.com/go-flexible">go-flexible</a> - Packages for building Go services, used in production at LootLocker</li>
+                <li><a href="https://github.com/ladydascalie/currency">Currency</a> - ISO 4217 currency codes & minor units for Go</li>
+                <li><a href="https://github.com/ladydascalie/zconf">zconf</a> - Extremely Overengineered Configuration Manager</li>
+                <li><a href="https://github.com/ladydascalie/go-httpretry">go-httpretry</a> - HTTP client with retry policies & functional options</li>
+                <li><a href="https://github.com/ladydascalie/deskhue">deskhue</a> - Philips Hue desktop controller (Wails + Svelte)</li>
+                <li><a href="https://github.com/golang/go/">Go Core</a> - Go runtime & standard librarydocumentation, but… still counts!</li>
+            </ul>
+        </section>
+
+        <section class="cv-section">
+            <h2>Community</h2>
+            <p>Co-organiser of <a href="https://www.meetup.com/golang-dorset/">Golang Dorset</a>, monthly meetups. Monthly gatherings of digital gophers for advanced Go programming, distributed systems architecture, and underground knowledge sharing.</p>
+        </section>
+    
+    <script>
+        // No runtime behaviour for the plain resume.
+
+    </script>
+</body>
+</html>

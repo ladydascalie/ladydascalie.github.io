@@ -1,0 +1,7 @@
+# Benjamin Cable - ladydascalie.github.io
+
+Personal CV site of Benjamin Cable, Senior Backend Engineer (Go) at LootLocker.
+
+- /cv.json - structured CV data (machine-readable; source of truth for the site)
+- /cv.html - plain HTML CV (recruiter/ATS friendly, print to PDF)
+- /index.html - themed CV page (cypherpunk terminal)

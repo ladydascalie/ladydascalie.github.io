@@ -1,215 +1,1801 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-        <head>
-                <meta charset="UTF-8" />
-                <meta
-                        name="viewport"
-                        content="width=device-width, initial-scale=1.0"
-                />
-                <title>Benjamin Cable</title>
-                <style>
-                        body {
-                                font-family:
-                                        "Courier New", "Lucida Console", Monaco,
-                                        monospace;
-                                margin: 0;
-                                padding: 20px;
-                                background: #000;
-                                color: #00ff00;
-                                line-height: 1.4;
-                                font-size: 14px;
-                        }
-                        .container {
-                                max-width: 80ch;
-                                margin: 0 auto;
-                        }
-                        .terminal-box {
-                                border: 2px dashed #00ff00;
-                                margin: 20px 0;
-                                padding: 20px;
-                                background: rgba(0, 255, 0, 0.02);
-                        }
-                        .header-box {
-                                text-align: center;
-                                padding: 15px;
-                        }
-                        .box-title {
-                                color: #00ffff;
-                                font-weight: bold;
-                                margin-bottom: 15px;
-                                text-transform: uppercase;
-                        }
-                        .box-title::before,
-                        .box-title::after {
-                                content: "─ ";
-                        }
-                        .box-title::after {
-                                content: " ─";
-                        }
-                        h1 {
-                                margin: 0;
-                                font-size: 18px;
-                                font-weight: bold;
-                                color: #00ff00;
-                        }
-                        .subtitle {
-                                color: #00ff00;
-                                margin: 5px 0 0 0;
-                                font-size: 14px;
-                        }
-                        a {
-                                color: #00ffff;
-                                text-decoration: none;
-                        }
-                        a:visited {
-                                color: #ffff00;
-                        }
-                        a:hover {
-                                color: #ffffff;
-                                text-decoration: underline;
-                        }
-                        .theme-link {
-                                display: block;
-                                margin: 8px 0;
-                                padding: 2px 0;
-                        }
-                        .theme-link::before {
-                                content: "> ";
-                                color: #00ff00;
-                        }
-                        .random-btn {
-                                background: #000;
-                                color: #00ff00;
-                                border: 1px dashed #00ff00;
-                                padding: 8px 16px;
-                                cursor: pointer;
-                                font-family:
-                                        "Courier New", "Lucida Console", Monaco,
-                                        monospace;
-                                font-size: 14px;
-                                margin: 15px 0;
-                                display: block;
-                        }
-                        .random-btn:hover {
-                                background: #00ff00;
-                                color: #000;
-                        }
-                        .contact-info {
-                                margin: 15px 0;
-                        }
-                        .contact-line {
-                                margin: 5px 0;
-                        }
-                        .footer {
-                                text-align: center;
-                                margin-top: 30px;
-                                font-size: 12px;
-                                color: #666;
-                                border-top: 1px dotted #333;
-                                padding-top: 15px;
-                        }
-                        .spacer {
-                                margin: 10px 0;
-                        }
-                </style>
-        </head>
-        <body>
-                <div class="container">
-                        <div class="terminal-box header-box">
-                                <h1>BENJAMIN CABLE</h1>
-                                <div class="subtitle">
-                                        Senior Backend Engineer
-                                </div>
-                        </div>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Benjamin Cable - Cypherpunk Terminal</title>
+    <meta name="description" content="Hi there! 👋 I'm an enthusiastic Go developer with a wide range of skills, from building large-scale APIs to creating command line applications.">
+    <meta property="og:title" content="Benjamin Cable - Senior Backend Engineer">
+    <meta property="og:description" content="Hi there! 👋 I'm an enthusiastic Go developer with a wide range of skills, from building large-scale APIs to creating command line applications.">
+    <meta property="og:type" content="profile">
+    <meta property="og:url" content="https://ladydascalie.github.io/">
+    <link rel="canonical" href="https://ladydascalie.github.io/">
+    <link rel="alternate" type="application/json" href="cv.json" title="CV as JSON (machine-readable)">
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":"Benjamin Cable","jobTitle":"Senior Backend Engineer","worksFor":{"@type":"Organization","name":"LootLocker","url":"https://lootlocker.com/"},"url":"https://ladydascalie.github.io/","sameAs":["https://github.com/ladydascalie","https://www.linkedin.com/in/benjamin-cable-9aa05b90/"],"description":"Hi there! 👋 I'm an enthusiastic Go developer with a wide range of skills, from building large-scale APIs to creating command line applications.","knowsAbout":["Identity & Account Linking","Payments & Entitlements","Database Performance & Locking","Microservices Architecture","Distributed Systems","GDPR & Data Compliance","API Design","Team Leadership","Command Line Tools"]}</script>
+    <style>
+        /**
+ * Cypherpunk Theme CSS
+ * Cyberpunk tabletop-inspired terminal interface with neon glow
+ */
 
-                        <div class="terminal-box">
-                                <div class="box-title">System Information</div>
-                                <div class="spacer"></div>
-                                <div>
-                                        This is a plain terminal interface. For
-                                        enhanced experience,
-                                </div>
-                                <div>
-                                        select one of the available theme
-                                        modules:
-                                </div>
-                                <div class="spacer"></div>
-                                <a
-                                        href="theme.html?theme=cypherpunk"
-                                        class="theme-link"
-                                        >Cypherpunk Terminal Theme</a
-                                >
-                                <a
-                                        href="theme.html?theme=windows9x"
-                                        class="theme-link"
-                                        >Windows 9x Desktop</a
-                                >
-                                <a
-                                        href="theme.html?theme=retro-90s"
-                                        class="theme-link"
-                                        >Retro 90s Website</a
-                                >
-                                <div class="spacer"></div>
-                                <button
-                                        class="random-btn"
-                                        onclick="randomRedirect()"
-                                >
-                                        [RANDOM THEME]
-                                </button>
-                        </div>
+@import url("https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;700&family=Share+Tech+Mono&display=swap");
 
-                        <div class="terminal-box">
-                                <div class="box-title">Basic Profile Data</div>
-                                <div class="spacer"></div>
-                                <div>
-                                        If you prefer this minimal terminal
-                                        interface, here's the basic info:
-                                </div>
-                                <div class="spacer"></div>
-                                <div>
-                                        I'm a Go developer and backend engineer
-                                        currently working at
-                                </div>
-                                <div>
-                                        LootLocker. I lead teams, build APIs,
-                                        and contribute to FOSS.
-                                </div>
-                                <div class="spacer"></div>
-                                <div class="contact-info">
-                                        <div class="contact-line">
-                                                GitHub:
-                                                <a
-                                                        href="https://github.com/ladydascalie"
-                                                        >github.com/ladydascalie</a
-                                                >
-                                        </div>
-                                        <div class="contact-line">
-                                                Email:
-                                                <a href="mailto:ben@cable.fyi"
-                                                        >ben@cable.fyi</a
-                                                >
-                                        </div>
-                                </div>
-                                <div class="spacer"></div>
-                        </div>
+:root {
+        --neon-cyan: #00ffff;
+        --electric-blue: #0080ff;
+        --terminal-bg: #0a0a0a;
+        --terminal-green: #00ff88;
+        --neon-glow: #00ddff;
+        --warning-orange: #ff7700;
+        --critical-red: #ff0055;
+        --data-purple: #aa00ff;
+        --secure-cyan: #00ffaa;
 
-                        <div class="footer">
-                                [Terminal v1.0 - Press any key to continue...]
-                        </div>
+        --threat-critical: #ff0055;
+        --threat-high: #ff7700;
+        --threat-moderate: #ffdd00;
+        --threat-active: #00ff88;
+
+        --terminal-font:
+                "Fira Code", "Share Tech Mono", "Courier New", monospace;
+}
+
+* {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+}
+
+body {
+        background: var(--terminal-bg);
+        color: var(--neon-cyan);
+        font-family: var(--terminal-font);
+        font-size: 14px;
+        line-height: 1.4;
+        overflow-x: hidden;
+        word-break: break-word;
+        hyphens: auto;
+        cursor: text;
+}
+
+/* Terminal Background */
+.terminal-bg {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background:
+                radial-gradient(
+                        ellipse at center,
+                        rgba(0, 255, 255, 0.03) 0%,
+                        transparent 70%
+                ),
+                linear-gradient(
+                        0deg,
+                        rgba(10, 10, 10, 0.9) 0%,
+                        rgba(10, 10, 10, 0.95) 100%
+                );
+        z-index: -3;
+}
+
+.container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+        position: relative;
+        z-index: 1;
+        min-height: 100vh;
+        overflow-x: hidden;
+        width: 100%;
+        box-sizing: border-box;
+}
+
+/* ASCII Art Header */
+.ascii-art {
+        font-family: monospace;
+        font-size: 8px;
+        color: var(--neon-cyan);
+        text-align: center;
+        margin: 20px 0 40px 0;
+        text-shadow: 0 0 10px var(--neon-glow);
+        animation: flicker 3s infinite alternate;
+        white-space: pre;
+        overflow-x: auto;
+}
+
+@keyframes flicker {
+        0%,
+        100% {
+                text-shadow: 0 0 10px var(--neon-glow);
+        }
+        50% {
+                text-shadow:
+                        0 0 5px var(--neon-glow),
+                        0 0 15px var(--neon-cyan);
+        }
+}
+
+/* Terminal Window */
+.terminal-window {
+        background: rgba(10, 10, 10, 0.95);
+        border: 2px solid var(--neon-cyan);
+        border-radius: 5px;
+        box-shadow:
+                0 0 20px rgba(0, 255, 255, 0.3),
+                inset 0 0 20px rgba(0, 255, 255, 0.05);
+        margin: 20px 0;
+}
+
+.terminal-header {
+        background: linear-gradient(
+                180deg,
+                rgba(0, 255, 255, 0.2) 0%,
+                rgba(0, 255, 255, 0.1) 100%
+        );
+        border-bottom: 1px solid var(--neon-cyan);
+        padding: 8px 15px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+}
+
+.window-title {
+        font-weight: bold;
+        text-shadow: 0 0 5px var(--neon-glow);
+}
+
+/* Terminal Content */
+.terminal-content {
+        padding: 20px;
+        font-family: var(--terminal-font);
+        font-size: 14px;
+        word-break: break-word;
+        overflow-wrap: break-word;
+}
+
+.prompt {
+        color: var(--neon-cyan);
+        font-weight: bold;
+        text-shadow: 0 0 5px var(--neon-glow);
+}
+
+.command {
+        color: var(--secure-cyan);
+        margin-left: 5px;
+        text-shadow: 0 0 3px var(--secure-cyan);
+}
+
+.typing::after {
+        content: "";
+        display: inline-block;
+        width: 8px;
+        height: 14px;
+        background: var(--neon-cyan);
+        animation: blink 1s infinite;
+        margin-left: 2px;
+}
+
+@keyframes blink {
+        0%,
+        50% {
+                opacity: 1;
+        }
+        51%,
+        100% {
+                opacity: 0;
+        }
+}
+
+.output {
+        margin: 10px 0 20px 0;
+        color: var(--terminal-green);
+        padding-left: 0;
+}
+
+/* Status Indicators */
+.status-online {
+        color: var(--terminal-green);
+        text-shadow: 0 0 5px var(--neon-glow);
+        font-weight: bold;
+}
+
+.status-secure {
+        color: var(--secure-cyan);
+        text-shadow: 0 0 5px var(--secure-cyan);
+        font-weight: bold;
+}
+
+.status-encrypted {
+        color: var(--encrypted-blue);
+        text-shadow: 0 0 5px var(--encrypted-blue);
+        font-weight: bold;
+}
+
+/* Profile Data */
+.profile-data {
+        display: flex;
+        gap: 20px;
+        align-items: flex-start;
+        margin: 15px 0;
+}
+
+.terminal-avatar {
+        width: 80px;
+        height: 80px;
+        border: 2px solid var(--neon-cyan);
+        border-radius: 4px;
+        box-shadow: 0 0 15px rgba(0, 255, 255, 0.5);
+}
+
+.profile-info h2 {
+        color: var(--neon-cyan);
+        text-shadow: 0 0 10px var(--neon-glow);
+        margin: 0 0 10px 0;
+        font-size: 18px;
+}
+
+.role {
+        color: var(--secure-cyan);
+        margin: 5px 0;
+}
+
+.bio-text p {
+        margin: 8px 0;
+        color: rgba(0, 255, 255, 0.9);
+        line-height: 1.5;
+}
+
+/* Secure Links */
+.secure-link {
+        color: var(--secure-cyan);
+        text-decoration: none;
+        transition: all 0.3s;
+        word-break: break-all;
+        overflow-wrap: break-word;
+}
+
+.secure-link:hover {
+        color: var(--neon-cyan);
+        text-shadow: 0 0 8px var(--neon-glow);
+        text-decoration: underline;
+}
+
+/* File Listings */
+.file-listing {
+        margin: 10px 0;
+}
+
+.file-header {
+        color: var(--neon-cyan);
+        font-weight: bold;
+        margin-bottom: 10px;
+}
+
+.file-category {
+        margin: 15px 0;
+}
+
+.category-header {
+        color: var(--secure-cyan);
+        font-weight: bold;
+        margin-bottom: 5px;
+}
+
+.file-item {
+        margin: 3px 0;
+        padding-left: 10px;
+        color: rgba(0, 255, 255, 0.8);
+}
+
+.threat-critical {
+        color: var(--threat-critical);
+        text-shadow: 0 0 5px var(--threat-critical);
+        font-weight: bold;
+}
+
+.threat-high {
+        color: var(--threat-high);
+        text-shadow: 0 0 5px var(--threat-high);
+        font-weight: bold;
+}
+
+.threat-moderate {
+        color: var(--threat-moderate);
+        text-shadow: 0 0 5px var(--threat-moderate);
+        font-weight: bold;
+}
+
+.threat-active {
+        color: var(--threat-active);
+        text-shadow: 0 0 5px var(--threat-active);
+        font-weight: bold;
+}
+
+/* Project List */
+.project-list {
+        margin: 10px 0;
+}
+
+.project-item {
+        margin: 8px 0;
+        padding: 5px 0;
+        border-bottom: 1px dotted rgba(0, 255, 65, 0.3);
+}
+
+.project-item:last-child {
+        border-bottom: none;
+}
+
+.project-desc {
+        display: block;
+        color: rgba(0, 255, 65, 0.7);
+        font-size: 12px;
+        margin: 3px 0;
+        padding-left: 20px;
+        word-break: break-word;
+        overflow-wrap: break-word;
+}
+
+.classification {
+        color: var(--critical-red);
+        font-weight: bold;
+        text-shadow: 0 0 5px var(--critical-red);
+        font-size: 11px;
+        float: right;
+}
+
+.project-note {
+        display: block;
+        color: var(--warning-orange);
+        font-size: 11px;
+        font-style: italic;
+        padding-left: 20px;
+}
+
+/* Career Log */
+.career-log {
+        margin: 10px 0;
+}
+
+.career-entry {
+        margin: 14px 0;
+        padding: 8px 0;
+        border-bottom: 1px dotted rgba(0, 255, 136, 0.3);
+}
+
+.career-entry:last-child {
+        border-bottom: none;
+}
+
+.career-employer {
+        margin-bottom: 6px;
+}
+
+.career-employer .career-company {
+        font-weight: bold;
+}
+
+.career-line {
+        margin-bottom: 4px;
+}
+
+.career-period {
+        color: var(--warning-orange);
+        font-size: 12px;
+        text-shadow: 0 0 5px var(--warning-orange);
+}
+
+.career-role {
+        color: var(--terminal-green);
+        font-weight: bold;
+        text-shadow: 0 0 5px var(--terminal-green);
+}
+
+.career-company {
+        color: var(--neon-cyan);
+        text-shadow: 0 0 5px var(--neon-cyan);
+}
+
+.career-location {
+        color: rgba(0, 255, 136, 0.5);
+        font-size: 11px;
+}
+
+.career-summary {
+        color: rgba(0, 255, 136, 0.7);
+        font-size: 12px;
+        margin: 2px 0;
+}
+
+.career-bullet {
+        color: rgba(0, 255, 136, 0.6);
+        font-size: 12px;
+        padding-left: 20px;
+        word-break: break-word;
+        overflow-wrap: break-word;
+}
+
+.career-bullet::before {
+        content: "├─ ";
+        color: rgba(0, 255, 136, 0.35);
+}
+
+.career-bullet:last-child::before {
+        content: "└─ ";
+}
+
+/* Network Connections */
+.network-connections {
+        margin: 10px 0;
+}
+
+.connection-header {
+        color: var(--secure-cyan);
+        font-weight: bold;
+        margin-bottom: 10px;
+        text-shadow: 0 0 5px var(--secure-cyan);
+}
+
+.connection-item {
+        margin: 5px 0;
+        padding: 3px 0;
+        font-family: monospace;
+        word-break: break-all;
+        overflow-wrap: break-word;
+}
+
+/* Meetup Info */
+.meetup-info {
+        margin: 10px 0;
+}
+
+.process-line {
+        color: var(--matrix-green);
+        font-weight: bold;
+        margin-bottom: 5px;
+}
+
+.process-details {
+        color: rgba(0, 255, 65, 0.8);
+        margin: 3px 0;
+        font-size: 13px;
+        word-break: break-word;
+        overflow-wrap: break-word;
+}
+
+.encrypted-data {
+        color: var(--encrypted-blue);
+        font-family: monospace;
+        font-size: 11px;
+        text-shadow: 0 0 3px var(--encrypted-blue);
+        word-break: break-all;
+        overflow-wrap: break-word;
+        white-space: pre-wrap;
+}
+
+/* System Info */
+.system-info {
+        color: var(--neon-cyan);
+        font-family: monospace;
+        line-height: 1.4;
+        word-break: break-word;
+        overflow-wrap: break-word;
+}
+
+/* Footer */
+.footer {
+        margin-top: 40px;
+        padding: 20px 0;
+        border-top: 1px solid rgba(0, 255, 65, 0.3);
+        text-align: center;
+        font-size: 12px;
+}
+
+.footer-line {
+        margin: 5px 0;
+        color: rgba(0, 255, 255, 0.7);
+}
+
+.footer-label {
+        color: var(--secure-cyan);
+        font-weight: bold;
+}
+
+.footer-separator {
+        margin: 0 10px;
+        color: rgba(0, 255, 255, 0.5);
+}
+
+/* Cyberpunk Data Stream */
+.data-stream {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: -2;
+        opacity: 0.05;
+}
+
+#data-canvas {
+        width: 100%;
+        height: 100%;
+}
+
+/* Neural Interface Overlay */
+.neural-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: -1;
+        opacity: 0;
+        background: repeating-linear-gradient(
+                0deg,
+                transparent,
+                transparent 2px,
+                rgba(0, 255, 255, 0.03) 2px,
+                rgba(0, 255, 255, 0.03) 4px
+        );
+        animation: scanlines 0.1s infinite alternate;
+}
+
+@keyframes scanlines {
+        0% {
+                transform: translateY(0);
+                opacity: 0.05;
+        }
+        100% {
+                transform: translateY(1px);
+                opacity: 0.1;
+        }
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+        width: 10px;
+}
+
+::-webkit-scrollbar-track {
+        background: var(--terminal-bg);
+        border: 1px solid rgba(0, 255, 255, 0.2);
+}
+
+::-webkit-scrollbar-thumb {
+        background: rgba(0, 255, 255, 0.3);
+        border-radius: 2px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+        background: rgba(0, 255, 255, 0.5);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+        .container {
+                padding: 10px;
+                max-width: 100%;
+        }
+
+        .ascii-art {
+                font-size: 6px;
+                overflow-x: hidden;
+        }
+
+        .terminal-content {
+                padding: 15px;
+                font-size: 13px;
+        }
+
+        .terminal-window {
+                margin: 10px 0;
+                max-width: 100%;
+                overflow-x: hidden;
+        }
+
+        .profile-data {
+                flex-direction: column;
+                text-align: center;
+        }
+
+        .terminal-avatar {
+                align-self: center;
+        }
+
+        .classification {
+                float: none;
+                display: block;
+                margin-top: 5px;
+        }
+
+        .encrypted-data,
+        .connection-item,
+        .secure-link {
+                font-size: 10px;
+                line-height: 1.3;
+        }
+}
+
+@media (max-width: 480px) {
+        .container {
+                padding: 5px;
+        }
+
+        .ascii-art {
+                font-size: 4px;
+                overflow-x: hidden;
+                word-break: break-all;
+        }
+
+        .terminal-content {
+                font-size: 12px;
+                padding: 10px;
+        }
+
+        .terminal-header {
+                padding: 6px 10px;
+        }
+
+        .window-title {
+                font-size: 11px;
+                word-break: break-word;
+        }
+
+        .encrypted-data {
+                font-size: 9px;
+                line-height: 1.2;
+        }
+
+        .connection-item,
+        .secure-link {
+                font-size: 9px;
+                line-height: 1.2;
+        }
+
+        .process-details {
+                font-size: 10px;
+                line-height: 1.2;
+        }
+
+        .project-desc {
+                font-size: 10px;
+        }
+}
+
+/* Special Effects */
+.terminal-content::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background:
+                linear-gradient(
+                        rgba(18, 16, 16, 0) 50%,
+                        rgba(0, 0, 0, 0.25) 50%
+                ),
+                linear-gradient(
+                        90deg,
+                        rgba(255, 0, 0, 0.06),
+                        rgba(0, 255, 0, 0.02),
+                        rgba(0, 0, 255, 0.06)
+                );
+        background-size:
+                100% 2px,
+                3px 100%;
+        pointer-events: none;
+        z-index: -1;
+}
+
+/* Glow effects for interactive elements */
+.secure-link,
+.prompt,
+.status-online,
+.status-secure,
+.status-encrypted {
+        position: relative;
+}
+
+.secure-link::after,
+.prompt::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: inherit;
+        filter: blur(4px);
+        opacity: 0.3;
+        z-index: -1;
+}
+
+    </style>
+</head>
+<body>
+    
+        <!-- Terminal Background -->
+        <div class="terminal-bg"></div>
+
+        <!-- Main Container -->
+        <div class="container">
+            <!-- ASCII Header -->
+            <div class="ascii-art">
+░▒▓██████▓▒░░▒▓█▓▒░░▒▓█▓▒░▒▓███████▓▒░░▒▓█▓▒░░▒▓█▓▒░▒▓████████▓▒░▒▓███████▓▒░░▒▓███████▓▒░░▒▓█▓▒░░▒▓█▓▒░▒▓███████▓▒░░▒▓█▓▒░░▒▓█▓▒░
+░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░      ░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░
+░▒▓█▓▒░      ░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░      ░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░
+░▒▓█▓▒░       ░▒▓██████▓▒░░▒▓███████▓▒░░▒▓████████▓▒░▒▓██████▓▒░ ░▒▓███████▓▒░░▒▓███████▓▒░░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓███████▓▒░
+░▒▓█▓▒░         ░▒▓█▓▒░   ░▒▓█▓▒░      ░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░      ░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░      ░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░
+░▒▓█▓▒░░▒▓█▓▒░  ░▒▓█▓▒░   ░▒▓█▓▒░      ░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░      ░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░      ░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░
+░▒▓██████▓▒░   ░▒▓█▓▒░   ░▒▓█▓▒░      ░▒▓█▓▒░░▒▓█▓▒░▒▓████████▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░       ░▒▓██████▓▒░░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░
+            </div>
+
+            <!-- Profile Terminal Window -->
+            <div class="terminal-window">
+                <div class="terminal-header">
+                    <span class="window-title">BENJAMIN CABLE - SECURE TERMINAL</span>
                 </div>
 
-                <script>
-                        function randomRedirect() {
-                                const themes = [
-                                        "cypherpunk",
-                                        "windows9x",
-                                        "retro-90s",
+                <div class="terminal-content">
+                    <div><span class="prompt">netrunner@cyberdeck:~$</span> <span class="command">whoami</span></div>
+                    <div class="output">
+                        <strong>BENJAMIN CABLE</strong><br>
+                        Status: <span class="status-online">[ONLINE]</span><br>
+                        Clearance Level: <span class="status-secure">[CLASSIFIED]</span><br>
+                        Location: <span class="status-encrypted">[ENCRYPTED]</span>
+                    </div>
+
+                    <div style="margin: 20px 0;">
+                        <span class="prompt">netrunner@cyberdeck:~$</span> <span class="command">cat /etc/profile</span>
+                    </div>
+                    <div class="output">
+                        <div class="profile-data">
+                            <img src="src/portrait.gif" alt="Benjamin Cable" class="terminal-avatar">
+                            <div class="profile-info">
+                                <h2>Benjamin Cable</h2>
+                                <p class="role">Senior Backend Engineer @ <a href="https://lootlocker.com/" target="_blank" class="secure-link">LootLocker</a></p>
+                                <div class="bio-text">
+                                    <p>Hi there! 👋 I'm an enthusiastic Go developer with a wide range of skills, from building large-scale APIs to creating command line applications.</p>
+                                    <p>My recent work focuses on the hard parts of backend infrastructure: migrating production MySQL onto self-hosted bare metal, designing cross-platform identity and account-merge systems, keeping real-money commerce correct across five storefronts, and shipping GDPR Art. 28 DPA flows and player data erasure tooling. Away from work, I run my own Matrix homeserver and generally enjoy self-hosting.</p>
+                                    <p>Throughout my career, I've had the opportunity to lead teams of different sizes, ranging from 10 to 30 people, both as a lead developer and a principal engineer.</p>
+                                    <p>I'm actively involved in the free and open source software community. Apart from creating and maintaining software, I also co-organize the Golang Dorset meetup with my friends and colleagues.</p>
+                                    <p>Go is my primary language for work. I rely on it daily to develop micro-services and various command-line tools. Additionally, I have extensive experience with PHP, including creating new applications and managing legacy software.</p>
+                                    <p>In my free time, I enjoy engaging with educational materials, writing small video games using C & SDL2 and Godot, and indulging my passion for music by writing and recording my own tracks.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="margin: 20px 0;">
+                        <span class="prompt">netrunner@cyberdeck:~$</span> <span class="command">ls -la /skills/</span>
+                    </div>
+                    <div class="output">
+                        <div class="file-listing">
+                            <div class="file-header">total 42</div>
+                            <div class="file-category">
+                                <div class="category-header">drwxr-xr-x 3 root root 4096 Jan 1 2024 languages/</div>
+                                <div class="file-item threat-critical">-rwx------ 1 netrunner root Go [CRITICAL]</div>
+                                <div class="file-item threat-high">-rwx------ 1 netrunner root PHP [HIGH]</div>
+                                <div class="file-item threat-active">-rwx------ 1 netrunner root TypeScript [ACTIVE]</div>
+                                <div class="file-item threat-moderate">-rwx------ 1 netrunner root Rust [MODERATE]</div>
+                                <div class="file-item threat-active">-rwx------ 1 netrunner root JavaScript [ACTIVE]</div>
+                            </div>
+                            <div class="file-category">
+                                <div class="category-header">drwxr-xr-x 3 root root 4096 Jan 1 2024 systems/</div>
+                                <div class="file-item">-rwxr-xr-x 1 netrunner root *nix</div>
+                                <div class="file-item">-rwxr-xr-x 1 netrunner root MySQL</div>
+                                <div class="file-item">-rwxr-xr-x 1 netrunner root Redis/Valkey</div>
+                                <div class="file-item">-rwxr-xr-x 1 netrunner root k3s/Kubernetes</div>
+                                <div class="file-item">-rwxr-xr-x 1 netrunner root AWS/GCP</div>
+                                <div class="file-item">-rwxr-xr-x 1 netrunner root Hetzner</div>
+                                <div class="file-item">-rwxr-xr-x 1 netrunner root Coffee ☕</div>
+                            </div>
+                            <div class="file-category">
+                                <div class="category-header">drwxr-xr-x 5 root root 4096 Jan 1 2024 expertise/</div>
+                                <div class="file-item">-rwxr-xr-x 1 netrunner root Identity & Account Linking</div>
+                                <div class="file-item">-rwxr-xr-x 1 netrunner root Payments & Entitlements</div>
+                                <div class="file-item">-rwxr-xr-x 1 netrunner root Database Performance & Locking</div>
+                                <div class="file-item">-rwxr-xr-x 1 netrunner root Microservices Architecture</div>
+                                <div class="file-item">-rwxr-xr-x 1 netrunner root Distributed Systems</div>
+                                <div class="file-item">-rwxr-xr-x 1 netrunner root GDPR & Data Compliance</div>
+                                <div class="file-item">-rwxr-xr-x 1 netrunner root API Design</div>
+                                <div class="file-item">-rwxr-xr-x 1 netrunner root Team Leadership</div>
+                                <div class="file-item">-rwxr-xr-x 1 netrunner root Command Line Tools</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="margin: 20px 0;">
+                        <span class="prompt">netrunner@cyberdeck:~$</span> <span class="command">find /projects -type f -name "*.repo"</span>
+                    </div>
+                    <div class="output">
+                        <div class="project-list">
+                            <div class="project-item">
+                                <a href="https://github.com/go-flexible" target="_blank" class="secure-link">/projects/go-flexible</a>
+                                <span class="project-desc">Packages for building Go services, used in production at LootLocker</span>
+                                <span class="classification">Classified</span>
+                                <span class="project-note"></span>
+                            </div>
+                            <div class="project-item">
+                                <a href="https://github.com/ladydascalie/currency" target="_blank" class="secure-link">/projects/Currency</a>
+                                <span class="project-desc">ISO 4217 currency codes & minor units for Go</span>
+                                <span class="classification"></span>
+                                <span class="project-note"></span>
+                            </div>
+                            <div class="project-item">
+                                <a href="https://github.com/ladydascalie/zconf" target="_blank" class="secure-link">/projects/zconf</a>
+                                <span class="project-desc">Extremely Overengineered Configuration Manager</span>
+                                <span class="classification"></span>
+                                <span class="project-note"></span>
+                            </div>
+                            <div class="project-item">
+                                <a href="https://github.com/ladydascalie/go-httpretry" target="_blank" class="secure-link">/projects/go-httpretry</a>
+                                <span class="project-desc">HTTP client with retry policies & functional options</span>
+                                <span class="classification"></span>
+                                <span class="project-note"></span>
+                            </div>
+                            <div class="project-item">
+                                <a href="https://github.com/ladydascalie/deskhue" target="_blank" class="secure-link">/projects/deskhue</a>
+                                <span class="project-desc">Philips Hue desktop controller (Wails + Svelte)</span>
+                                <span class="classification"></span>
+                                <span class="project-note"></span>
+                            </div>
+                            <div class="project-item">
+                                <a href="https://github.com/golang/go/" target="_blank" class="secure-link">/projects/Go Core</a>
+                                <span class="project-desc">CLASSIFIED DOCUMENTATION ACCESS</span>
+                                <span class="classification"></span>
+                                <span class="project-note">documentation, but… still counts!</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="margin: 20px 0;">
+                        <span class="prompt">netrunner@cyberdeck:~$</span> <span class="command">cat /var/log/employment.log</span>
+                    </div>
+                    <div class="output">
+                        <div class="career-log">
+                            <div class="career-entry">
+                                <div class="career-employer">
+                                    <span class="career-company">LootLocker</span>
+                                </div>
+                                <div class="career-line">
+                                    <span class="career-period">[Oct 2022 – Present]</span>
+                                    <span class="career-role">Senior Software Engineer</span>
+                                    <span class="career-location">[Remote]</span>
+                                </div>
+                                <div class="career-summary">Backend engineer on the core Go service, the developer console, and the platform's self-hosted infrastructure.</div>
+                                <div class="career-bullet">Moved the production data store off managed infrastructure onto self-hosted bare-metal MySQL on Hetzner (deliberately outside the cluster) and built the k3s platform around it: deploys, failover, backups and monitoring.</div>
+                                <div class="career-bullet">Designed the cross-platform identity system: platform account linking, conflict authorisation and merge flows with a declarative scenario test harness, later reused as the foundation for publisher-scoped cross-game progressions.</div>
+                                <div class="career-bullet">Platform commerce: catalogues, currencies, wallets, entitlements and real-money IAP across Apple, Google, PlayStation, Steam and Epic, with defensive entitlement recording, refund processing and vendor failure surfacing for self-service debugging.</div>
+                                <div class="career-bullet">Database engineering end-to-end: a code-based, feature-flagged schema migration engine, the GORM→sqlx migration, and InnoDB-level fixes such as eliminating a gap-lock deadlock by inserting before locking.</div>
+                                <div class="career-bullet">Shipped GDPR compliance as engineering: Art. 28 DPA acceptance flows, PII classification on onboarding data, admin audit logging, and bulk player right-to-erasure.</div>
+                                <div class="career-bullet">Migrated auth.game from Next.js to Go server-side rendering, consolidating the auth surface onto the core stack.</div>
+                                <div class="career-bullet">Plus the rest of the platform: game/server/admin APIs, leaderboards, Redis-backed presence, email campaigns, the Next.js developer console, a Go + templ + HTMX publisher analytics platform, and internal libraries like go-filestorage and mysql-retry.</div>
+
+                            </div>
+                            <div class="career-entry">
+                                <div class="career-employer">
+                                    <span class="career-company">Benefex</span>
+                                </div>
+                                <div class="career-line">
+                                    <span class="career-period">[Nov 2021 – Oct 2022]</span>
+                                    <span class="career-role">Staff Software Engineer</span>
+                                    <span class="career-location">[Southampton, UK]</span>
+                                </div>
+                                <div class="career-summary">Focused on improving the tech stack and service efficiency.</div>
+                                <div class="career-bullet">Created internal libraries to assist moving the company's systems to Go.</div>
+                                <div class="career-bullet">Defined and refined the process for re-architecting services in Go.</div>
+                                <div class="career-bullet">Introduced Prometheus metrics to the Go services.</div>
+                                <div class="career-bullet">Built an asset optimisation pipeline to make file uploads faster and more efficient.</div>
+
+                            </div>
+                            <div class="career-entry">
+                                <div class="career-employer">
+                                    <span class="career-company">Utility Warehouse</span>
+                                </div>
+                                <div class="career-line">
+                                    <span class="career-period">[Jan 2021 – Oct 2021]</span>
+                                    <span class="career-role">Engineering Team Lead</span>
+                                    <span class="career-location">[London, UK]</span>
+                                </div>
+                                <div class="career-summary">Built the Digital Experience team from the ground up.</div>
+                                <div class="career-bullet">Defined process, audited the team's entire codebase, produced architecture diagrams and targeted strategic improvements.</div>
+                                <div class="career-bullet">Drove the replacement of the customer portal PHP monolith with a micro-frontend application powered by React and GraphQL.</div>
+                                <div class="career-bullet">Quality push on customer-facing services reduced call volume and support tickets; the UW app went from 2.1 to 4.5 stars on the App Store.</div>
+                                <div class="career-bullet">1:1s, mentoring and the usual management aspects of the role.</div>
+
+                                <div class="career-line">
+                                    <span class="career-period">[Aug 2020 – Jan 2021]</span>
+                                    <span class="career-role">Senior Software Engineer</span>
+                                    <span class="career-location">[London, UK]</span>
+                                </div>
+                                <div class="career-summary">Part of the digital experience team.</div>
+                                <div class="career-bullet">Improved usability and security of the login system via trusted third-party identity providers and 2FA support.</div>
+                                <div class="career-bullet">Helped define and establish better documentation practices.</div>
+
+                            </div>
+                            <div class="career-entry">
+                                <div class="career-employer">
+                                    <span class="career-company">LUSH Digital</span>
+                                </div>
+                                <div class="career-line">
+                                    <span class="career-period">[Oct 2019 – Jul 2020]</span>
+                                    <span class="career-role">Technical Architect</span>
+                                    <span class="career-location">[Poole, UK]</span>
+                                </div>
+                                <div class="career-summary">Principal Engineer duties minus the people management, stepping back to focus on the tech as an individual contributor.</div>
+
+                                <div class="career-line">
+                                    <span class="career-period">[Nov 2018 – Oct 2019]</span>
+                                    <span class="career-role">Principal Engineer</span>
+                                    <span class="career-location">[Poole, UK]</span>
+                                </div>
+                                <div class="career-summary">Shared leadership of a 30-strong team alongside another Principal Engineer.</div>
+                                <div class="career-bullet">Spearheaded the technical design of the Lush Pay tills back-end and oversaw its deployment across the UK, Italy and Japan.</div>
+                                <div class="career-bullet">Designed and architected technical projects; introduced standardised methods of handling data across the business.</div>
+                                <div class="career-bullet">Kept the usual 1:1s, reviews, holiday & pay management and mentorship, plus hands-on backend engineering.</div>
+
+                                <div class="career-line">
+                                    <span class="career-period">[Jul 2017 – Nov 2018]</span>
+                                    <span class="career-role">Senior Software Engineer</span>
+                                    <span class="career-location">[Bournemouth, UK]</span>
+                                </div>
+                                <div class="career-summary">Go & PHP microservices as part of the SOA team and commerce squad.</div>
+                                <div class="career-bullet">Mentoring and support for new Gophers.</div>
+                                <div class="career-bullet">Development and maintenance of open-source software including LUSHDigital/core, LUSHDigital/modelgen and ladydascalie/v.</div>
+
+                            </div>
+                            <div class="career-entry">
+                                <div class="career-employer">
+                                    <span class="career-company">3SidedCube</span>
+                                </div>
+                                <div class="career-line">
+                                    <span class="career-period">[Apr 2016 – Jul 2017]</span>
+                                    <span class="career-role">PHP Developer</span>
+                                    <span class="career-location">[Bournemouth, UK]</span>
+                                </div>
+                                <div class="career-summary">API & backend work as part of the server team.</div>
+                                <div class="career-bullet">Worked on the Emergencies app suite, chained-crowdsourcing and the ATLAS preparedness backend.</div>
+                                <div class="career-bullet">AWS services ranging from RDS to DynamoDB, SQS, SES and SNS.</div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="margin: 20px 0;">
+                        <span class="prompt">netrunner@cyberdeck:~$</span> <span class="command">netstat -a | grep ESTABLISHED</span>
+                    </div>
+                    <div class="output">
+                        <div class="network-connections">
+                            <div class="connection-header">Active Secure Connections:</div>
+                            <div class="connection-item">
+                                <a href="mailto:ben@cable.fyi" class="secure-link">[EMAIL_SECURE] ben@cable.fyi</a>
+                            </div>
+                            <div class="connection-item">
+                                <a href="https://signal.me/#eu/V-9dTllhTgyXXHeIPglmmW4ScT7DVteYjNgkcf3L409OnH0uaVtF1JzIYvy9CS4z" target="_blank" class="secure-link">[SIGNAL_ENCRYPTED] Secure Messaging</a>
+                            </div>
+                            <div class="connection-item">
+                                <a href="https://www.linkedin.com/in/benjamin-cable-9aa05b90/" target="_blank" class="secure-link">[LINKEDIN_PROFESSIONAL] Network Access</a>
+                            </div>
+                            <div class="connection-item">
+                                <a href="https://github.com/ladydascalie" target="_blank" class="secure-link">[GITHUB_REPOSITORIES] Code Repository</a>
+                            </div>
+                            <div class="connection-item">
+                                <a href="https://github.com/ladydascalie.gpg" target="_blank" class="secure-link">[PGP_KEY] Public Encryption Key</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="margin: 20px 0;">
+                        <span class="prompt">netrunner@cyberdeck:~$</span> <span class="command">ps aux | grep meetup</span>
+                    </div>
+                    <div class="output">
+                        <div class="meetup-info">
+                            <div class="process-line">
+                                netrunner 1337 0.0 0.1 <a href="https://www.meetup.com/golang-dorset/" target="_blank" class="secure-link">🐹 Golang Dorset Meetup 🐹</a>
+                            </div>
+                            <div class="process-details">
+                                └─ Monthly gatherings of digital gophers for advanced Go programming, distributed systems architecture, and underground knowledge sharing.
+                            </div>
+                            <div class="process-details">
+                                └─ Frequency: Monthly
+                            </div>
+                            <div class="process-details">
+                                └─ Activities: Advanced Go programming techniques, Distributed systems architecture, Cryptographic implementations, Network security protocols, Underground knowledge sharing
+                            </div>
+                            <div class="encrypted-data">
+                                └─ Encrypted Data: 4D6F6E746C7920476174686572696E67206F662043796265722D476F70686572730A
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="margin: 20px 0;">
+                        <span class="prompt">netrunner@cyberdeck:~$</span> <span class="command">uname -a</span>
+                    </div>
+                    <div class="output">
+                        <div class="system-info">
+                            OS: GNU/Linux SHIBUYA-RECK-4 8.7.2-ALPHA-NEO-CYBERN-S1 x86_64<br>
+                            Version: v2.085-SYNTH<br>
+                            Processor: Neuralink SYNTH-X1-A Processor<br>
+                            RAM: 128PB Hyper-Dimensional Quantum RAM<br>
+                            Storage: 200ZB Holo-Disc Array<br>
+                            Network: active connection - LootLocker<br>
+                            Reality Index: 94.7% (Stable)<br>
+                            Neural Link: ESTABLISHED - Bio-Synapse Interface active
+                        </div>
+                    </div>
+
+                    <div style="margin: 20px 0;">
+                        <span class="prompt">netrunner@cyberdeck:~$</span> <span class="command typing">_</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Webring Terminal Window -->
+            <div class="terminal-window">
+                <div class="terminal-header">
+                    <span class="window-title">WEBRING NETWORK ACCESS</span>
+                </div>
+
+                <div class="terminal-content">
+                    <div><span class="prompt">netrunner@webring:~$</span> <span class="command">ls -la /net/connected_nodes/</span></div>
+                    <div class="output">
+                        <div class="network-connections">
+                            <div class="connection-header">Active Network Nodes:</div>
+                            <div class="connection-item">
+                                <a href="https://roolps.dev/" target="_blank" class="secure-link">[NODE_001] https://roolps.dev/</a>
+                            </div>
+                            <div class="connection-item">
+                                <a href="https://github.com/zeevallin/" target="_blank" class="secure-link">[NODE_002] https://github.com/zeevallin/</a>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div style="margin: 20px 0;">
+                        <span class="prompt">netrunner@webring:~$</span> <span class="command typing">_</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <div class="footer">
+                <div class="footer-line">
+                    <span class="footer-label">[SYSTEM STATUS]</span>
+                    <span class="status-online">ONLINE</span>
+                    <span class="footer-separator">|</span>
+                    <span class="footer-label">[LAST UPDATE]</span>
+                    <span>Y2K Compliant</span>
+                    <span class="footer-separator">|</span>
+                    <span class="footer-label">[VISITORS]</span>
+                    <span>133,337</span>
+                </div>
+                <div class="footer-line">
+                    <span class="footer-label">[BEST VIEWED]</span>
+                    <span>1024x768 resolution</span>
+                    <span class="footer-separator">|</span>
+                    <span class="footer-label">[MADE WITH]</span>
+                    <span>Existential Angst & HTML</span>
+                    <span class="footer-separator">|</span>
+                    <span class="footer-label">[YEAR]</span>
+                    <span>2085</span>
+                </div>
+                <div class="footer-line">
+                    <span class="footer-label">[HUMAN MODE]</span>
+                    <a href="cv.html" class="secure-link">cv.html</a>
+                    <span class="footer-separator">|</span>
+                    <span class="footer-label">[MACHINE MODE]</span>
+                    <a href="cv.json" class="secure-link">cv.json</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Cyberpunk Data Stream -->
+        <div class="data-stream">
+            <canvas id="data-canvas"></canvas>
+        </div>
+
+        <!-- Neural Interface Overlay -->
+        <div class="neural-overlay"></div>
+    
+    <script>
+        /**
+ * Cypherpunk Theme JavaScript
+ * Cyberpunk tabletop-inspired terminal interface effects
+ */
+
+document.addEventListener("DOMContentLoaded", function () {
+        // Initialize all theme effects
+        initDataStream();
+        initTypingEffect();
+        initGlitchEffects();
+        initInteractiveElements();
+        initTerminalEffects();
+        initSystemMonitoring();
+});
+
+// datastream background effect
+function initDataStream() {
+        const canvas = document.getElementById("data-canvas");
+        if (!canvas) return;
+
+        const ctx = canvas.getContext("2d");
+
+        // Set canvas size
+        function resizeCanvas() {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+        }
+
+        resizeCanvas();
+        window.addEventListener("resize", resizeCanvas);
+
+        const dataChars =
+                "01░▒▓█▄▀▐▌<>{}[]()*/+-=~`!@#$%^&ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+        const charArray = dataChars.split("");
+
+        const fontSize = 14;
+        const columns = Math.floor(canvas.width / fontSize);
+        const drops = Array(columns).fill(0);
+
+        function drawDataStream() {
+                // Dark background with fade effect
+                ctx.fillStyle = "rgba(10, 10, 10, 0.05)";
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+                // Data stream text
+                ctx.fillStyle = "#00ffff";
+                ctx.font = `${fontSize}px monospace`;
+
+                for (let i = 0; i < drops.length; i++) {
+                        const text =
+                                charArray[
+                                        Math.floor(
+                                                Math.random() *
+                                                        charArray.length,
+                                        )
                                 ];
-                                const randomIndex = Math.floor(
-                                        Math.random() * themes.length,
-                                );
-                                window.location.href = `theme.html?theme=${themes[randomIndex]}`;
+                        const x = i * fontSize;
+                        const y = drops[i] * fontSize;
+
+                        ctx.fillText(text, x, y);
+
+                        // Reset drop to top randomly
+                        if (y > canvas.height && Math.random() > 0.975) {
+                                drops[i] = 0;
                         }
-                </script>
-        </body>
+
+                        drops[i]++;
+                }
+        }
+
+        setInterval(drawDataStream, 50);
+}
+
+function initTypingEffect() {
+        const typingElements = document.querySelectorAll(".typing");
+
+        typingElements.forEach((element) => {
+                const text = element.textContent || "";
+                if (text === "_") return; // Skip cursor-only elements
+
+                element.textContent = "";
+                let i = 0;
+
+                const typeInterval = setInterval(() => {
+                        if (i < text.length) {
+                                element.textContent += text.charAt(i);
+                                i++;
+                        } else {
+                                clearInterval(typeInterval);
+                                element.classList.add("cursor-blink");
+                        }
+                }, 100);
+        });
+}
+
+function initGlitchEffects() {
+        const neuralOverlay = document.querySelector(".neural-overlay");
+
+        // Random glitch activation
+        setInterval(() => {
+                if (Math.random() < 0.1) {
+                        // 10% chance
+                        activateGlitch();
+                }
+        }, 2000);
+
+        function activateGlitch() {
+                const elements = document.querySelectorAll(
+                        ".terminal-window, .ascii-art",
+                );
+
+                elements.forEach((element) => {
+                        element.style.transform = `translate(${Math.random() * 4 - 2}px, ${Math.random() * 4 - 2}px)`;
+                        element.style.filter = `hue-rotate(${Math.random() * 20}deg)`;
+
+                        setTimeout(() => {
+                                element.style.transform = "";
+                                element.style.filter = "";
+                        }, 100);
+                });
+
+                // Neural interface glitch
+                if (neuralOverlay) {
+                        neuralOverlay.style.opacity = "0.3";
+                        setTimeout(() => {
+                                neuralOverlay.style.opacity = "0";
+                        }, 150);
+                }
+        }
+}
+
+function initInteractiveElements() {
+        // Secure links hover effects
+        const secureLinks = document.querySelectorAll(".secure-link");
+        secureLinks.forEach((link) => {
+                link.addEventListener("mouseenter", () => {
+                        createNetrunnerEffect(link);
+                });
+        });
+
+        // File items hover
+        const fileItems = document.querySelectorAll(".file-item");
+        fileItems.forEach((item) => {
+                item.addEventListener("mouseenter", () => {
+                        item.style.backgroundColor = "rgba(0, 255, 65, 0.1)";
+                });
+
+                item.addEventListener("mouseleave", () => {
+                        item.style.backgroundColor = "";
+                });
+        });
+}
+
+function createNetrunnerEffect(element) {
+        const rect = element.getBoundingClientRect();
+        const particles = 8;
+
+        for (let i = 0; i < particles; i++) {
+                const particle = document.createElement("div");
+                particle.style.cssText = `
+            position: fixed;
+            width: 2px;
+            height: 2px;
+            background: #00ffff;
+            pointer-events: none;
+            z-index: 9999;
+            border-radius: 50%;
+            left: ${rect.left + Math.random() * rect.width}px;
+            top: ${rect.top + Math.random() * rect.height}px;
+            box-shadow: 0 0 4px #00ffff;
+        `;
+
+                document.body.appendChild(particle);
+
+                particle.animate(
+                        [
+                                {
+                                        transform: "scale(0) translateY(0)",
+                                        opacity: 1,
+                                },
+                                {
+                                        transform: `scale(1) translateY(-${Math.random() * 30 + 10}px)`,
+                                        opacity: 0,
+                                },
+                        ],
+                        {
+                                duration: 800,
+                                easing: "ease-out",
+                        },
+                ).onfinish = () => particle.remove();
+        }
+}
+
+/**
+ * Terminal Effects
+ */
+function initTerminalEffects() {
+        // Scanline effect
+        createScanlineEffect();
+
+        // Random terminal beeps (visual only)
+        setInterval(() => {
+                if (Math.random() < 0.05) {
+                        // 5% chance
+                        flashTerminal();
+                }
+        }, 3000);
+
+        // Boot sequence simulation
+        setTimeout(() => {
+                simulateBootSequence();
+        }, 1000);
+}
+
+function createScanlineEffect() {
+        const scanline = document.createElement("div");
+        scanline.style.cssText = `
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        background: linear-gradient(90deg, transparent, #00ffff, transparent);
+        z-index: 999;
+        pointer-events: none;
+        opacity: 0.3;
+    `;
+
+        document.body.appendChild(scanline);
+
+        function animateScanline() {
+                scanline.animate(
+                        [
+                                { transform: "translateY(-2px)" },
+                                {
+                                        transform: `translateY(${window.innerHeight}px)`,
+                                },
+                        ],
+                        {
+                                duration: 3000,
+                                easing: "linear",
+                        },
+                ).onfinish = () => {
+                        setTimeout(
+                                animateScanline,
+                                Math.random() * 10000 + 5000,
+                        );
+                };
+        }
+
+        setTimeout(animateScanline, 2000);
+}
+
+function flashTerminal() {
+        const terminal = document.querySelector(".terminal-window");
+        if (terminal) {
+                terminal.style.boxShadow =
+                        "0 0 30px rgba(0, 255, 255, 0.8), inset 0 0 30px rgba(0, 255, 255, 0.1)";
+                setTimeout(() => {
+                        terminal.style.boxShadow =
+                                "0 0 20px rgba(0, 255, 255, 0.3), inset 0 0 20px rgba(0, 255, 255, 0.05)";
+                }, 100);
+        }
+}
+
+function simulateBootSequence() {
+        const messages = [
+                "CYBERDECK INTERFACE ONLINE...",
+                "INITIALIZING ICE PROTOCOLS...",
+                "BYPASSING CORPORATE FIREWALLS...",
+                "ACCESSING NET ARCHITECTURE...",
+                "NEURAL LINK ESTABLISHED",
+        ];
+
+        // Create single boot notification
+        const bootNotification = createBootNotification();
+        let bootMessages = ["CYBERDECK BOOT INITIATED"];
+
+        // Add messages one by one
+        messages.forEach((message, index) => {
+                setTimeout(
+                        () => {
+                                bootMessages.push(message);
+                                updateBootNotification(
+                                        bootNotification,
+                                        bootMessages,
+                                );
+
+                                // Add success message and flash after last message
+                                if (index === messages.length - 1) {
+                                        setTimeout(() => {
+                                                bootMessages.push(
+                                                        "SYSTEM READY - ALL PROTOCOLS ACTIVE",
+                                                );
+                                                updateBootNotification(
+                                                        bootNotification,
+                                                        bootMessages,
+                                                        true, // success flag
+                                                );
+                                                flashNotificationGreen(
+                                                        bootNotification,
+                                                );
+
+                                                // Remove notification after success message
+                                                setTimeout(() => {
+                                                        removeBootNotification(
+                                                                bootNotification,
+                                                        );
+                                                }, 3000);
+                                        }, 1000);
+                                }
+                        },
+                        (index + 1) * 800,
+                );
+        });
+}
+
+function createBootNotification() {
+        const messageDiv = document.createElement("div");
+        messageDiv.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background: rgba(10, 10, 10, 0.98);
+                backdrop-filter: blur(10px);
+                border: 2px solid #00ffff;
+                color: #00ffff;
+                padding: 12px 18px;
+                border-radius: 5px;
+                font-family: 'Fira Code', monospace;
+                font-size: 13px;
+                z-index: 99999;
+                box-shadow: 0 0 20px rgba(0, 255, 255, 0.5), 0 4px 15px rgba(0, 0, 0, 0.8);
+                max-width: 320px;
+                word-wrap: break-word;
+                max-height: 200px;
+                overflow-y: auto;
+                text-shadow: 0 0 5px currentColor;
+        `;
+
+        document.body.appendChild(messageDiv);
+
+        // Slide in animation
+        messageDiv.animate(
+                [
+                        { transform: "translateX(100%)", opacity: 0 },
+                        { transform: "translateX(0)", opacity: 1 },
+                ],
+                {
+                        duration: 300,
+                        easing: "ease-out",
+                },
+        );
+
+        return messageDiv;
+}
+
+function updateBootNotification(notification, messages, isSuccess = false) {
+        const content = messages
+                .map((msg, index) => {
+                        const prefix =
+                                isSuccess && index === messages.length - 1
+                                        ? "[SUCCESS]"
+                                        : "[INFO]";
+                        return `${prefix} ${msg}`;
+                })
+                .join("<br>");
+        notification.innerHTML = content;
+
+        // Scroll to bottom to show latest message
+        notification.scrollTop = notification.scrollHeight;
+}
+
+function removeBootNotification(notification) {
+        notification.animate(
+                [
+                        { transform: "translateX(0)", opacity: 1 },
+                        { transform: "translateX(100%)", opacity: 0 },
+                ],
+                {
+                        duration: 300,
+                        easing: "ease-in",
+                },
+        ).onfinish = () => notification.remove();
+}
+
+function flashNotificationGreen(notification) {
+        const originalBorderColor = notification.style.borderColor;
+        const originalBoxShadow = notification.style.boxShadow;
+
+        // Flash green 3 times
+        let flashCount = 0;
+        const flashInterval = setInterval(() => {
+                if (flashCount % 2 === 0) {
+                        // Green flash
+                        notification.style.borderColor = "#00ff41";
+                        notification.style.boxShadow =
+                                "0 0 20px rgba(0, 255, 65, 0.8)";
+                        notification.style.backgroundColor =
+                                "rgba(0, 255, 65, 0.1)";
+                } else {
+                        // Back to original
+                        notification.style.borderColor = "#00ffff";
+                        notification.style.boxShadow =
+                                "0 0 10px rgba(0, 255, 255, 0.3)";
+                        notification.style.backgroundColor =
+                                "rgba(0, 0, 0, 0.9)";
+                }
+
+                flashCount++;
+                if (flashCount >= 6) {
+                        // 3 full flashes
+                        clearInterval(flashInterval);
+                        // Keep it green for success
+                        notification.style.borderColor = "#00ff41";
+                        notification.style.boxShadow =
+                                "0 0 15px rgba(0, 255, 65, 0.5)";
+                        notification.style.backgroundColor =
+                                "rgba(0, 255, 65, 0.05)";
+                }
+        }, 200);
+}
+
+/**
+ * System Monitoring Effects
+ */
+function initSystemMonitoring() {
+        // Update system time
+        updateSystemTime();
+        setInterval(updateSystemTime, 1000);
+
+        // Random system alerts
+        setInterval(() => {
+                if (Math.random() < 0.02) {
+                        // 2% chance
+                        showRandomSystemAlert();
+                }
+        }, 5000);
+
+        // Monitor network activity simulation
+        simulateNetworkActivity();
+}
+
+function updateSystemTime() {
+        const timeElements = document.querySelectorAll(".system-time");
+        const now = new Date();
+        const timeString = now.toLocaleTimeString("en-US", {
+                hour12: false,
+                hour: "2-digit",
+                minute: "2-digit",
+                second: "2-digit",
+        });
+
+        timeElements.forEach((element) => {
+                element.textContent = timeString;
+        });
+}
+
+function showRandomSystemAlert() {
+        const alerts = [
+                "ICE INTRUSION DETECTED",
+                "FIREWALL STATUS: ACTIVE",
+                "ENCRYPTING DATA STREAM...",
+                "NEURAL SYNC: 97.3%",
+                "CYBERDECK LINK STABLE",
+                "BACKDOOR SECURED SUCCESSFULLY",
+                "STEGANOGRAPHY MODULE LOADED",
+        ];
+
+        const alertType = Math.random() < 0.7 ? "info" : "warning";
+        const message = alerts[Math.floor(Math.random() * alerts.length)];
+        showSystemMessage(message, alertType);
+}
+
+function simulateNetworkActivity() {
+        const connections = document.querySelectorAll(".connection-item");
+
+        setInterval(() => {
+                connections.forEach((connection) => {
+                        if (Math.random() < 0.1) {
+                                // 10% chance
+                                connection.style.background =
+                                        "rgba(0, 255, 255, 0.1)";
+                                setTimeout(() => {
+                                        connection.style.background = "";
+                                }, 200);
+                        }
+                });
+        }, 1000);
+}
+
+/**
+ * System Message Display
+ */
+function showSystemMessage(message, type = "info") {
+        const messageDiv = document.createElement("div");
+        messageDiv.style.cssText = `
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background: rgba(10, 10, 10, 0.98);
+        backdrop-filter: blur(10px);
+        border: 2px solid ${type === "error" ? "#ff0040" : type === "warning" ? "#ff6b00" : "#00ff41"};
+        color: ${type === "error" ? "#ff0055" : type === "warning" ? "#ff7700" : "#00ffff"};
+        padding: 12px 18px;
+        border-radius: 5px;
+        font-family: 'Fira Code', monospace;
+        font-size: 13px;
+        z-index: 99999;
+        box-shadow: 0 0 20px ${type === "error" ? "rgba(255, 0, 85, 0.5)" : type === "warning" ? "rgba(255, 119, 0, 0.5)" : "rgba(0, 255, 255, 0.5)"}, 0 4px 15px rgba(0, 0, 0, 0.8);
+        max-width: 280px;
+        word-wrap: break-word;
+        text-shadow: 0 0 5px currentColor;
+    `;
+
+        messageDiv.textContent = `[${type.toUpperCase()}] ${message}`;
+        document.body.appendChild(messageDiv);
+
+        // Slide in animation
+        messageDiv.animate(
+                [
+                        { transform: "translateX(100%)", opacity: 0 },
+                        { transform: "translateX(0)", opacity: 1 },
+                ],
+                {
+                        duration: 300,
+                        easing: "ease-out",
+                },
+        );
+
+        // Auto remove after 3 seconds
+        setTimeout(() => {
+                messageDiv.animate(
+                        [
+                                { transform: "translateX(0)", opacity: 1 },
+                                { transform: "translateX(100%)", opacity: 0 },
+                        ],
+                        {
+                                duration: 300,
+                                easing: "ease-in",
+                        },
+                ).onfinish = () => messageDiv.remove();
+        }, 3000);
+}
+
+/**
+ * Konami Code Easter Egg
+ */
+(function initKonamiCode() {
+        let konamiCode = [];
+        const konamiSequence = [
+                "ArrowUp",
+                "ArrowUp",
+                "ArrowDown",
+                "ArrowDown",
+                "ArrowLeft",
+                "ArrowRight",
+                "ArrowLeft",
+                "ArrowRight",
+                "KeyB",
+                "KeyA",
+        ]; // ↑↑↓↓←→←→BA
+
+        document.addEventListener("keydown", (e) => {
+                konamiCode.push(e.code);
+
+                if (konamiCode.length > konamiSequence.length) {
+                        konamiCode.shift();
+                }
+
+                if (konamiCode.join(",") === konamiSequence.join(",")) {
+                        activateJohnnyMode();
+                        konamiCode = [];
+                }
+        });
+
+        function activateJohnnyMode() {
+                showSystemMessage("ENTERING SILVERHAND MODE...", "success");
+
+                // Enhanced data stream effect
+                const canvas = document.getElementById("data-canvas");
+                if (canvas) {
+                        canvas.style.opacity = "0.3";
+                }
+
+                // Chrome terminal
+                const terminal = document.querySelector(".terminal-window");
+                if (terminal) {
+                        terminal.style.animation = "chrome-border 2s infinite";
+
+                        const style = document.createElement("style");
+                        style.textContent = `
+                @keyframes chrome-border {
+                    0% { border-color: #00ffff; }
+                    16% { border-color: #0080ff; }
+                    33% { border-color: #aa00ff; }
+                    50% { border-color: #ff0055; }
+                    66% { border-color: #ff7700; }
+                    83% { border-color: #ffdd00; }
+                    100% { border-color: #00ffff; }
+                }
+            `;
+                        document.head.appendChild(style);
+                }
+
+                // Enhanced glitch effects
+                for (let i = 0; i < 10; i++) {
+                        setTimeout(() => {
+                                const elements = document.querySelectorAll("*");
+                                elements.forEach((el) => {
+                                        if (Math.random() < 0.1) {
+                                                el.style.filter =
+                                                        "hue-rotate(180deg) saturate(2)";
+                                                setTimeout(() => {
+                                                        el.style.filter = "";
+                                                }, 100);
+                                        }
+                                });
+                        }, i * 200);
+                }
+
+                // Reset after 10 seconds
+                setTimeout(() => {
+                        if (canvas) canvas.style.opacity = "0.05";
+                        if (terminal) terminal.style.animation = "";
+                        showSystemMessage(
+                                "SILVERHAND MODE DEACTIVATED",
+                                "info",
+                        );
+                }, 10000);
+        }
+})();
+
+/**
+ * Utility Functions
+ */
+function getRandomDataChar() {
+        const chars = "01░▒▓█▄▀▐▌<>{}[]()*/+-=~`!@#$%^&";
+        return chars.charAt(Math.floor(Math.random() * chars.length));
+}
+
+function createParticleEffect(x, y, color = "#00ffff") {
+        const particle = document.createElement("div");
+        particle.style.cssText = `
+        position: fixed;
+        left: ${x}px;
+        top: ${y}px;
+        width: 4px;
+        height: 4px;
+        background: ${color};
+        border-radius: 50%;
+        pointer-events: none;
+        z-index: 9999;
+        box-shadow: 0 0 6px ${color};
+    `;
+
+        document.body.appendChild(particle);
+
+        particle.animate(
+                [
+                        {
+                                transform: "scale(1) translateY(0)",
+                                opacity: 1,
+                        },
+                        {
+                                transform: `scale(0) translateY(-${Math.random() * 50 + 20}px)`,
+                                opacity: 0,
+                        },
+                ],
+                {
+                        duration: 1000,
+                        easing: "ease-out",
+                },
+        ).onfinish = () => particle.remove();
+}
+
+// Export functions for potential external use
+window.CypherpunkTheme = {
+        showSystemMessage,
+        createParticleEffect,
+        activateGlitch: function () {
+                // Expose neural glitch function
+                const elements = document.querySelectorAll(
+                        ".terminal-window, .ascii-art",
+                );
+                elements.forEach((element) => {
+                        element.style.transform = `translate(${Math.random() * 4 - 2}px, ${Math.random() * 4 - 2}px)`;
+                        setTimeout(() => (element.style.transform = ""), 100);
+                });
+        },
+};
+
+    </script>
+</body>
 </html>

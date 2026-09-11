@@ -50,12 +50,8 @@ const CypherpunkTheme = new ThemeTemplate("cypherpunk", {
                                 <h2>{{personal.name}}</h2>
                                 <p class="role">{{personal.title}} @ <a href="{{personal.companyUrl}}" target="_blank" class="secure-link">{{personal.company}}</a></p>
                                 <div class="bio-text">
-                                    <p>{{bio.0}}</p>
-                                    <p>{{bio.1}}</p>
-                                    <p>{{bio.2}}</p>
-                                    <p>{{bio.3}}</p>
-                                    <p>{{bio.4}}</p>
-                                </div>
+{{@each bio}}                                    <p>{{@item}}</p>
+{{/each}}                                </div>
                             </div>
                         </div>
                     </div>
@@ -68,25 +64,16 @@ const CypherpunkTheme = new ThemeTemplate("cypherpunk", {
                             <div class="file-header">total 42</div>
                             <div class="file-category">
                                 <div class="category-header">drwxr-xr-x 3 root root 4096 Jan 1 2024 languages/</div>
-                                <div class="file-item threat-critical">-rwx------ 1 netrunner root {{skills.languages.0}} [{{skills.threat_levels.Go}}]</div>
-                                <div class="file-item threat-high">-rwx------ 1 netrunner root {{skills.languages.1}} [{{skills.threat_levels.PHP}}]</div>
-                                <div class="file-item threat-moderate">-rwx------ 1 netrunner root {{skills.languages.2}} [{{skills.threat_levels.Rust}}]</div>
-                                <div class="file-item threat-active">-rwx------ 1 netrunner root {{skills.languages.3}} [{{skills.threat_levels.JavaScript}}]</div>
-                            </div>
+{{@each skills.languages}}                                <div class="file-item threat-{{@item|lookup(skills.threat_levels)|lower}}">-rwx------ 1 netrunner root {{@item}} [{{@item|lookup(skills.threat_levels)}}]</div>
+{{/each}}                            </div>
                             <div class="file-category">
                                 <div class="category-header">drwxr-xr-x 3 root root 4096 Jan 1 2024 systems/</div>
-                                <div class="file-item">-rwxr-xr-x 1 netrunner root {{skills.systems.0}}</div>
-                                <div class="file-item">-rwxr-xr-x 1 netrunner root {{skills.systems.1}}</div>
-                                <div class="file-item">-rwxr-xr-x 1 netrunner root {{skills.systems.2}}</div>
-                            </div>
+{{@each skills.systems}}                                <div class="file-item">-rwxr-xr-x 1 netrunner root {{@item}}</div>
+{{/each}}                            </div>
                             <div class="file-category">
                                 <div class="category-header">drwxr-xr-x 5 root root 4096 Jan 1 2024 expertise/</div>
-                                <div class="file-item">-rwxr-xr-x 1 netrunner root {{skills.expertise.0}}</div>
-                                <div class="file-item">-rwxr-xr-x 1 netrunner root {{skills.expertise.1}}</div>
-                                <div class="file-item">-rwxr-xr-x 1 netrunner root {{skills.expertise.2}}</div>
-                                <div class="file-item">-rwxr-xr-x 1 netrunner root {{skills.expertise.3}}</div>
-                                <div class="file-item">-rwxr-xr-x 1 netrunner root {{skills.expertise.4}}</div>
-                            </div>
+{{@each skills.expertise}}                                <div class="file-item">-rwxr-xr-x 1 netrunner root {{@item}}</div>
+{{/each}}                            </div>
                         </div>
                     </div>
 
@@ -95,41 +82,34 @@ const CypherpunkTheme = new ThemeTemplate("cypherpunk", {
                     </div>
                     <div class="output">
                         <div class="project-list">
-                            <div class="project-item">
-                                <a href="{{projects.0.url}}" target="_blank" class="secure-link">/projects/{{projects.0.name}}</a>
-                                <span class="project-desc">{{projects.0.description}}</span>
-                                <span class="classification">{{projects.0.classification}}</span>
+{{@each projects}}                            <div class="project-item">
+                                <a href="{{@item.url}}" target="_blank" class="secure-link">/projects/{{@item.name}}</a>
+                                <span class="project-desc">{{@item.description}}</span>
+                                <span class="classification">{{@item.classification|or}}</span>
+                                <span class="project-note">{{@item.note|or}}</span>
                             </div>
-                            <div class="project-item">
-                                <a href="{{projects.1.url}}" target="_blank" class="secure-link">/projects/{{projects.1.name}}</a>
-                                <span class="project-desc">{{projects.1.description}}</span>
-                            </div>
-                            <div class="project-item">
-                                <a href="{{projects.2.url}}" target="_blank" class="secure-link">/projects/{{projects.2.name}}</a>
-                                <span class="project-desc">{{projects.2.description}}</span>
-                            </div>
-                            <div class="project-item">
-                                <a href="{{projects.3.url}}" target="_blank" class="secure-link">/projects/{{projects.3.name}}</a>
-                                <span class="project-desc">{{projects.3.description}}</span>
-                            </div>
-                            <div class="project-item">
-                                <a href="{{projects.4.url}}" target="_blank" class="secure-link">/projects/{{projects.4.name}}</a>
-                                <span class="project-desc">{{projects.4.description}}</span>
-                            </div>
-                            <div class="project-item">
-                                <a href="{{projects.5.url}}" target="_blank" class="secure-link">/projects/{{projects.5.name}}</a>
-                                <span class="project-desc">{{projects.5.description}}</span>
-                            </div>
-                            <div class="project-item">
-                                <a href="{{projects.6.url}}" target="_blank" class="secure-link">/projects/{{projects.6.name}}</a>
-                                <span class="project-desc">{{projects.6.description}}</span>
-                            </div>
-                            <div class="project-item">
-                                <a href="{{projects.7.url}}" target="_blank" class="secure-link">/projects/{{projects.7.name}}</a>
-                                <span class="project-desc">{{projects.7.description}}</span>
-                                <span class="project-note">{{projects.7.note}}</span>
-                            </div>
-                        </div>
+{{/each}}                        </div>
+                    </div>
+
+                    <div style="margin: 20px 0;">
+                        <span class="prompt">netrunner@cyberdeck:~$</span> <span class="command">cat /var/log/employment.log</span>
+                    </div>
+                    <div class="output">
+                        <div class="career-log">
+{{@each experience}}                            <div class="career-entry">
+                                <div class="career-employer">
+                                    <span class="career-company">{{@item.company}}</span>
+                                </div>
+{{@each @item.roles}}                                <div class="career-line">
+                                    <span class="career-period">[{{@item.period}}]</span>
+                                    <span class="career-role">{{@item.role}}</span>
+                                    <span class="career-location">[{{@item.location}}]</span>
+                                </div>
+                                <div class="career-summary">{{@item.summary|or}}</div>
+{{@each @item.highlights}}                                <div class="career-bullet">{{@item}}</div>
+{{/each}}
+{{/each}}                            </div>
+{{/each}}                        </div>
                     </div>
 
                     <div style="margin: 20px 0;">
@@ -171,7 +151,7 @@ const CypherpunkTheme = new ThemeTemplate("cypherpunk", {
                                 └─ Frequency: {{meetup.frequency}}
                             </div>
                             <div class="process-details">
-                                └─ Activities: {{meetup.activities.0}}, {{meetup.activities.1}}, {{meetup.activities.2}}, {{meetup.activities.3}}, {{meetup.activities.4}}
+                                └─ Activities: {{meetup.activities|join(", ")}}
                             </div>
                             <div class="encrypted-data">
                                 └─ Encrypted Data: {{meetup.encrypted_data}}
@@ -212,18 +192,10 @@ const CypherpunkTheme = new ThemeTemplate("cypherpunk", {
                     <div class="output">
                         <div class="network-connections">
                             <div class="connection-header">Active Network Nodes:</div>
-                            <div class="connection-item">
-                                <a href="{{webring.sites.0.url}}" target="_blank" class="secure-link">[NODE_001] {{webring.sites.0.url}}</a>
+{{@each webring.sites}}                            <div class="connection-item">
+                                <a href="{{@item.url}}" target="_blank" class="secure-link">[NODE_{{@index|inc|pad}}] {{@item.url}}</a>
                             </div>
-                            <div class="connection-item">
-                                <a href="{{webring.sites.1.url}}" target="_blank" class="secure-link">[NODE_002] {{webring.sites.1.url}}</a>
-                            </div>
-                            <div class="connection-item">
-                                <a href="{{webring.sites.2.url}}" target="_blank" class="secure-link">[NODE_003] {{webring.sites.2.url}}</a>
-                            </div>
-                            <div class="connection-item">
-                                <a href="{{webring.sites.3.url}}" target="_blank" class="secure-link">[NODE_004] {{webring.sites.3.url}}</a>
-                            </div>
+{{/each}}
                         </div>
                     </div>
 
@@ -254,6 +226,13 @@ const CypherpunkTheme = new ThemeTemplate("cypherpunk", {
                     <span class="footer-separator">|</span>
                     <span class="footer-label">[YEAR]</span>
                     <span>{{meta.cyber_year}}</span>
+                </div>
+                <div class="footer-line">
+                    <span class="footer-label">[HUMAN MODE]</span>
+                    <a href="cv.html" class="secure-link">cv.html</a>
+                    <span class="footer-separator">|</span>
+                    <span class="footer-label">[MACHINE MODE]</span>
+                    <a href="cv.json" class="secure-link">cv.json</a>
                 </div>
             </div>
         </div>

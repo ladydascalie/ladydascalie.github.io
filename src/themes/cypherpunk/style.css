@@ -338,6 +338,78 @@ body {
         padding-left: 20px;
 }
 
+/* Career Log */
+.career-log {
+        margin: 10px 0;
+}
+
+.career-entry {
+        margin: 14px 0;
+        padding: 8px 0;
+        border-bottom: 1px dotted rgba(0, 255, 136, 0.3);
+}
+
+.career-entry:last-child {
+        border-bottom: none;
+}
+
+.career-employer {
+        margin-bottom: 6px;
+}
+
+.career-employer .career-company {
+        font-weight: bold;
+}
+
+.career-line {
+        margin-bottom: 4px;
+}
+
+.career-period {
+        color: var(--warning-orange);
+        font-size: 12px;
+        text-shadow: 0 0 5px var(--warning-orange);
+}
+
+.career-role {
+        color: var(--terminal-green);
+        font-weight: bold;
+        text-shadow: 0 0 5px var(--terminal-green);
+}
+
+.career-company {
+        color: var(--neon-cyan);
+        text-shadow: 0 0 5px var(--neon-cyan);
+}
+
+.career-location {
+        color: rgba(0, 255, 136, 0.5);
+        font-size: 11px;
+}
+
+.career-summary {
+        color: rgba(0, 255, 136, 0.7);
+        font-size: 12px;
+        margin: 2px 0;
+}
+
+.career-bullet {
+        color: rgba(0, 255, 136, 0.6);
+        font-size: 12px;
+        padding-left: 20px;
+        word-break: break-word;
+        overflow-wrap: break-word;
+}
+
+.career-bullet::before {
+        content: "├─ ";
+        color: rgba(0, 255, 136, 0.35);
+}
+
+.career-bullet:last-child::before {
+        content: "└─ ";
+}
+
 /* Network Connections */
 .network-connections {
         margin: 10px 0;

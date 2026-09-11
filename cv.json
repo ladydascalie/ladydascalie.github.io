@@ -1,0 +1,243 @@
+{
+	"personal": {
+		"short_name": "Ben",
+		"name": "Benjamin Cable",
+		"title": "Senior Backend Engineer",
+		"company": "LootLocker",
+		"companyUrl": "https://lootlocker.com/",
+		"portrait": "src/portrait.gif"
+	},
+	"bio": [
+		"Hi there! 👋 I'm an enthusiastic Go developer with a wide range of skills, from building large-scale APIs to creating command line applications.",
+		"My recent work focuses on the hard parts of backend infrastructure: migrating production MySQL onto self-hosted bare metal, designing cross-platform identity and account-merge systems, keeping real-money commerce correct across five storefronts, and shipping GDPR Art. 28 DPA flows and player data erasure tooling. Away from work, I run my own Matrix homeserver and generally enjoy self-hosting.",
+		"Throughout my career, I've had the opportunity to lead teams of different sizes, ranging from 10 to 30 people, both as a lead developer and a principal engineer.",
+		"I'm actively involved in the free and open source software community. Apart from creating and maintaining software, I also co-organize the Golang Dorset meetup with my friends and colleagues.",
+		"Go is my primary language for work. I rely on it daily to develop micro-services and various command-line tools. Additionally, I have extensive experience with PHP, including creating new applications and managing legacy software.",
+		"In my free time, I enjoy engaging with educational materials, writing small video games using C & SDL2 and Godot, and indulging my passion for music by writing and recording my own tracks."
+	],
+	"skills": {
+		"languages": [
+			"Go",
+			"PHP",
+			"TypeScript",
+			"Rust",
+			"JavaScript"
+		],
+		"systems": [
+			"*nix",
+			"MySQL",
+			"Redis/Valkey",
+			"k3s/Kubernetes",
+			"AWS/GCP",
+			"Hetzner",
+			"Coffee ☕"
+		],
+		"expertise": [
+			"Identity & Account Linking",
+			"Payments & Entitlements",
+			"Database Performance & Locking",
+			"Microservices Architecture",
+			"Distributed Systems",
+			"GDPR & Data Compliance",
+			"API Design",
+			"Team Leadership",
+			"Command Line Tools"
+		]
+	},
+	"projects": [
+		{
+			"name": "go-flexible",
+			"url": "https://github.com/go-flexible",
+			"description": "Packages for building Go services, used in production at LootLocker"
+		},
+		{
+			"name": "Currency",
+			"url": "https://github.com/ladydascalie/currency",
+			"description": "ISO 4217 currency codes & minor units for Go"
+		},
+		{
+			"name": "zconf",
+			"url": "https://github.com/ladydascalie/zconf",
+			"description": "Extremely Overengineered Configuration Manager"
+		},
+		{
+			"name": "go-httpretry",
+			"url": "https://github.com/ladydascalie/go-httpretry",
+			"description": "HTTP client with retry policies & functional options"
+		},
+		{
+			"name": "deskhue",
+			"url": "https://github.com/ladydascalie/deskhue",
+			"description": "Philips Hue desktop controller (Wails + Svelte)"
+		},
+		{
+			"name": "Go Core",
+			"url": "https://github.com/golang/go/",
+			"description": "Go runtime & standard library",
+			"note": "documentation, but… still counts!"
+		}
+	],
+	"experience": [
+		{
+			"company": "LootLocker",
+			"roles": [
+				{
+					"role": "Senior Software Engineer",
+					"period": "Oct 2022 – Present",
+					"location": "Remote",
+					"summary": "Backend engineer on the core Go service, the developer console, and the platform's self-hosted infrastructure.",
+					"highlights": [
+						"Moved the production data store off managed infrastructure onto self-hosted bare-metal MySQL on Hetzner (deliberately outside the cluster) and built the k3s platform around it: deploys, failover, backups and monitoring.",
+						"Designed the cross-platform identity system: platform account linking, conflict authorisation and merge flows with a declarative scenario test harness, later reused as the foundation for publisher-scoped cross-game progressions.",
+						"Platform commerce: catalogues, currencies, wallets, entitlements and real-money IAP across Apple, Google, PlayStation, Steam and Epic, with defensive entitlement recording, refund processing and vendor failure surfacing for self-service debugging.",
+						"Database engineering end-to-end: a code-based, feature-flagged schema migration engine, the GORM→sqlx migration, and InnoDB-level fixes such as eliminating a gap-lock deadlock by inserting before locking.",
+						"Shipped GDPR compliance as engineering: Art. 28 DPA acceptance flows, PII classification on onboarding data, admin audit logging, and bulk player right-to-erasure.",
+						"Migrated auth.game from Next.js to Go server-side rendering, consolidating the auth surface onto the core stack.",
+						"Plus the rest of the platform: game/server/admin APIs, leaderboards, Redis-backed presence, email campaigns, the Next.js developer console, a Go + templ + HTMX publisher analytics platform, and internal libraries like go-filestorage and mysql-retry."
+					]
+				}
+			]
+		},
+		{
+			"company": "Benefex",
+			"roles": [
+				{
+					"role": "Staff Software Engineer",
+					"period": "Nov 2021 – Oct 2022",
+					"location": "Southampton, UK",
+					"summary": "Focused on improving the tech stack and service efficiency.",
+					"highlights": [
+						"Created internal libraries to assist moving the company's systems to Go.",
+						"Defined and refined the process for re-architecting services in Go.",
+						"Introduced Prometheus metrics to the Go services.",
+						"Built an asset optimisation pipeline to make file uploads faster and more efficient."
+					]
+				}
+			]
+		},
+		{
+			"company": "Utility Warehouse",
+			"roles": [
+				{
+					"role": "Engineering Team Lead",
+					"period": "Jan 2021 – Oct 2021",
+					"location": "London, UK",
+					"summary": "Built the Digital Experience team from the ground up.",
+					"highlights": [
+						"Defined process, audited the team's entire codebase, produced architecture diagrams and targeted strategic improvements.",
+						"Drove the replacement of the customer portal PHP monolith with a micro-frontend application powered by React and GraphQL.",
+						"Quality push on customer-facing services reduced call volume and support tickets; the UW app went from 2.1 to 4.5 stars on the App Store.",
+						"1:1s, mentoring and the usual management aspects of the role."
+					]
+				},
+				{
+					"role": "Senior Software Engineer",
+					"period": "Aug 2020 – Jan 2021",
+					"location": "London, UK",
+					"summary": "Part of the digital experience team.",
+					"highlights": [
+						"Improved usability and security of the login system via trusted third-party identity providers and 2FA support.",
+						"Helped define and establish better documentation practices."
+					]
+				}
+			]
+		},
+		{
+			"company": "LUSH Digital",
+			"roles": [
+				{
+					"role": "Technical Architect",
+					"period": "Oct 2019 – Jul 2020",
+					"location": "Poole, UK",
+					"summary": "Principal Engineer duties minus the people management, stepping back to focus on the tech as an individual contributor.",
+					"highlights": []
+				},
+				{
+					"role": "Principal Engineer",
+					"period": "Nov 2018 – Oct 2019",
+					"location": "Poole, UK",
+					"summary": "Shared leadership of a 30-strong team alongside another Principal Engineer.",
+					"highlights": [
+						"Spearheaded the technical design of the Lush Pay tills back-end and oversaw its deployment across the UK, Italy and Japan.",
+						"Designed and architected technical projects; introduced standardised methods of handling data across the business.",
+						"Kept the usual 1:1s, reviews, holiday & pay management and mentorship, plus hands-on backend engineering."
+					]
+				},
+				{
+					"role": "Senior Software Engineer",
+					"period": "Jul 2017 – Nov 2018",
+					"location": "Bournemouth, UK",
+					"summary": "Go & PHP microservices as part of the SOA team and commerce squad.",
+					"highlights": [
+						"Mentoring and support for new Gophers.",
+						"Development and maintenance of open-source software including LUSHDigital/core, LUSHDigital/modelgen and ladydascalie/v."
+					]
+				}
+			]
+		},
+		{
+			"company": "3SidedCube",
+			"roles": [
+				{
+					"role": "PHP Developer",
+					"period": "Apr 2016 – Jul 2017",
+					"location": "Bournemouth, UK",
+					"summary": "API & backend work as part of the server team.",
+					"highlights": [
+						"Worked on the Emergencies app suite, chained-crowdsourcing and the ATLAS preparedness backend.",
+						"AWS services ranging from RDS to DynamoDB, SQS, SES and SNS."
+					]
+				}
+			]
+		}
+	],
+	"contact": {
+		"email": "ben@cable.fyi",
+		"signal": "https://signal.me/#eu/V-9dTllhTgyXXHeIPglmmW4ScT7DVteYjNgkcf3L409OnH0uaVtF1JzIYvy9CS4z",
+		"linkedin": "https://www.linkedin.com/in/benjamin-cable-9aa05b90/",
+		"github": "https://github.com/ladydascalie",
+		"pgp": "https://github.com/ladydascalie.gpg",
+		"channels": [
+			{
+				"name": "Signal",
+				"url": "https://signal.me/#eu/V-9dTllhTgyXXHeIPglmmW4ScT7DVteYjNgkcf3L409OnH0uaVtF1JzIYvy9CS4z"
+			},
+			{
+				"name": "LinkedIn",
+				"url": "https://www.linkedin.com/in/benjamin-cable-9aa05b90/"
+			},
+			{
+				"name": "Email",
+				"url": "mailto:ben@cable.fyi"
+			},
+			{
+				"name": "GitHub",
+				"url": "https://github.com/ladydascalie"
+			}
+		]
+	},
+	"meetup": {
+		"name": "🐹 Golang Dorset Meetup 🐹",
+		"shortName": "Golang Dorset",
+		"url": "https://www.meetup.com/golang-dorset/",
+		"frequency": "Monthly",
+		"description": "Monthly gatherings of digital gophers for advanced Go programming, distributed systems architecture, and underground knowledge sharing.",
+		"activities": [
+			"Advanced Go programming techniques",
+			"Distributed systems architecture",
+			"Cryptographic implementations",
+			"Network security protocols",
+			"Underground knowledge sharing"
+		]
+	},
+	"webring": {
+		"sites": [
+			{
+				"url": "https://roolps.dev/"
+			},
+			{
+				"url": "https://github.com/zeevallin/"
+			}
+		]
+	}
+}

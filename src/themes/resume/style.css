@@ -1,0 +1,121 @@
+/* Plain resume: readable on screen, clean when printed to PDF. */
+
+:root {
+	--ink: #1a1a1a;
+	--muted: #555;
+	--accent: #0a5d8f;
+	--line: #ddd;
+}
+
+* {
+	box-sizing: border-box;
+}
+
+body {
+	font-family: "Inter", "Helvetica Neue", Arial, system-ui, sans-serif;
+	color: var(--ink);
+	line-height: 1.5;
+	font-size: 15px;
+	max-width: 80ch;
+	margin: 0 auto;
+	padding: 2rem 1.5rem;
+}
+
+a {
+	color: var(--accent);
+}
+
+h1 {
+	font-size: 1.8rem;
+	margin: 0 0 0.25rem;
+}
+
+h2 {
+	font-size: 1.05rem;
+	text-transform: uppercase;
+	letter-spacing: 0.08em;
+	color: var(--accent);
+	border-bottom: 1px solid var(--line);
+	padding-bottom: 0.25rem;
+	margin: 2rem 0 0.75rem;
+}
+
+h3 {
+	font-size: 1rem;
+	margin: 1.1rem 0 0.1rem;
+}
+
+h4 {
+	font-size: 0.95rem;
+	margin: 0.8rem 0 0;
+}
+
+.cv-subrole {
+	break-inside: avoid;
+}
+
+.cv-summary {
+	color: var(--muted);
+	margin: 0.15rem 0;
+}
+
+.cv-role {
+	font-size: 1.05rem;
+	color: var(--muted);
+	margin: 0 0 0.25rem;
+}
+
+.cv-contact {
+	margin: 0;
+	color: var(--muted);
+}
+
+.cv-section {
+	margin-bottom: 1rem;
+}
+
+.cv-job {
+	break-inside: avoid;
+}
+
+.cv-job p,
+.cv-job ul {
+	margin: 0.2rem 0;
+}
+
+.cv-job h3 {
+	margin-top: 1rem;
+}
+
+.cv-points {
+	padding-left: 1.2rem;
+}
+
+.cv-points:empty {
+	display: none;
+}
+
+.cv-points li {
+	margin: 0.15rem 0;
+}
+
+@media print {
+	@page {
+		margin: 1.6cm;
+	}
+
+	body {
+		font-size: 11.5pt;
+		max-width: none;
+		padding: 0;
+	}
+
+	h2 {
+		break-after: avoid;
+	}
+
+	a {
+		color: inherit;
+		text-decoration: none;
+	}
+}
