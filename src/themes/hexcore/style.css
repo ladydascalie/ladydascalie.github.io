@@ -1,0 +1,798 @@
+/* Hexcore theme: an arcane hexagonal core over the mage's ledger.
+   Tokens only. The palette lives in tokens.css; nothing here redefines it. */
+
+body {
+	background: var(--bg);
+	color: var(--text);
+	font-family: var(--font-sans);
+	font-size: var(--text-base);
+	line-height: var(--leading-normal);
+}
+
+a {
+	color: var(--link);
+	text-decoration: none;
+	border-bottom: 1px solid transparent;
+	transition:
+		color var(--duration-fast) var(--ease),
+		border-color var(--duration-fast) var(--ease);
+}
+
+a:hover {
+	color: var(--accent-strong);
+	border-bottom-color: currentColor;
+}
+
+:focus-visible {
+	outline: 2px solid var(--link);
+	outline-offset: 3px;
+}
+
+.shell {
+	width: 100%;
+	max-width: 76rem;
+	margin-inline: auto;
+	padding: var(--space-5) var(--space-4) var(--space-7);
+}
+
+/* ---------------------------------------------------------------- top bar */
+
+.masthead-bar {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: space-between;
+	gap: var(--space-3);
+	font-family: var(--font-mono);
+	font-weight: var(--mono-weight);
+	font-size: var(--text-2xs);
+	letter-spacing: 0.14em;
+	text-transform: uppercase;
+	color: var(--muted);
+}
+
+.wordmark {
+	display: inline-flex;
+	align-items: center;
+	gap: var(--space-2);
+	color: var(--text);
+}
+
+.wordmark-mark {
+	font-family: var(--font-shade);
+	letter-spacing: 0;
+	color: var(--accent-strong);
+}
+
+.wordmark-accent {
+	color: var(--accent-strong);
+}
+
+.masthead-rune {
+	font-family: var(--font-shade);
+	color: var(--border-strong);
+	white-space: nowrap;
+}
+
+.theme-toggle {
+	font-family: var(--font-mono);
+	font-weight: var(--mono-weight);
+	font-size: var(--text-2xs);
+	letter-spacing: 0.12em;
+	color: var(--link);
+	background: transparent;
+	border: 1px solid var(--border-strong);
+	border-radius: var(--radius-sm);
+	padding: var(--space-hair) var(--space-2);
+	cursor: pointer;
+	transition:
+		background var(--duration-fast) var(--ease),
+		color var(--duration-fast) var(--ease),
+		border-color var(--duration-fast) var(--ease);
+}
+
+.theme-toggle:hover {
+	background: var(--surface-2);
+	color: var(--accent-strong);
+	border-color: var(--accent-strong);
+}
+
+[hidden] {
+	display: none !important;
+}
+
+/* --------------------------------------------------------- shade rules */
+
+.rule {
+	margin-block: var(--space-4);
+	font-family: var(--font-shade);
+	font-size: var(--text-sm);
+	letter-spacing: 0.06em;
+	color: var(--accent-strong);
+	opacity: 0.4;
+	white-space: nowrap;
+	overflow: hidden;
+}
+
+/* -------------------------------------------------------- masthead core */
+
+.masthead-core {
+	display: grid;
+	grid-template-columns: minmax(0, 15rem) minmax(0, 1fr);
+	align-items: center;
+	gap: var(--space-6);
+	padding-block: var(--space-4) var(--space-6);
+}
+
+.core-stage {
+	display: flex;
+	justify-content: center;
+}
+
+.core {
+	position: relative;
+	width: min(100%, 15rem);
+	aspect-ratio: 200 / 224;
+	display: grid;
+	place-items: center;
+}
+
+.core-facets {
+	position: absolute;
+	inset: 0;
+	width: 100%;
+	height: 100%;
+	overflow: visible;
+}
+
+.core-facets .facet {
+	fill: var(--accent-lt);
+	stroke: var(--accent-strong);
+	stroke-width: 1.5;
+	opacity: 0.8;
+	animation: hexcore-pulse 7s var(--ease) infinite;
+}
+
+.core-facets .facet-1 {
+	animation-delay: 0s;
+}
+
+.core-facets .facet-2 {
+	fill: var(--surface-2);
+	stroke: var(--link);
+	animation-delay: 0.9s;
+}
+
+.core-facets .facet-3 {
+	animation-delay: 1.8s;
+}
+
+.core-facets .facet-4 {
+	fill: var(--surface-2);
+	stroke: var(--link);
+	animation-delay: 2.7s;
+}
+
+.core-facets .facet-5 {
+	animation-delay: 3.6s;
+}
+
+.core-facets .facet-6 {
+	fill: var(--surface-2);
+	stroke: var(--link);
+	animation-delay: 4.5s;
+}
+
+.core-facets .core-outline {
+	fill: none;
+	stroke: var(--accent-strong);
+	stroke-width: 1.5;
+	stroke-dasharray: 576;
+	stroke-dashoffset: 576;
+	animation: rune-draw 18s var(--ease) infinite;
+}
+
+.core-facets .core-inner {
+	fill: none;
+	stroke: var(--link);
+	stroke-width: 1;
+	stroke-dasharray: 4 6;
+	opacity: 0.8;
+}
+
+.core-portrait {
+	position: relative;
+	width: 56%;
+	aspect-ratio: 1 / 1;
+	overflow: hidden;
+	background: var(--surface);
+	clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+}
+
+.core-portrait img {
+	display: block;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	filter: saturate(0.85) contrast(1.05);
+}
+
+.core-rune {
+	position: absolute;
+	font-family: var(--font-shade);
+	font-size: var(--text-xs);
+	color: var(--link);
+	opacity: 0.8;
+	animation: hexcore-pulse 5s var(--ease) infinite;
+}
+
+.rune-1 {
+	top: 1%;
+	left: 50%;
+	transform: translateX(-50%);
+	animation-delay: 0.4s;
+}
+
+.rune-2 {
+	top: 26%;
+	right: 0;
+	animation-delay: 1.2s;
+}
+
+.rune-3 {
+	bottom: 26%;
+	right: 0;
+	animation-delay: 2s;
+}
+
+.rune-4 {
+	bottom: 1%;
+	left: 50%;
+	transform: translateX(-50%);
+	animation-delay: 2.8s;
+}
+
+.rune-5 {
+	bottom: 26%;
+	left: 0;
+	animation-delay: 3.6s;
+}
+
+.rune-6 {
+	top: 26%;
+	left: 0;
+	animation-delay: 4.4s;
+}
+
+.identity {
+	display: flex;
+	flex-direction: column;
+	gap: var(--space-3);
+	min-width: 0;
+}
+
+.identity-eyebrow {
+	margin: 0;
+	font-family: var(--font-shade);
+	font-size: var(--text-xs);
+	letter-spacing: 0.04em;
+	color: var(--border-strong);
+}
+
+.identity h1 {
+	margin: 0;
+	font-size: var(--text-2xl);
+	line-height: var(--leading-tight);
+	letter-spacing: 0.02em;
+	font-weight: 700;
+}
+
+.identity-title {
+	margin: 0;
+	max-width: var(--measure);
+	font-size: var(--text-md);
+	color: var(--muted);
+}
+
+.identity-title a {
+	color: var(--accent-strong);
+}
+
+.identity-badges {
+	display: flex;
+	flex-wrap: wrap;
+	gap: var(--space-2);
+	margin: 0;
+}
+
+/* ------------------------------------------------------------- badges */
+
+.badge {
+	display: inline-block;
+	font-family: var(--font-mono);
+	font-weight: var(--mono-weight);
+	font-size: var(--text-2xs);
+	letter-spacing: 0.08em;
+	color: var(--muted);
+	border: 1px solid var(--border);
+	border-radius: var(--radius-sm);
+	padding: var(--space-hair) var(--space-2);
+	white-space: nowrap;
+}
+
+.badge-rune {
+	color: var(--accent-strong);
+	border-color: var(--accent-lt);
+}
+
+.badge-period {
+	color: var(--link);
+	border-color: var(--border-strong);
+}
+
+/* ------------------------------------------------------------ panels */
+
+.panel {
+	background: var(--surface);
+	border: 1px solid var(--border);
+	border-radius: var(--radius-md);
+	padding: var(--space-5);
+	margin-bottom: var(--space-5);
+}
+
+.panel:last-of-type {
+	margin-bottom: 0;
+}
+
+.section-head {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: baseline;
+	gap: var(--space-2);
+	margin: 0 0 var(--space-4);
+	font-size: var(--text-lg);
+	line-height: var(--leading-snug);
+	letter-spacing: 0.03em;
+}
+
+.section-glyph {
+	font-family: var(--font-shade);
+	font-size: var(--text-sm);
+	color: var(--accent-strong);
+}
+
+.section-note {
+	margin-left: auto;
+	font-family: var(--font-mono);
+	font-weight: var(--mono-weight);
+	font-size: var(--text-2xs);
+	letter-spacing: 0.14em;
+	text-transform: uppercase;
+	color: var(--muted);
+}
+
+.sub-head {
+	margin: var(--space-5) 0 var(--space-3);
+	font-family: var(--font-mono);
+	font-weight: var(--mono-weight);
+	font-size: var(--text-2xs);
+	letter-spacing: 0.14em;
+	text-transform: uppercase;
+	color: var(--muted);
+}
+
+.prose {
+	display: grid;
+	gap: var(--space-3);
+	max-width: var(--measure);
+}
+
+.prose p {
+	margin: 0;
+}
+
+/* ------------------------------------------------------- rune paths */
+
+.rune-paths {
+	display: grid;
+	gap: var(--space-2);
+	max-width: var(--measure);
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.rune-path {
+	display: flex;
+	align-items: center;
+	gap: var(--space-3);
+	padding-block: var(--space-2);
+	border-bottom: 1px dashed var(--border);
+}
+
+.rune-path:last-child {
+	border-bottom: 0;
+}
+
+.rune-mark {
+	font-family: var(--font-shade);
+	color: var(--accent-strong);
+}
+
+.rune-name {
+	font-family: var(--font-mono);
+	font-weight: var(--mono-weight);
+	font-size: var(--text-sm);
+	color: var(--text);
+}
+
+.rune-path .badge {
+	margin-left: auto;
+}
+
+.facets {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(14rem, 1fr));
+	gap: var(--space-2);
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.facet-card {
+	display: flex;
+	align-items: baseline;
+	gap: var(--space-2);
+	background: var(--surface-2);
+	border: 1px solid var(--border);
+	border-radius: var(--radius-sm);
+	padding: var(--space-2) var(--space-3);
+	font-size: var(--text-sm);
+}
+
+.facet-index {
+	font-family: var(--font-mono);
+	font-weight: var(--mono-weight);
+	font-size: var(--text-2xs);
+	letter-spacing: 0.08em;
+	color: var(--link);
+}
+
+/* --------------------------------------------------------- ledger */
+
+.ledger {
+	display: grid;
+	gap: var(--space-6);
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.guild {
+	border-left: 1px solid var(--border-strong);
+	padding-left: var(--space-4);
+}
+
+.guild-name {
+	margin: 0;
+	font-family: var(--font-mono);
+	font-weight: var(--mono-weight);
+	font-size: var(--text-md);
+	letter-spacing: 0.04em;
+	color: var(--accent-strong);
+}
+
+.role {
+	margin-top: var(--space-4);
+}
+
+.role:first-of-type {
+	margin-top: var(--space-3);
+}
+
+.role-line {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: baseline;
+	gap: var(--space-2);
+}
+
+.role-title {
+	font-size: var(--text-md);
+	color: var(--text);
+}
+
+.role-location {
+	font-family: var(--font-mono);
+	font-weight: var(--mono-weight);
+	font-size: var(--text-2xs);
+	letter-spacing: 0.08em;
+	color: var(--muted);
+}
+
+.role-summary {
+	margin: var(--space-2) 0 0;
+	max-width: var(--measure);
+}
+
+.highlights {
+	display: grid;
+	gap: var(--space-2);
+	max-width: var(--measure);
+	margin: var(--space-3) 0 0;
+	padding: 0;
+	list-style: none;
+}
+
+.highlights:empty {
+	display: none;
+}
+
+.highlights li {
+	position: relative;
+	padding-left: var(--space-5);
+	color: var(--muted);
+	line-height: var(--leading-snug);
+}
+
+.highlights li::before {
+	content: "▓";
+	position: absolute;
+	left: 0;
+	font-family: var(--font-shade);
+	color: var(--accent-strong);
+	opacity: 0.8;
+}
+
+/* ------------------------------------------------------- artefacts */
+
+.artefacts {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(17rem, 1fr));
+	gap: var(--space-3);
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.artefact {
+	display: flex;
+	flex-direction: column;
+	gap: var(--space-2);
+	background: var(--surface-2);
+	border: 1px solid var(--border);
+	border-radius: var(--radius-md);
+	padding: var(--space-4);
+	transition: border-color var(--duration-fast) var(--ease);
+}
+
+.artefact:hover {
+	border-color: var(--accent-strong);
+}
+
+.artefact-name {
+	font-family: var(--font-mono);
+	font-weight: var(--mono-weight);
+	font-size: var(--text-sm);
+	color: var(--accent-strong);
+}
+
+.artefact-desc {
+	margin: 0;
+	font-size: var(--text-sm);
+	color: var(--muted);
+}
+
+.artefact-note {
+	margin: 0;
+	font-family: var(--font-mono);
+	font-weight: var(--mono-weight);
+	font-size: var(--text-2xs);
+	color: var(--link);
+}
+
+.artefact-note:empty {
+	display: none;
+}
+
+/* --------------------------------------------------------- conclave */
+
+.conclave-name {
+	margin: 0 0 var(--space-2);
+	font-size: var(--text-md);
+}
+
+.conclave-name a {
+	color: var(--accent-strong);
+}
+
+.conclave-meta {
+	display: flex;
+	flex-wrap: wrap;
+	gap: var(--space-2);
+	margin: var(--space-2) 0 var(--space-3);
+}
+
+.activities {
+	display: grid;
+	gap: var(--space-1);
+	max-width: var(--measure);
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.activities li {
+	position: relative;
+	padding-left: var(--space-4);
+	font-size: var(--text-sm);
+	color: var(--muted);
+}
+
+.activities li::before {
+	content: "─";
+	position: absolute;
+	left: 0;
+	font-family: var(--font-shade);
+	color: var(--border-strong);
+}
+
+/* ---------------------------------------------------- sending stones */
+
+.stones {
+	display: grid;
+	gap: var(--space-2);
+	max-width: var(--measure);
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.stones li {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: baseline;
+	gap: var(--space-2);
+	font-size: var(--text-sm);
+}
+
+.stones a {
+	word-break: break-word;
+}
+
+.stone-label {
+	font-family: var(--font-mono);
+	font-weight: var(--mono-weight);
+	font-size: var(--text-2xs);
+	letter-spacing: 0.1em;
+	text-transform: uppercase;
+	color: var(--muted);
+}
+
+/* ----------------------------------------------------- allied circles */
+
+.circles {
+	display: grid;
+	gap: var(--space-2);
+	max-width: var(--measure);
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.circles li {
+	display: flex;
+	align-items: baseline;
+	gap: var(--space-3);
+}
+
+.circle-index {
+	font-family: var(--font-mono);
+	font-weight: var(--mono-weight);
+	font-size: var(--text-2xs);
+	letter-spacing: 0.1em;
+	color: var(--accent-strong);
+}
+
+/* ----------------------------------------------------------- footer */
+
+.footer {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: baseline;
+	justify-content: space-between;
+	gap: var(--space-3);
+	margin-top: var(--space-6);
+	padding-top: var(--space-4);
+	border-top: 1px solid var(--border);
+	font-family: var(--font-mono);
+	font-weight: var(--mono-weight);
+	font-size: var(--text-2xs);
+	color: var(--muted);
+}
+
+.footer-line {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: baseline;
+	gap: var(--space-3);
+	margin: 0;
+}
+
+.footer-rune {
+	font-family: var(--font-shade);
+	color: var(--accent-strong);
+}
+
+/* ----------------------------------------------------------- motion */
+
+@keyframes hexcore-pulse {
+	0%,
+	100% {
+		opacity: 0.6;
+	}
+	50% {
+		opacity: 1;
+	}
+}
+
+@keyframes rune-draw {
+	0% {
+		stroke-dashoffset: 576;
+		opacity: 0.35;
+	}
+	55% {
+		stroke-dashoffset: 0;
+		opacity: 1;
+	}
+	100% {
+		stroke-dashoffset: 0;
+		opacity: 0.4;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	*,
+	*::before,
+	*::after {
+		animation: none !important;
+		transition: none !important;
+	}
+
+	.core-facets .facet {
+		opacity: 1;
+	}
+
+	.core-facets .core-outline {
+		stroke-dasharray: none;
+		stroke-dashoffset: 0;
+		opacity: 0.9;
+	}
+}
+
+/* ------------------------------------------------------- narrow view */
+
+@media (max-width: 48rem) {
+	.masthead-core {
+		grid-template-columns: minmax(0, 1fr);
+		justify-items: center;
+		gap: var(--space-5);
+		text-align: center;
+	}
+
+	.identity {
+		align-items: center;
+	}
+
+	.identity-badges {
+		justify-content: center;
+	}
+
+	.section-note {
+		margin-left: 0;
+	}
+
+	.stones li {
+		justify-content: center;
+	}
+}
