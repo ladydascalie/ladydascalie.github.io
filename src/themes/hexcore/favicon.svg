@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Hexcore">
+	<title>Hexcore</title>
+	<polygon points="32,3 57,17.5 57,46.5 32,61 7,46.5 7,17.5" fill="#3d6756"></polygon>
+	<polygon points="32,16 46,24 46,40 32,48 18,40 18,24" fill="none" stroke="#6aa88d" stroke-width="2.5"></polygon>
+	<path d="M32 32 L32 16 M32 32 L46 24 M32 32 L46 40 M32 32 L32 48 M32 32 L18 40 M32 32 L18 24" stroke="#6aa88d" stroke-width="1.75"></path>
+	<circle cx="32" cy="32" r="3.5" fill="#6aa88d"></circle>
+</svg>

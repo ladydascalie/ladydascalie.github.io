@@ -1,0 +1,17 @@
+{
+	"mage": {
+		"class": "Runebinder",
+		"circle": "The Verdant Spire",
+		"focus": "Lattice of Six Facets"
+	},
+	"runes": {
+		"Go": "Runelord",
+		"PHP": "Runekeeper",
+		"TypeScript": "Runeweaver",
+		"Rust": "Runescribe",
+		"JavaScript": "Runescribe"
+	},
+	"footer": {
+		"flavour": "Forged in the hexcore. Plain HTML, no trackers, no scrying."
+	}
+}
