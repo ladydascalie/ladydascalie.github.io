@@ -68,12 +68,6 @@ a:hover {
 	color: var(--accent-strong);
 }
 
-.masthead-rune {
-	font-family: var(--font-shade);
-	color: var(--border-strong);
-	white-space: nowrap;
-}
-
 .theme-toggle {
 	font-family: var(--font-mono);
 	font-weight: var(--mono-weight);
@@ -99,19 +93,6 @@ a:hover {
 
 [hidden] {
 	display: none !important;
-}
-
-/* --------------------------------------------------------- shade rules */
-
-.rule {
-	margin-block: var(--space-4);
-	font-family: var(--font-shade);
-	font-size: var(--text-sm);
-	letter-spacing: 0.06em;
-	color: var(--accent-strong);
-	opacity: 0.4;
-	white-space: nowrap;
-	overflow: hidden;
 }
 
 /* -------------------------------------------------------- masthead core */
@@ -333,8 +314,10 @@ a:hover {
 /* ------------------------------------------------------------ panels */
 
 .panel {
+	position: relative;
 	background: var(--surface);
 	border: 1px solid var(--border);
+	border-top-color: var(--accent-lt);
 	border-radius: var(--radius-md);
 	padding: var(--space-5);
 	margin-bottom: var(--space-5);
@@ -342,6 +325,28 @@ a:hover {
 
 .panel:last-of-type {
 	margin-bottom: 0;
+}
+
+.panel::before,
+.panel::after {
+	position: absolute;
+	top: -0.5em;
+	font-family: var(--font-shade);
+	font-size: var(--text-sm);
+	line-height: 1;
+	color: var(--accent-strong);
+	opacity: 0.55;
+	pointer-events: none;
+}
+
+.panel::before {
+	content: "▓▒░";
+	left: 0;
+}
+
+.panel::after {
+	content: "░▒▓";
+	right: 0;
 }
 
 .section-head {

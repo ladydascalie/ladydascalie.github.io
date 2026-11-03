@@ -304,7 +304,7 @@ for (const file of [findThemeFile(THEME, FAVICON_CANDIDATES), findThemeFile(THEM
 }
 
 // The theme renders the portrait as a page-relative path; keep that path in out.
-const portrait = cv.personal?.portrait;
+const portrait = data.personal?.portrait;
 if (portrait && existsSync(join(root, portrait))) {
 	copyFile(join(root, portrait), join(OUT, portrait));
 	copied.push(portrait);

@@ -29,8 +29,7 @@
 			"Redis/Valkey",
 			"k3s/Kubernetes",
 			"AWS/GCP",
-			"Hetzner",
-			"Coffee ☕"
+			"Hetzner"
 		],
 		"expertise": [
 			"Identity & Account Linking",

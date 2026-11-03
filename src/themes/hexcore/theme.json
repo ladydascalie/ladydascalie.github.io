@@ -1,8 +1,10 @@
 {
+	"personal": {
+		"portrait": "src/themes/hexcore/portrait.jpeg"
+	},
 	"mage": {
 		"class": "Runebinder",
-		"circle": "The Verdant Spire",
-		"focus": "Lattice of Six Facets"
+		"circle": "Six Faces Of Nil"
 	},
 	"runes": {
 		"Go": "Runelord",
@@ -12,6 +14,6 @@
 		"JavaScript": "Runescribe"
 	},
 	"footer": {
-		"flavour": "Forged in the hexcore. Plain HTML, no trackers, no scrying."
+		"flavour": "Invoked as Plain HTML, no trackers, no scrying eyes."
 	}
 }

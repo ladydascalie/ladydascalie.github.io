@@ -4,7 +4,7 @@
  */
 
 const HexcoreTheme = new ThemeTemplate("hexcore", {
-	title: "{{personal.name}} - Hexcore",
+	title: "{{personal.name}} - Darkmage",
 	description:
 		"An arcane hexcore ledger: rune paths, guild ledger and sending stones.",
 	icon: "⬡",
@@ -31,7 +31,6 @@ const HexcoreTheme = new ThemeTemplate("hexcore", {
 					<span class="wordmark-mark" aria-hidden="true">░▓</span>
 					<span>dark<span class="wordmark-accent">mage</span></span>
 				</span>
-				<span class="masthead-rune" aria-hidden="true">┌── hexcore ──┐</span>
 				<button class="theme-toggle" id="theme-toggle" type="button" hidden>[ light ]</button>
 			</div>
 
@@ -67,13 +66,10 @@ const HexcoreTheme = new ThemeTemplate("hexcore", {
 				<p class="identity-badges">
 					<span class="badge">[ {{mage.class}} ]</span>
 					<span class="badge">[ circle: {{mage.circle}} ]</span>
-					<span class="badge">[ focus: {{mage.focus}} ]</span>
 				</p>
 			</div>
 			</div>
 		</header>
-
-		<div class="rule" aria-hidden="true">▓▒░────────────────────────────────────────────────────────────░▒▓</div>
 
 		<section class="panel" aria-labelledby="account-head">
 			<h2 class="section-head" id="account-head">
@@ -186,10 +182,6 @@ const HexcoreTheme = new ThemeTemplate("hexcore", {
 				<li><span class="stone-label">[ pgp ]</span><a href="{{contact.pgp}}">public key</a></li>
 			</ul>
 
-			<h3 class="sub-head">Open channels</h3>
-			<ul class="stones">
-{{@each contact.channels}}				<li><span class="stone-label">[ {{@item.name}} ]</span><a href="{{@item.url}}">{{@item.url}}</a></li>
-{{/each}}			</ul>
 		</section>
 
 		<section class="panel" aria-labelledby="circles-head">
