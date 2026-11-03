@@ -1,0 +1,124 @@
+# dungeon plan. Edit this, then:
+#   dungeon check          # validates
+#   dungeon up             # spawns the lanes and dispatches
+#   dungeon view           # the live graph
+encounter: darkmage-hexcore
+repo: /home/b/Code/Personal/ladydascalie.github.io
+base: master
+concurrency: 3
+
+minions:
+  - {id: scout, role: scout, tools: "read,bash,grep,find,ls"}
+  - {id: w1, role: worker, worktree: w1}
+  - {id: w2, role: worker, worktree: w2}
+  - {id: r1, role: reviewer, of: w1}
+  - {id: r2, role: reviewer, of: w2}
+
+units:
+  - id: recon
+    minion: scout
+    goal: |
+      Report the integration contract for a new theme and a domain move. Do not write in the checkout; use ${TMPDIR} only.
+
+      1. Copy the repo to ${TMPDIR}, run `node build.mjs` there, and report every file it reads and writes, with file:line. Confirm the base build works.
+      2. List the template-engine contract from src/template-engine.js: placeholder syntax, @each nesting, every filter, extraHead, buildFullDocument, and how a theme registers. Cite file:line.
+      3. List every field the new theme can render from cv.json, with one example value each: bio, skills.languages, skills.systems, skills.expertise, projects[].note, experience[].roles[].highlights, contact.channels, meetup.activities, webring.sites.
+      4. Read ~/Code/Personal/design-system/tokens.css, fonts.css and DESIGN.md at tag v0.3.0. Give the exact token names, both theme blocks, the font file names, and the licence names.
+      5. Run `gh api repos/ladydascalie/ladydascalie.github.io/pages` and report url, cname, build_type and source.
+      6. Report every occurrence of `cable.fyi` and `ladydascalie.github.io` in the repo, file:line.
+      7. Name anything in build.mjs that makes a `--theme` or `--out` flag awkward, and whether inlining tokens.css and fonts.css before the theme CSS changes the current cypherpunk output. Diff the rendered HTML against the committed index.html to prove it.
+    accept: |
+      test -s .dungeon/reports/recon.md &&
+      grep -qE "src/template-engine.js:[0-9]+" .dungeon/reports/recon.md &&
+      grep -q "build_type" .dungeon/reports/recon.md &&
+      grep -q "tokens.css" .dungeon/reports/recon.md
+
+  - id: plumbing
+    minion: w1
+    paths: [build.mjs, src/vendor/design-system/**, .github/workflows/**, .gitignore]
+    deps: [recon]
+    goal: |
+      Make the site build into dist/, theme-selectable, and deploy from GitHub Actions.
+
+      Vendor the pinned Runbooks design system v0.3.0 into src/vendor/design-system/v0.3.0/: tokens.css, fonts.css, fonts/ (three woff2 files), the OFL licence files, and VENDOR.md naming the tag, the release URLs and a sha256 per file. Fetch from
+      https://github.com/runbooks-help/design-system/releases/download/v0.3.0/
+      and do not vendor the Runbooks brand assets.
+
+      build.mjs gains `--theme <name>` and `--out <dir>`. Default out is dist; default theme is hexcore when src/themes/hexcore/template.js exists, otherwise cypherpunk. Load only the selected theme's template plus the resume theme for cv.html. Inline CSS in this order: tokens.css, fonts.css, the theme's style.css. Copy fonts/ into out so the fonts/ URLs resolve. Copy cv.json, llms.txt, .well-known/**, .nojekyll, CNAME and any theme favicon into out. Canonical URL, og:url and the JSON-LD url become https://darkmage.dev/. Add the favicon link and og:image only when the file exists.
+
+      Add .github/workflows/pages.yml: on push to master, set up Node, run the build, upload-pages-artifact on dist, deploy-pages. Grant pages: write and id-token: write, use the github-pages environment and a concurrency group. Add dist/ to .gitignore. Do not delete the committed index.html or cv.html.
+
+      Do not edit CNAME, README.md, llms.txt, cv.json, src/template-engine.js or src/themes/hexcore/**.
+    accept: |
+      node build.mjs --theme cypherpunk --out dist &&
+      test -f dist/cv.html &&
+      test -f dist/cv.json &&
+      test -f dist/fonts/atkinson-hyperlegible-mono-latin-wght-normal.woff2 &&
+      grep -qF -- "--accent: #3d6756" dist/index.html &&
+      grep -qF -- "https://darkmage.dev/" dist/index.html &&
+      grep -qF -- "Cypherpunk" dist/index.html
+
+  - id: theme
+    minion: w2
+    paths: [src/themes/hexcore/**]
+    deps: [recon]
+    goal: |
+      Build the hexcore fantasy theme on the Runbooks design language. Files: template.js, theme.json, style.css, script.js, favicon.svg, check.mjs. Register the theme as "hexcore". Do not edit cv.json or any shared file.
+
+      Design language, from tokens.css and DESIGN.md:
+      - Use tokens only: --bg, --surface, --surface-2, --text, --muted, --border, --border-strong, --accent, --accent-strong, --accent-lt, --on-accent, --link, --success, --warn, --danger, --font-sans, --font-mono, --font-shade, --mono-weight, --text-*, --leading-*, --measure, --space-*, --radius-*, --shadow-*, --duration-*, --ease. No raw hex or rgb(), and no raw px in margin, padding or gap. The only exception is favicon.svg, which may carry the brand greens #3d6756 and #6aa88d.
+      - Dark first. tokens.css provides dark in :root and light in html[data-theme="light"]; do not redefine the palette. Add a light/dark toggle in the masthead. The first element inside the theme html is a small script that reads localStorage["hexcore-theme"] and sets documentElement.dataset.theme before the rest parses. Default dark; script.js persists the choice.
+      - Squared radii, Atkinson Hyperlegible Next and Mono, --mono-weight, bracketed badges `[ label ]`, prose capped at --measure, status colours never used as the brand accent.
+      - Use the shade glyphs (░▒▓ and box drawing) through --font-shade for the core frame and section rules, as the Runbooks brand does.
+
+      Composition. The motif is an arcane hexagonal core: a masthead with an inline SVG or CSS hexagon built from six facets, rune-lit with --accent-strong and --link, with the mage's identity at its centre. CSS pulse and a slow rune draw only; no canvas, no matrix rain, no parallax. Everything is readable with JS off. Honour prefers-reduced-motion by removing all animation and transition.
+
+      Sections and mapping. Keep every cv.json string verbatim; the fantasy naming is chrome, not a rewrite.
+      - Identity: name, title, company link, portrait, plus flavour-only class, circle and focus from theme.json.
+      - Bio: the mage's account, one paragraph per bio entry.
+      - Skills: languages as rune paths with a tier from a theme.json runes map keyed by language; systems and expertise as named facets of the core. Bracketed tier badges.
+      - Experience: guild ledger. Every period, role, location, summary and highlight renders verbatim, including the current employer.
+      - Projects: artefacts. Real name, url, description and optional note.
+      - Meetup: conclave. Real name, url, description, frequency and joined activities.
+      - Contact: sending stones. Email, signal, linkedin, github, pgp, plus contact.channels when present.
+      - Webring: allied circles, numbered.
+      - Footer: links to cv.html and cv.json, meta.real_year, and one flavour line from theme.json.
+
+      theme.json carries flavour only. Use plain objects and scalars; do not override arrays. New copy is British English, plain and direct, with no em dash or en dash.
+
+      check.mjs is the acceptance test. Resolve the repo root from import.meta.url and use no network. If build.mjs contains both `--theme` and `--out`, build twice, once with `--theme hexcore` and once with no theme flag, and assert the second selects hexcore. For the hexcore build assert on the generated index.html: no unresolved {{, the hexcore markers, `--accent: #3d6756`, an @font-face from fonts.css, and the canonical https://darkmage.dev/. Otherwise render the theme directly with src/template-engine.js, merging cv.json with theme.json (deep for objects, replace for arrays), and assert the same markers except the canonical and tokens. Write the rendered page to --out when given, default a file under ${TMPDIR}. Print each assertion and exit non-zero on any failure.
+    accept: |
+      node src/themes/hexcore/check.mjs
+
+  - id: domain-docs
+    minion: w1
+    paths: [CNAME, README.md, llms.txt]
+    deps: [recon]
+    goal: |
+      Point the site at darkmage.dev in the human-facing files.
+
+      CNAME is exactly `darkmage.dev` with a trailing newline.
+      README.md documents hexcore as the default theme, cypherpunk as still buildable with --theme, the dist/ output, the GitHub Actions deploy, and the manual steps that remain for the operator: switch Pages source to GitHub Actions, set the custom domain darkmage.dev, enforce HTTPS, and point DNS at GitHub Pages. Keep the structure table accurate.
+      llms.txt points at https://darkmage.dev and keeps /cv.json, /cv.html and the themed index.
+      No reference to cable.fyi or ladydascalie.github.io remains in these three files.
+    accept: |
+      test "$(tr -d "\n" < CNAME)" = "darkmage.dev" &&
+      ! grep -qE "cable\.fyi|ladydascalie\.github\.io" CNAME README.md llms.txt
+
+  - id: review-plumbing
+    minion: r1
+    deps: [plumbing, domain-docs]
+    verdict: "Verdict: PASS"
+    goal: |
+      Review w1's worktree, which holds the plumbing and domain-docs units. Read their reports first.
+
+      Check: the vendored design-system tag, files, licences and hashes; no brand assets copied; build.mjs flags, defaults and CSS order; fonts copied so fonts/ URLs resolve; canonical, og:url, JSON-LD and README/llms/CNAME all say darkmage.dev; the workflow triggers master, uses the right permissions, environment and concurrency, uploads dist and deploys, and needs no npm install; dist is ignored and no generated artefact is committed; cypherpunk still builds and renders unchanged; hexcore is the default only when its template exists. Run the build yourself into ${TMPDIR}. Cite file:line for any break.
+
+  - id: review-theme
+    minion: r2
+    deps: [theme]
+    verdict: "Verdict: PASS"
+    goal: |
+      Review w2's worktree. Run check.mjs and render a preview to ${TMPDIR}. Inspect it at 320, 768 and 1440 CSS px, dark and light.
+
+      Check: tokens only (no raw hex outside favicon.svg, no raw px in margin, padding or gap); the Runbooks palette, Atkinson fonts, --mono-weight, squared radii, bracketed badges and --measure; AA contrast in both themes; dark by default; the no-flash toggle and localStorage persistence; prefers-reduced-motion; no canvas; keyboard focus visible; no unresolved {{; every cv.json section present with its text verbatim, including all experience highlights, project notes, meetup activities and contact channels; the fantasy chrome stays chrome; British English; no em dash or en dash in new copy; valid SVG favicon. Name every miss with file:line.
