@@ -35,7 +35,7 @@ units:
 
   - id: plumbing
     minion: w1
-    paths: [build.mjs, src/vendor/design-system/**, .github/workflows/**, .gitignore]
+    paths: [build.mjs, src/vendor/**, .github/**, .gitignore, CNAME, README.md, llms.txt]
     deps: [recon]
     goal: |
       Make the site build into dist/, theme-selectable, and deploy from GitHub Actions.
@@ -92,7 +92,7 @@ units:
 
   - id: domain-docs
     minion: w1
-    paths: [CNAME, README.md, llms.txt]
+    paths: [build.mjs, src/vendor/**, .github/**, .gitignore, CNAME, README.md, llms.txt]
     deps: [recon]
     goal: |
       Point the site at darkmage.dev in the human-facing files.
